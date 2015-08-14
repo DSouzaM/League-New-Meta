@@ -1,0 +1,11 @@
+pick/win/ban rates of champions
+
+purchase/win rates of items with respect to champions
+
+time of purchases (earlier/later "power spikes")
+
+look for any emerging meta picks
+
+sortable by region, queue, rank if applicable
+
+more general game trends of before & after: first dragon, first baron, first tower, average kills at a certain time, etc.
