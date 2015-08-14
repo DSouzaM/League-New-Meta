@@ -3,7 +3,7 @@ from time import sleep
 import requests
 import json
 
-API_KEY = "a006f23d-e3f6-4e80-89d3-f93238f66236"
+API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
 # getMatchIDs(5.11, 'NORMAL_5X5', 'NA')
 def getMatchIDs(version, gamemode, region):
@@ -16,23 +16,48 @@ def getMatchIDs(version, gamemode, region):
 # downloadData(5.11, 'NORMAL_5X5', 'NA')
 def downloadData(version, gamemode, region):
 
-    matchIDs = getMatchIDs(version, gamemode, region)[0:2]
+    gamemode = gamemode.upper()
+    region = region.upper()
 
-    for mid in matchIDs:
+    matchIDs = getMatchIDs(version, gamemode, region)
+    numMatches = len(matchIDs)
 
-        try:
-            Match.objects.get(pk=mid)
-            continue
-        except:
-            pass
+    had_errors = True
 
-        r = requests.get(
-            "https://na.api.pvp.net/api/lol/na/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
-                mid=mid,
-                key=API_KEY
+    while had_errors:
+
+        had_errors = False
+
+        for i in range(numMatches):
+
+            print "Processing match {i} / {total}".format(i=i,total=numMatches),
+
+            mid = matchIDs[i]
+
+            try:
+                Match.objects.get(match_id=mid,region=region)
+                print "~ skipped"
+                continue
+            except:
+                pass
+
+            r = requests.get(
+                "https://na.api.pvp.net/api/lol/na/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                    mid=mid,
+                    key=API_KEY
+                )
             )
-        )
 
-        data = r.json()
+            if r.status_code is not 200:
+                had_errors = True
+                print "~ ERROR"
+                continue
 
-        Match(match_id=data['matchId'],region=data['region'],data=data).save()
+            try: 
+                data = r.json()
+                Match(match_id=data['matchId'],region=data['region'],data=data).save()
+                print
+            except:
+                had_errors = True
+                print "~ ERROR"
+                continue
