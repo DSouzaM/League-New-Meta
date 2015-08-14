@@ -50,7 +50,7 @@ def downloadData(version, gamemode, region):
 
             if r.status_code is not 200:
                 had_errors = True
-                print "~ ERROR"
+                print "~ ERROR {s_code}".format(s_code=r.status_code)
                 continue
 
             try: 
