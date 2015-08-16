@@ -53,11 +53,11 @@ def downloadData(version, gamemode, region):
                 print "~ ERROR {s_code}".format(s_code=r.status_code)
                 continue
 
-            try: 
+            try:
                 data = r.json()
-                Match(match_id=data['matchId'],region=data['region'],data=data).save()
+                Match(match_id=data['matchId'],region=data['region'],data=r.text).save()
                 print
-            except:
+            except Exception as e:
                 had_errors = True
-                print "~ ERROR"
+                print "~ " + str(e)
                 continue
