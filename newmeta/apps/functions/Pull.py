@@ -3,6 +3,7 @@ from time import sleep
 import requests
 import json
 
+API_BASE_URL = "https://na.api.pvp.net/api/lol/"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
 # getMatchIDs(5.11, 'NORMAL_5X5', 'NA')
@@ -42,7 +43,8 @@ def downloadData(version, gamemode, region):
                 pass
 
             r = requests.get(
-                "https://na.api.pvp.net/api/lol/na/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                API_BASE_URL + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                    region=region.lower(),
                     mid=mid,
                     key=API_KEY
                 )
