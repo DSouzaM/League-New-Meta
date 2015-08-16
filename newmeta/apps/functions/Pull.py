@@ -14,7 +14,6 @@ def getMatchIDs(version, gamemode, region):
 
     return json.loads(content)
 
-# from apps.functions.Pull import *
 # downloadData(5.11, 'NORMAL_5X5', 'NA')
 def downloadData(version, gamemode, region):
 
@@ -64,3 +63,8 @@ def downloadData(version, gamemode, region):
                 had_errors = True
                 print "~ " + str(e)
                 continue
+# from apps.functions.Pull import *
+# getDevData()
+def getDevData():
+    downloadData(5.11, 'NORMAL_5X5', 'NA')
+    downloadData(5.14, 'NORMAL_5X5', 'NA')
