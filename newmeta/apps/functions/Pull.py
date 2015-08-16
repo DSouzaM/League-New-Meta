@@ -13,6 +13,7 @@ def getMatchIDs(version, gamemode, region):
         content = content_file.read()
 
     return json.loads(content)
+
 # from apps.functions.Pull import *
 # downloadData(5.11, 'NORMAL_5X5', 'NA')
 def downloadData(version, gamemode, region):
@@ -57,7 +58,7 @@ def downloadData(version, gamemode, region):
 
             try:
                 data = r.json()
-                Match(match_id=data['matchId'],region=data['region'],data=r.text).save()
+                Match(match_id=data['matchId'],region=data['region'],version=version,gamemode=gamemode,data=r.text).save()
                 print
             except Exception as e:
                 had_errors = True
