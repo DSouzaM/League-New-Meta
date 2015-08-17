@@ -27,6 +27,10 @@ def downloadData(version, gamemode, region):
 
     matchIDs = getMatchIDs(version, gamemode, region)
 
+    ver = Version.objects.get(name=version)
+    gm = Gamemode.objects.get(name=gamemode)
+    reg = Region.objects.get(name=region)
+
     while matchIDs:
         print matchIDs
         numMatches = len(matchIDs)
@@ -64,9 +68,9 @@ def downloadData(version, gamemode, region):
                 data = r.json()
                 Match(
                     match_id=data['matchId'],
-                    region=data['region'],
-                    version=version,
-                    gamemode=gamemode,
+                    region=reg,
+                    version=ver,
+                    gamemode=gm,
                     data=r.text
                 ).save()
                 print
