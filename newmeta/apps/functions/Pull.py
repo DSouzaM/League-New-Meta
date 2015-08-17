@@ -3,7 +3,10 @@ from time import sleep
 import requests
 import json
 
-requests.packages.urllib3.disable_warnings()
+try:
+    requests.packages.urllib3.disable_warnings()
+except:
+    pass
 
 API_BASE_URL = "https://na.api.pvp.net/api/lol/"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
@@ -81,3 +84,29 @@ def downloadData(version, gamemode, region):
 def getDevData():
     downloadData(5.11, 'NORMAL_5X5', 'NA')
     downloadData(5.14, 'NORMAL_5X5', 'NA')
+
+
+def validateData(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+
+    matchIDs = getMatchIDs(version, gamemode, region)
+
+    numMatches = len(matchIDs)
+    problemMatches = []
+
+    for i in range(numMatches):
+
+        print "Processing match {i} / {total}".format(i=i,total=numMatches),
+
+        mid = matchIDs[i]
+
+        if Match.objects.filter(match_id=mid,region=region).count() != 1:
+            problemMatches.append(mid)
+        
+        print problemMatches
+
+def validateDevData():
+    validateData(5.11, 'NORMAL_5X5', 'NA')
+    validateData(5.14, 'NORMAL_5X5', 'NA')
