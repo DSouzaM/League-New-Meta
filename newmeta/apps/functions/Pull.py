@@ -60,7 +60,7 @@ def downloadData(version, gamemode, region):
             mid = matchIDs[i]
 
             try:
-                if Match.objects.filter(match_id=mid,region=region):
+                if Match.objects.filter(match_id=mid,region=reg):
 	                print "~ skipped"
 	                continue
             except Exception as e:
