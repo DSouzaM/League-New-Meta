@@ -3,6 +3,8 @@ from time import sleep
 import requests
 import json
 
+requests.packages.urllib3.disable_warnings()
+
 API_BASE_URL = "https://na.api.pvp.net/api/lol/"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
@@ -83,16 +85,13 @@ def downloadData2(version, gamemode, region):
             mid = matchIDs[i]
 
             try:
-                Match.objects.get(
-                    match_id=mid,
-                    region=region,
-                    version=version,
-                    gamemode=gamemode
-                )
-                print "~ skipped"
+                if Match.objects.filter(match_id=mid,region=region):
+	                print "~ skipped"
+	                continue
+            except Exception as e:
+                print "~ " + str(e)
+                errorMatches.append(mid)
                 continue
-            except:
-                pass
 
             r = requests.get(
                 API_BASE_URL + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
@@ -103,7 +102,6 @@ def downloadData2(version, gamemode, region):
             )
 
             if r.status_code is not 200:
-                had_errors = True
                 print "~ ERROR {s_code}".format(s_code=r.status_code)
                 errorMatches.append(mid)
                 continue
@@ -119,7 +117,6 @@ def downloadData2(version, gamemode, region):
                 ).save()
                 print
             except Exception as e:
-                had_errors = True
                 print "~ " + str(e)
                 errorMatches.append(mid)
                 continue
