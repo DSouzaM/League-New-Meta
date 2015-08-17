@@ -26,10 +26,6 @@ class Match(models.Model):
     version = models.ForeignKey(Version, default=1)
     gamemode = models.ForeignKey(Gamemode, default=1)
 
-    region2 = models.CharField(max_length=3)
-    version2 = models.CharField(max_length=4)
-    gamemode2 = models.CharField(max_length=11)
-
     data = models.TextField()
 
     def __unicode__(self):
