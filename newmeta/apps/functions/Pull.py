@@ -124,6 +124,8 @@ def downloadData2(version, gamemode, region):
                 errorMatches.append(mid)
                 continue
 
+            print errorMatches
+
         matchIDs = errorMatches
 
 # from apps.functions.Pull import *
