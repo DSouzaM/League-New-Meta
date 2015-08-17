@@ -27,7 +27,24 @@ def downloadData(version, gamemode, region):
 
     matchIDs = getMatchIDs(version, gamemode, region)
 
-    ver = Version.objects.get(name=version)
+    try:
+        ver = Version.objects.get(name=version)
+    except:
+        ver = Version(name=version)
+        ver.save()
+
+    try:
+        gm = Gamemode.objects.get(name=gamemode)
+    except:
+        gm = Gamemode(name=gamemode)
+        gm.save()
+
+    try:
+        reg = Region.objects.get(name=region)
+    except:
+        reg = Region(name=region)
+        reg.save()
+
     gm = Gamemode.objects.get(name=gamemode)
     reg = Region.objects.get(name=region)
 
