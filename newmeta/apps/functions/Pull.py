@@ -101,7 +101,7 @@ def downloadData(version, gamemode, region):
                 errorMatches.append(mid)
                 continue
 
-            print errorMatches
+            print "# of errors: " + len(errorMatches)
 
         matchIDs = errorMatches
 
