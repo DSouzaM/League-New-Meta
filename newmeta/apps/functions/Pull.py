@@ -1,5 +1,4 @@
 from apps.main.models import *
-from time import sleep
 import requests
 import json
 
@@ -25,6 +24,10 @@ def downloadData(version, gamemode, region):
     gamemode = gamemode.upper()
     region = region.upper()
 
+    assert(version in [5.11,5.14])
+    assert(gamemode in ["NORMAL_5X5","RANKED_SOLO"])
+    assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
+
     matchIDs = getMatchIDs(version, gamemode, region)
 
     try:
@@ -44,9 +47,6 @@ def downloadData(version, gamemode, region):
     except:
         reg = Region(name=region)
         reg.save()
-
-    gm = Gamemode.objects.get(name=gamemode)
-    reg = Region.objects.get(name=region)
 
     while matchIDs:
         print matchIDs
@@ -131,3 +131,59 @@ def validateData(version, gamemode, region):
 def validateDevData():
     validateData(5.11, 'NORMAL_5X5', 'NA')
     validateData(5.14, 'NORMAL_5X5', 'NA')
+
+
+
+
+#from apps.functions.Pull import *
+#initChampions(5.11,"NORMAL_5X5","NA")
+def initChampions(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+
+    assert(version in [5.11,5.14])
+    assert(gamemode in ["NORMAL_5X5","RANKED_SOLO"])
+    assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
+
+    try:
+        ver = Version.objects.get(name=version)
+    except:
+        ver = Version(name=version)
+        ver.save()
+
+    try:
+        gm = Gamemode.objects.get(name=gamemode)
+    except:
+        gm = Gamemode(name=gamemode)
+        gm.save()
+
+    try:
+        reg = Region.objects.get(name=region)
+    except:
+        reg = Region(name=region)
+        reg.save()
+
+    r = requests.get(
+        API_BASE_URL + "static-data/{region}/v1.2/champion/?api_key={key}".format(
+            region=region.lower(),
+            key=API_KEY
+        )
+    )
+
+    if r.status_code is not 200:
+        print "~ ERROR {s_code}".format(s_code=r.status_code)
+        return
+
+    data = r.json()['data']
+
+    for champ in data:
+        cid = data[champ]['id']
+        cname = data[champ]['name']
+        if not Champion.objects.filter(key=cid,region=reg,version=ver,gamemode=gm):
+            Champion(key=cid,name=cname,region=reg,version=ver,gamemode=gm).save()
+
+
+
+
+

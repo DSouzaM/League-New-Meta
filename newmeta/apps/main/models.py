@@ -41,12 +41,12 @@ class Champion(models.Model):
     version = models.ForeignKey(Version, default=1)
     gamemode = models.ForeignKey(Gamemode, default=1)
 
-    key = models.IntegerField(primary_key=True)
+    key = models.IntegerField()
     name = models.CharField(max_length=16)
 
-    wins = models.IntegerField()
-    picks = models.IntegerField()
-    bans = models.IntegerField()
+    wins = models.IntegerField(default=0)
+    picks = models.IntegerField(default=0)
+    bans = models.IntegerField(default=0)
 
     def __unicode__(self):
 		return self.name
