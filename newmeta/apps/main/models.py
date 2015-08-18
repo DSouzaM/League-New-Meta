@@ -35,3 +35,18 @@ class Match(models.Model):
 			v=self.version.name,
 			g=self.gamemode.name
 		)
+
+class Champion(models.Model):
+    region = models.ForeignKey(Region, default=1)
+    version = models.ForeignKey(Version, default=1)
+    gamemode = models.ForeignKey(Gamemode, default=1)
+
+    key = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=16)
+
+    wins = models.IntegerField()
+    picks = models.IntegerField()
+    bans = models.IntegerField()
+
+    def __unicode__(self):
+		return self.name
