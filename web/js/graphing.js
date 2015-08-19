@@ -10,35 +10,40 @@ $(function() {
 		}
 		console.log(champs);
 		chart = $('#container').highcharts();
-		champs = champs.sort(sortDescend);
+		/*champs = champs.sort(sortDescend);*/
 		
-	console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
+		console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
 
-	$('#container').highcharts({
-		chart: {
-			type: 'column'
-		},
-		title: {
-			text: 'Change in Pick Rates after Patch 5.14'
-		},
-		xAxis: {
-			categories: ['Champion']
-		},
-		yAxis: {
-			title: {
-				text: 'Percentage change'
+		$('#container').highcharts({
+			chart: {
+				type: 'column',
+				zoomType: 'x'
 			},
-		},
+			title: {
+				text: 'Change in Pick Rates after Patch 5.14'
+			},
+			xAxis: {
+				categories: ['Champion'],
+				min: 0
+			},
+			yAxis: {
+				title: {
+					text: 'Percentage change'
+				},
+			},
 
-		plotOptions: {
-            series: {
-                pointPadding: 0.00,
-                groupPadding: 0.1
-            }
-        },
-		series: champs
+			plotOptions: {
+		    		series: {
+		    		    pointPadding: 0.00,
+		    		    groupPadding: 0.1
+		  		}
+			},
+			series: champs,
+			tooltip: {
+			    valueSuffix: '%'
+			}
+		});
 	});
-});
 });
 
 function sortDescend(a,b) {
