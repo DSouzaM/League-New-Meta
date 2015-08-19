@@ -68,13 +68,18 @@ def downloadData(version, gamemode, region):
                 errorMatches.append(mid)
                 continue
 
-            r = requests.get(
-                API_BASE_URL + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
-                    region=region.lower(),
-                    mid=mid,
-                    key=API_KEY
+            try:
+                r = requests.get(
+                    API_BASE_URL + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                        region=region.lower(),
+                        mid=mid,
+                        key=API_KEY
+                    )
                 )
-            )
+            except Exception as e:
+                print "~ " + str(e)
+                errorMatches.append(mid)
+                continue
 
             if r.status_code is not 200:
                 print "~ ERROR {s_code}".format(s_code=r.status_code)
@@ -96,15 +101,17 @@ def downloadData(version, gamemode, region):
                 errorMatches.append(mid)
                 continue
 
-            print errorMatches
+            print "# of errors: " + len(errorMatches)
 
         matchIDs = errorMatches
 
 # from apps.functions.Pull import *
 # getDevData()
 def getDevData():
-    downloadData(5.11, 'NORMAL_5X5', 'NA')
-    downloadData(5.14, 'NORMAL_5X5', 'NA')
+    # downloadData(5.11, 'NORMAL_5X5', 'NA')
+    # downloadData(5.14, 'NORMAL_5X5', 'NA')
+    downloadData(5.11, 'RANKED_SOLO', 'NA')
+    downloadData(5.14, 'RANKED_SOLO', 'NA')
 
 
 def validateData(version, gamemode, region):
