@@ -28,8 +28,8 @@ def export(gamemode, region):
         try:
             cdict = {
                 'name': champ1.name,
-                'picks': (float(champ2.picks) / float(champ1.picks) - 1) * 100.0,
-                'wins': (float(champ2.wins) / float(champ1.wins) - 1) * 100.0,
+                'picks': round((float(champ2.picks) / float(champ1.picks) - 1) * 100.0, 2),
+                'wins': round((float(champ2.wins) / float(champ1.wins) - 1) * 100.0, 2),
                 '5.11': {
                     'picks': champ1.picks,
                     'wins': champ1.wins
