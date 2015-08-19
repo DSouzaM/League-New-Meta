@@ -2,13 +2,17 @@ $(function() {
 	var startTime = new Date().getTime();
 	var request = $.getJSON('json/NORMAL_5X5_NA.json');
 	var chart;
-	var champs = [];
+	var champ_names = [];
+	var champ_picks = [];
+	var champ_wins = [];
+	
 	request.done(function(data) {
-		
+
 		for (var i = 0; i<data.length; i++) {
-			champs.push({name:data[i].name, data:[data[i].picks]});
+			champ_names.push(data[i].name);
+			champ_picks.push(data[i].picks);
+			champ_wins.push(data[i].wins);
 		}
-		console.log(champs);
 		chart = $('#container').highcharts();
 		/*champs = champs.sort(sortDescend);*/
 		
@@ -16,33 +20,40 @@ $(function() {
 
 		$('#container').highcharts({
 			chart: {
-				type: 'column',
-				zoomType: 'x'
+				type: 'column'
+			},
+			credits: {
+			    enabled: false
 			},
 			title: {
 				text: 'Change in Pick Rates after Patch 5.14'
 			},
 			xAxis: {
-				categories: ['Champion'],
-				min: 0
+				categories: champ_names
 			},
 			yAxis: {
 				title: {
 					text: 'Percentage change'
 				},
 			},
-
 			plotOptions: {
 		    		series: {
 		    		    pointPadding: 0.00,
-		    		    groupPadding: 0.1
+		    		    groupPadding: 0.2
 		  		}
 			},
-			series: champs,
+			series: [{
+			    name: 'Picks',
+			    data: champ_picks
+			}, {
+			    name: 'Wins',
+			    data: champ_wins
+			}],
 			tooltip: {
 			    valueSuffix: '%'
 			}
 		});
+
 	});
 });
 
