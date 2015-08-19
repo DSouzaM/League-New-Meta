@@ -8,13 +8,12 @@ $(function() {
 		pre = pre[0];
 		post = post[0];
 
-		for (var i = 0; i<50; i++) {
-			champs.push({name:pre[i].fields.name, data:[(post[i].fields.picks-pre[i].fields.picks)]});
+		for (var i = 0; i<pre.length; i++) {
+			if (pre[i].fields.picks != 0 && post[i].fields.picks != 0)
+				champs.push({name:pre[i].fields.name, data:[((post[i].fields.picks/pre[i].fields.picks)-1)*100]});
 		}
 		console.log(champs);
-		//chart.series[0].setData(champs.map(function(champ) {
-		//	return {name:champ.name,data:champ.dPick};
-		//}));
+		champs = champs.sort(sortDescend);
 	console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
 
 	$('#container').highcharts({
@@ -36,7 +35,14 @@ $(function() {
 	});
 
 });
-
 });
 
-
+function sortDescend(a,b) {
+	if (a.data[0] > b.data[0]) {
+		return -1;
+	} else if (a.data[0] == b.data[0]) {
+		return 0;
+	} else {
+		return 1;
+	}
+}
