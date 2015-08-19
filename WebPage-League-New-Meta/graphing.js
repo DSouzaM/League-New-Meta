@@ -8,7 +8,7 @@ $(function() {
 		pre = pre[0];
 		post = post[0];
 
-		for (var i = 0; i<50; i++) {
+		for (var i = 0; i<pre.length; i++) {
 			champs.push({name:pre[i].fields.name, data:[(post[i].fields.picks-pre[i].fields.picks)]});
 		}
 		console.log(champs);
