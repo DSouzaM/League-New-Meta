@@ -1,0 +1,7 @@
+"[info type]_[queue type]_[region].json"
+
+info type: CHAMPIONS, ITEMS // TODO add more
+
+queue type: NORMAL_5X5, RANKED_SOLO
+
+region: BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR
