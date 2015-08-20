@@ -29,7 +29,7 @@ def downloadData(version, gamemode, region):
     assert(gamemode in ["NORMAL_5X5","RANKED_SOLO"])
     assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
 
-    matchIDs = getMatchIDs(version, gamemode, region)
+    matchIDs = getMatchIDs(version, gamemode, region)[0:100]
 
     try:
         ver = Version.objects.get(name=version)
@@ -97,23 +97,22 @@ def downloadData(version, gamemode, region):
                     gamemode=gm,
                     data=r.text
                 ).save()
-                print
+                print "~ SUCCESS"
             except Exception as e:
                 print "~ " + str(e)
                 errorMatches.append(mid)
                 continue
 
-            print "# of errors: " + str(len(errorMatches))
-
+        print "# of errors: " + str(len(errorMatches))
         matchIDs = errorMatches
 
 # from apps.functions.Pull import *
 # getDevData()
 def getDevData():
-    # downloadData(5.11, 'NORMAL_5X5', 'NA')
-    # downloadData(5.14, 'NORMAL_5X5', 'NA')
-    downloadData(5.11, 'RANKED_SOLO', 'KR')
-    downloadData(5.14, 'RANKED_SOLO', 'KR')
+    downloadData(5.11, 'NORMAL_5X5', 'NA')
+    downloadData(5.14, 'NORMAL_5X5', 'NA')
+    # downloadData(5.11, 'RANKED_SOLO', 'KR')
+    # downloadData(5.14, 'RANKED_SOLO', 'KR')
 
 
 def validateData(version, gamemode, region):
