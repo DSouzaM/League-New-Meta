@@ -109,4 +109,5 @@ def testAlgors():
             if highestScoringRole:
                 clusters[highestScoringRole].append(player)
 
-    print clusters
+    for cluster in clusters[0:1]:
+        print cluster,clusters[cluster]
