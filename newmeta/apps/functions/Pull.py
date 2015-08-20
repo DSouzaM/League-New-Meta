@@ -7,8 +7,9 @@ try:
 except:
     pass
 
-API_BASE_URL = ".api.pvp.net/api/lol/"
+API_BASE_URL = "https://{region}.api.pvp.net/api/lol/"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
+
 
 # getMatchIDs(5.11, 'NORMAL_5X5', 'NA')
 def getMatchIDs(version, gamemode, region):
@@ -70,7 +71,7 @@ def downloadData(version, gamemode, region):
 
             try:
                 r = requests.get(
-                    "https://{region}{base}{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                    API_BASE_URL.format(region=region.lower()) + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
                         region=region.lower(),
                         base=API_BASE_URL,
                         mid=mid,
@@ -173,7 +174,7 @@ def initChampions(version, gamemode, region):
         reg.save()
 
     r = requests.get(
-        "https://" + region.lower() + API_BASE_URL + "static-data/{region}/v1.2/champion/?api_key={key}".format(
+        API_BASE_URL.format(region=region.lower()) + "static-data/{region}/v1.2/champion/?api_key={key}".format(
             region=region.lower(),
             key=API_KEY
         )
@@ -224,7 +225,7 @@ def initItems(version, gamemode, region):
         reg.save()
 
     r = requests.get(
-        "https://" + region.lower() + API_BASE_URL + "static-data/{region}/v1.2/item/?api_key={key}".format(
+        API_BASE_URL.format(region=region.lower()) + "static-data/{region}/v1.2/item/?api_key={key}".format(
             region=region.lower(),
             key=API_KEY
         )
