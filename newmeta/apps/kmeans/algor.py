@@ -110,8 +110,8 @@ def testAlgors(iteration):
                 clusters[highestScoringRole].append(player)
 
 
-    for cluster in clusters:
+    for cluster, data in clusters.items():
         print "\n============================="
-        print cluster, len(clusters[cluster])
-        for dataset in clusters[cluster]:
+        print cluster, len(data)
+        for dataset in data:
             print dataset
