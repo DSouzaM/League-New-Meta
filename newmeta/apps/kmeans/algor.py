@@ -96,7 +96,7 @@ def nextIteration(iteration):
         unique_items = set(items)
 
         for item in unique_items:
-            roles[cluster].append({item: (float(items.count(item)) / float(len(items))) * 100.0})
+            roles[cluster].append({item: float(items.count(item)) / float(len(items))})
 
     dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
     with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_{i}.json'.format(i=iteration+1), 'w') as data_file:    
