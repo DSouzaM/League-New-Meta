@@ -85,10 +85,10 @@ def getHighestScoringRole(scores):
         return topRole
 
 # from apps.kmeans.algor import *
-# testAlgors()
-def testAlgors():
+# testAlgors(0)
+def testAlgors(iteration):
 
-    with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_0.json') as data_file:    
+    with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_{i}.json'.format(i=iteration)) as data_file:    
         roles = json.load(data_file)
 
     clusters = {}
@@ -109,5 +109,9 @@ def testAlgors():
             if highestScoringRole:
                 clusters[highestScoringRole].append(player)
 
-    for cluster in clusters[0:1]:
-        print cluster,clusters[cluster]
+
+    for cluster in clusters:
+        print "\n============================="
+        print cluster, len(clusters[cluster])
+        for dataset in clusters[cluster]:
+            print dataset
