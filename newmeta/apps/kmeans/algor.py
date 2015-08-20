@@ -24,30 +24,6 @@ def getMatchItemData(mid, region):
     result = []
 
     for p in data['participants']:
-        toAdd = {'champion': {},'items': []}
-        toAdd['champion']['id'] = p['championId']
-        toAdd['champion']['name'] = Champion.objects.get(key=p['championId'],region=reg,version=m.version).name
-        for i in range(7):
-            if p['stats']['item'+str(i)] == 0: continue
-            toAdd['items'].append({'name': Item.objects.get(key=p['stats']['item'+str(i)],region=reg,version=m.version).name, 'id': p['stats']['item'+str(i)]})
-        result.append(toAdd)
-    return result
-
-# from apps.kmeans.algor import *
-# getMatchItemData2(1852607206, "NA")
-def getMatchItemData2(mid, region):
-
-    region = region.upper()
-    assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
-
-    reg = Region.objects.get(name=region)
-    
-    m = Match.objects.get(match_id=mid,region=reg)
-    data = json.loads(m.data)
-
-    result = []
-
-    for p in data['participants']:
         toAdd = {}
         toAdd['champion'] = p['championId']
         toAdd['items'] = []
@@ -85,8 +61,8 @@ def getHighestScoringRole(scores):
         return topRole
 
 # from apps.kmeans.algor import *
-# testAlgors(0)
-def testAlgors(iteration):
+# getClusters(0)
+def getClusters(iteration):
 
     with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_{i}.json'.format(i=iteration)) as data_file:    
         roles = json.load(data_file)
@@ -99,7 +75,7 @@ def testAlgors(iteration):
     clusters['mage'] = []
 
     for mid in MATCH_IDS:
-        playerList = getMatchItemData2(mid, 'NA')
+        playerList = getMatchItemData(mid, 'NA')
         for player in playerList:
             scores = []
             for role in roles:
@@ -109,7 +85,12 @@ def testAlgors(iteration):
             if highestScoringRole:
                 clusters[highestScoringRole].append(player)
 
+    return clusters
 
+# from apps.kmeans.algor import *
+# testGetClusters()
+def testGetClusters():
+    clusters = getClusters(0)
     for cluster, data in clusters.items():
         print "\n============================="
         print cluster, len(data)
