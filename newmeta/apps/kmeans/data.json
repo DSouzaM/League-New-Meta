@@ -1,117 +1,117 @@
 {
-    "Fighter": [
+    "fighter": [
         {
-            "Trinity Force": 1
+            "3078": 1.0
         },
         {
-            "Blade of the Ruined King": 1
+            "3153": 1.0
         },
         {
-            "The Black Cleaver": 1
+            "3071": 1.0
         },
         {
-            "Youmuu's Ghostblade": 1
+            "3142": 1.0
         },
         {
-            "Last Whisper": 1
+            "3035": 1.0
         },
         {
-            "Ravenous Hydra": 1
+            "3074": 1.0
         },
         {
-            "Hexdrinker": 1
+            "3155": 1.0
         }
     ],
-    "Mage": [
+    "mage": [
         {
-            "Rabadon's Deathcap": 1
+            "3089": 1.0
         },
         {
-            "Zhonya's Hourglass": 1
+            "3157": 1.0
         },
         {
-            "Luden's Echo": 1
+            "3285": 1.0
         },
         {
-            "Rylai's Crystal Scepter": 1
+            "3116": 1.0
         },
         {
-            "Void Staff": 1
+            "3135": 1.0
         },
         {
-            "Morellonomicon": 1
+            "3165": 1.0
         },
         {
-            "Athene's Unholy Grail": 1
+            "3174": 1.0
         }
     ],
-    "Marksman": [
+    "marksman": [
         {
-            "Infinity Edge": 1
+            "3031": 1.0
         },
         {
-            "Phantom Dancer": 1
+            "3046": 1.0
         },
         {
-            "Last Whisper": 1
+            "3046": 1.0
         },
         {
-            "Blade of the Ruined King": 1
+            "3153": 1.0
         },
         {
-            "Statikk Shiv": 1
+            "3087": 1.0
         },
         {
-            "The Bloodthirster": 1
+            "3072": 1.0
         },
         {
-            "Berserker's Greaves": 1
+            "3006": 1.0
         }
     ],
-    "Support": [
+    "support": [
         {
-            "Ruby Sightstone": 1
+            "2045": 1.0
         },
         {
-            "Sightstone": 1
+            "2049": 1.0
         },
         {
-            "Face of the Mountain": 1
+            "3401": 1.0
         },
         {
-            "Talisman of Ascension": 1
+            "3069": 1.0
         },
         {
-            "Frost Queen's Claim": 1
+            "3092": 1.0
         },
         {
-            "Locket of the Iron Solari": 1
+            "3190": 1.0
         },
         {
-            "Mikael's Crucible": 1
+            "3222": 1.0
         }
     ],
-    "Tank": [
+    "tank": [
         {
-            "Warmog's Armor": 1
+            "3083": 1.0
         },
         {
-            "Randuin's Omen": 1
+            "3143": 1.0
         },
         {
-            "Spirit Visage": 1
+            "3065": 1.0
         },
         {
-            "Banshee's Veil": 1
+            "3102": 1.0
         },
         {
-            "Thornmail": 1
+            "3075": 1.0
         },
         {
-            "Sunfire Cape": 1
+            "3068": 1.0
         },
         {
-            "Frozen Heart": 1
+            "3110": 1.0
         }
     ]
 }

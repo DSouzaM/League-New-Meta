@@ -2,10 +2,10 @@ import json
 
 roles = {}
 
-roles['Marksman'] = [{"Infinity Edge": 1}, {"Phantom Dancer": 1}, {"Last Whisper": 1}, {"Blade of the Ruined King": 1}, {"Statikk Shiv": 1}, {"The Bloodthirster": 1}, {"Berserker's Greaves": 1}]
-roles['Support'] = [{"Ruby Sightstone": 1}, {"Sightstone": 1}, {"Face of the Mountain": 1}, {"Talisman of Ascension": 1}, {"Frost Queen's Claim": 1}, {"Locket of the Iron Solari": 1}, {"Mikael's Crucible": 1}]
-roles['Mage'] = [{"Rabadon's Deathcap": 1}, {"Zhonya's Hourglass": 1}, {"Luden's Echo": 1}, {"Rylai's Crystal Scepter": 1}, {"Void Staff": 1}, {"Morellonomicon": 1}, {"Athene's Unholy Grail": 1}]
-roles['Tank'] = [{"Warmog's Armor": 1}, {"Randuin's Omen": 1}, {"Spirit Visage": 1}, {"Banshee's Veil": 1}, {"Thornmail": 1}, {"Sunfire Cape": 1}, {"Frozen Heart": 1}]
-roles['Fighter'] = [{"Trinity Force": 1}, {"Blade of the Ruined King": 1}, {"The Black Cleaver": 1}, {"Youmuu's Ghostblade": 1}, {"Last Whisper": 1}, {"Ravenous Hydra": 1}, {"Hexdrinker": 1}]
+roles['marksman'] = [{3031: 1.0}, {3046: 1.0}, {3046: 1.0}, {3153: 1.0}, {3087: 1.0}, {3072: 1.0}, {3006: 1.0}]
+roles['support'] = [{2045: 1.0}, {2049: 1.0}, {3401: 1.0}, {3069: 1.0}, {3092: 1.0}, {3190: 1.0}, {3222: 1.0}]
+roles['mage'] = [{3089: 1.0}, {3157: 1.0}, {3285: 1.0}, {3116: 1.0}, {3135: 1.0}, {3165: 1.0}, {3174: 1.0}]
+roles['tank'] = [{3083: 1.0}, {3143: 1.0}, {3065: 1.0}, {3102: 1.0}, {3075: 1.0}, {3068: 1.0}, {3110: 1.0}]
+roles['fighter'] = [{3078: 1.0}, {3153: 1.0}, {3071: 1.0}, {3142: 1.0}, {3035: 1.0}, {3074: 1.0}, {3155: 1.0}]
 
 print json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
