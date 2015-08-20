@@ -7,7 +7,7 @@ try:
 except:
     pass
 
-API_BASE_URL = "https://na.api.pvp.net/api/lol/"
+API_BASE_URL = ".api.pvp.net/api/lol/"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
 # getMatchIDs(5.11, 'NORMAL_5X5', 'NA')
@@ -70,8 +70,9 @@ def downloadData(version, gamemode, region):
 
             try:
                 r = requests.get(
-                    API_BASE_URL + "{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
+                    "https://{region}{base}{region}/v2.2/match/{mid}?api_key={key}&includeTimeline=true".format(
                         region=region.lower(),
+                        base=API_BASE_URL,
                         mid=mid,
                         key=API_KEY
                     )
@@ -101,7 +102,7 @@ def downloadData(version, gamemode, region):
                 errorMatches.append(mid)
                 continue
 
-            print "# of errors: " + len(errorMatches)
+            print "# of errors: " + str(len(errorMatches))
 
         matchIDs = errorMatches
 
@@ -110,8 +111,8 @@ def downloadData(version, gamemode, region):
 def getDevData():
     # downloadData(5.11, 'NORMAL_5X5', 'NA')
     # downloadData(5.14, 'NORMAL_5X5', 'NA')
-    downloadData(5.11, 'RANKED_SOLO', 'NA')
-    downloadData(5.14, 'RANKED_SOLO', 'NA')
+    downloadData(5.11, 'RANKED_SOLO', 'KR')
+    downloadData(5.14, 'RANKED_SOLO', 'KR')
 
 
 def validateData(version, gamemode, region):
