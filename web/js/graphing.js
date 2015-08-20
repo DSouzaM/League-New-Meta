@@ -1,3 +1,7 @@
+var dataTypes = ['CHAMPIONS','ITEMS'];
+var queueTypes = ['NORMAL_5X5', 'RANKED_SOLO'];
+var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
+
 $(function() {
 	var startTime = new Date().getTime();
 	var request = $.getJSON('json/NORMAL_5X5_NA.json');
@@ -33,14 +37,14 @@ $(function() {
 			},
 
 			plotOptions: {
-		    		series: {
-		    		    pointPadding: 0.00,
-		    		    groupPadding: 0.1
-		  		}
+				series: {
+					pointPadding: 0.00,
+					groupPadding: 0.1
+				}
 			},
 			series: champs,
 			tooltip: {
-			    valueSuffix: '%'
+				valueSuffix: '%'
 			}
 		});
 	});
@@ -54,4 +58,20 @@ function sortDescend(a,b) {
 	} else {
 		return 1;
 	}
+}
+
+function getDataSet(dataType, queueList, regionList) {
+	if (dataTypes.indexOf(dataType.toUpperCase())<0 || !queueList.every(function(queue){
+		return (queueTypes.indexOf(queue.toUpperCase())>=0);
+	}) || !regionList.every(function(region) {
+		return (regions.indexOf(region.toUpperCase())>=0);
+	})) {
+		console.log("Invalid data set request:\ndataType: " + dataType + "\nqueueList: " + queueList + "\nregionList: " + regionList);
+	}
+	else {
+		console.log("Valid data set request.");
+	}
+
+	//var jsons = [];
+
 }
