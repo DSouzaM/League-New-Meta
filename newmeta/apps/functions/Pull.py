@@ -173,7 +173,7 @@ def initChampions(version, gamemode, region):
         reg.save()
 
     r = requests.get(
-        API_BASE_URL + "static-data/{region}/v1.2/champion/?api_key={key}".format(
+        "https://" + region.lower() + API_BASE_URL + "static-data/{region}/v1.2/champion/?api_key={key}".format(
             region=region.lower(),
             key=API_KEY
         )
@@ -190,6 +190,58 @@ def initChampions(version, gamemode, region):
         cname = data[champ]['name']
         if not Champion.objects.filter(key=cid,region=reg,version=ver,gamemode=gm):
             Champion(key=cid,name=cname,region=reg,version=ver,gamemode=gm).save()
+
+
+
+
+#from apps.functions.Pull import *
+#initItems(5.11,"NORMAL_5X5","NA")
+def initItems(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+
+    assert(version in [5.11,5.14])
+    assert(gamemode in ["NORMAL_5X5","RANKED_SOLO"])
+    assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
+
+    try:
+        ver = Version.objects.get(name=version)
+    except:
+        ver = Version(name=version)
+        ver.save()
+
+    try:
+        gm = Gamemode.objects.get(name=gamemode)
+    except:
+        gm = Gamemode(name=gamemode)
+        gm.save()
+
+    try:
+        reg = Region.objects.get(name=region)
+    except:
+        reg = Region(name=region)
+        reg.save()
+
+    r = requests.get(
+        "https://" + region.lower() + API_BASE_URL + "static-data/{region}/v1.2/item/?api_key={key}".format(
+            region=region.lower(),
+            key=API_KEY
+        )
+    )
+
+    if r.status_code is not 200:
+        print "~ ERROR {s_code}".format(s_code=r.status_code)
+        return
+
+    data = r.json()['data']
+
+    for item in data:
+        iid = data[item]['id']
+        iname = data[item]['name']
+        if not Item.objects.filter(key=iid,region=reg,version=ver,gamemode=gm):
+            Item(key=iid,name=iname,region=reg,version=ver,gamemode=gm).save()
+
 
 
 

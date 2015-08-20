@@ -50,3 +50,17 @@ class Champion(models.Model):
 
     def __unicode__(self):
 		return self.name
+
+class Item(models.Model):
+    region = models.ForeignKey(Region, default=1)
+    version = models.ForeignKey(Version, default=1)
+    gamemode = models.ForeignKey(Gamemode, default=1)
+
+    key = models.IntegerField()
+    name = models.CharField(max_length=16)
+
+    wins = models.IntegerField(default=0)
+    picks = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.name
