@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Region(models.Model):
 	name = models.CharField(max_length=3)
 
@@ -36,6 +35,9 @@ class Match(models.Model):
 			g=self.gamemode.name
 		)
 
+    class Meta:
+        unique_together = (('region', 'match_id'),)
+
 class Champion(models.Model):
     region = models.ForeignKey(Region, default=1)
     version = models.ForeignKey(Version, default=1)
@@ -51,6 +53,9 @@ class Champion(models.Model):
     def __unicode__(self):
 		return self.name
 
+    class Meta:
+        unique_together = (('region', 'key'),)
+
 class Item(models.Model):
     region = models.ForeignKey(Region, default=1)
     version = models.ForeignKey(Version, default=1)
@@ -64,3 +69,6 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        unique_together = (('region', 'key'),)
