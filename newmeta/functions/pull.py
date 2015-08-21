@@ -178,7 +178,7 @@ def getItems(version, gamemode, region):
         item_id = data[item]['id']
         item_name = data[item]['name']
         
-        got, created = Champion.objects.get_or_create(
+        got, created = Item.objects.get_or_create(
             key=item_id,
             name=item_name,
             region=region_object,
