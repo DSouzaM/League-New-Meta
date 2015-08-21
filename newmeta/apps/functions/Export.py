@@ -16,6 +16,7 @@ def export(gamemode, region):
         gamemode__name=gamemode,
         region__name=region
     ).order_by("name")
+    
     result = []
 
     for champ1 in champs:
@@ -44,6 +45,5 @@ def export(gamemode, region):
 
         result.append(cdict)
 
-    out = open(gamemode + "_" + region + ".json", "w")
-    out.write(json.dumps(result))
-    out.close()
+    with open(gamemode + "_" + region + ".json", 'w') as data_file:    
+        data_file.write(json.dumps(result))

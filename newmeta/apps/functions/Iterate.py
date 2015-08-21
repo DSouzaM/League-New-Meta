@@ -5,21 +5,14 @@ import json
 #tallyWLB(5.11, 'NORMAL_5X5', 'NA')
 def tallyWLB(version, gamemode, region):
 
-    gamemode = gamemode.upper()
-    region = region.upper()
-
     assert(version in [5.11,5.14])
     assert(gamemode in ["NORMAL_5X5","RANKED_SOLO"])
     assert(region in ["BR","EUNE","EUW","KR","LAN","LAS","NA","OCE","RU","TR"])
- 
-    ver = Version.objects.get(name=version)
-    gm = Gamemode.objects.get(name=gamemode)
-    reg = Region.objects.get(name=region)
 
-    matches = Match.objects.filter(region=reg,version=ver,gamemode=gm)
+    matches = Match.objects.filter(region__name=region,version__name=version,gamemode__name=gamemode)
     total = matches.count()
 
-    for champ in Champion.objects.filter(region=reg,version=ver,gamemode=gm):
+    for champ in Champion.objects.filter(region__name=region,version__name=version,gamemode__name=gamemode):
         champ.wins = 0
         champ.picks = 0
         champ.bans = 0
@@ -36,7 +29,7 @@ def tallyWLB(version, gamemode, region):
         for x in data['participants']:
             cid = x['championId']
             tid = x['teamId']
-            champ = Champion.objects.get(key=cid,region=reg,version=ver,gamemode=gm)
+            champ = Champion.objects.get(key=cid,region__name=region,version__name=version,gamemode__name=gamemode)
             champ.picks += 1
             if teams[tid]:
                 champ.wins += 1

@@ -64,7 +64,7 @@ def getHighestScoringRole(scores):
 # getClusters(0)
 def getClusters(iteration):
 
-    with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_{i}.json'.format(i=iteration), 'r') as data_file:    
+    with open('/home/gary/League-New-Meta/newmeta/apps/functions/role_data_{i}.json'.format(i=iteration), 'r') as data_file:    
         roles = json.load(data_file)
 
     clusters = {'marksman': [], 'support': [], 'mage': [], 'tank': [], 'fighter': []}
@@ -101,5 +101,5 @@ def nextIteration(iteration):
             roles[cluster].append({item: float(items.count(item)) / float(len(items))})
 
     dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
-    with open('/home/gary/League-New-Meta/newmeta/apps/kmeans/role_data_{i}.json'.format(i=iteration+1), 'w') as data_file:    
+    with open('/home/gary/League-New-Meta/newmeta/apps/functions/role_data_{i}.json'.format(i=iteration+1), 'w') as data_file:    
         data_file.write(dataToWrite)
