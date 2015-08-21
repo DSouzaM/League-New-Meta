@@ -185,3 +185,8 @@ def getItems(version, gamemode, region):
             version=version_object,
             gamemode=gamemode_object
         )
+
+"""
+Notice how getChampions and getItems is almost identical?
+We can make it better, but that that is of low priority right now.
+"""
