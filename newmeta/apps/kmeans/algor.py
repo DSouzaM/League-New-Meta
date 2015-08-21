@@ -69,7 +69,9 @@ def getClusters(iteration):
 
     clusters = {'marksman': [], 'support': [], 'mage': [], 'tank': [], 'fighter': []}
 
-    for mid in MATCH_IDS:
+    for i in xrange(len(MATCH_IDS)):
+        print "Processing", i, "/", len(MATCH_IDS)
+        mid = MATCH_IDS[i]
         playerList = getMatchItemData(mid, 'NA')
         for player in playerList:
             scores = []
