@@ -54,5 +54,4 @@ def exportChampions(gamemode, region):
 
         result.append(dict_to_add)
 
-    with open(gamemode + "_" + region + ".json", 'w') as data_file:    
-        data_file.write(json.dumps(result))
+    writeAllToFile(gamemode + "_" + region + ".json", json.dumps(result))
