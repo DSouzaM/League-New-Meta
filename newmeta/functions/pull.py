@@ -101,3 +101,75 @@ def getMatchData(version, gamemode, region):
                 continue
 
         matchIDs = errorMatches
+
+
+def getChampions(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+
+    initAllVersionGamemodeRegion()
+
+    r = requests.get(
+        API_STATIC_DATA_URL.format(
+            region=region.lower(),
+            data_type='champion',
+            api_key=API_KEY
+        )
+    )
+
+    if r.status_code is not 200:
+        print "HTTP ERROR {s_code}".format(s_code=r.status_code)
+        return
+
+    data = r.json()['data']
+
+    for champ in data:
+
+        champ_id = data[champ]['id']
+        champ_name = data[champ]['name']
+
+        got, created = Champion.objects.get_or_create(
+            key=champ_id,
+            name=champ_name,
+            region=Region.objects.get(name=region),
+            version=Version.objects.get(name=version),
+            gamemode=Gamemode.objects.get(name=gamemode)         
+        )
+
+
+def getItems(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+
+    initAllVersionGamemodeRegion()
+
+    r = requests.get(
+        API_STATIC_DATA_URL.format(
+            region=region.lower(),
+            data_type='item',
+            api_key=API_KEY
+        )
+    )
+
+    if r.status_code is not 200:
+        print "HTTP ERROR {s_code}".format(s_code=r.status_code)
+        return
+
+    data = r.json()['data']
+
+    for item in data:
+
+        item_id = data[item]['id']
+        item_name = data[item]['name']
+        
+        got, created = Champion.objects.get_or_create(
+            key=item_id,
+            name=item_name,
+            region=Region.objects.get(name=region),
+            version=Version.objects.get(name=version),
+            gamemode=Gamemode.objects.get(name=gamemode)         
+        )
