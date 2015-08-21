@@ -51,6 +51,10 @@ def getMatchData(version, gamemode, region):
 
     initAllVersionGamemodeRegion()
 
+    region_object = Region.objects.get(name=region)
+    version_object = Version.objects.get(name=version)
+    gamemode_object = Gamemode.objects.get(name=gamemode)
+
     matchIDs = getMatchIDs(version, gamemode, region)
 
     while matchIDs:
@@ -87,9 +91,9 @@ def getMatchData(version, gamemode, region):
 
                 Match(
                     match_id=match_id,
-                    region=Region.objects.get(name=region),
-                    version=Version.objects.get(name=version),
-                    gamemode=Gamemode.objects.get(name=gamemode),
+                    region=region_object,
+                    version=version_object,
+                    gamemode=gamemode_object,
                     data=r.text
                 ).save()
 
@@ -110,6 +114,10 @@ def getChampions(version, gamemode, region):
     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
     initAllVersionGamemodeRegion()
+
+    region_object = Region.objects.get(name=region)
+    version_object = Version.objects.get(name=version)
+    gamemode_object = Gamemode.objects.get(name=gamemode)
 
     r = requests.get(
         API_STATIC_DATA_URL.format(
@@ -133,9 +141,9 @@ def getChampions(version, gamemode, region):
         got, created = Champion.objects.get_or_create(
             key=champ_id,
             name=champ_name,
-            region=Region.objects.get(name=region),
-            version=Version.objects.get(name=version),
-            gamemode=Gamemode.objects.get(name=gamemode)         
+            region=region_object,
+            version=version_object,
+            gamemode=gamemode_object
         )
 
 
@@ -146,6 +154,10 @@ def getItems(version, gamemode, region):
     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
     initAllVersionGamemodeRegion()
+
+    region_object = Region.objects.get(name=region)
+    version_object = Version.objects.get(name=version)
+    gamemode_object = Gamemode.objects.get(name=gamemode)
 
     r = requests.get(
         API_STATIC_DATA_URL.format(
@@ -169,7 +181,7 @@ def getItems(version, gamemode, region):
         got, created = Champion.objects.get_or_create(
             key=item_id,
             name=item_name,
-            region=Region.objects.get(name=region),
-            version=Version.objects.get(name=version),
-            gamemode=Gamemode.objects.get(name=gamemode)         
+            region=region_object,
+            version=version_object,
+            gamemode=gamemode_object
         )
