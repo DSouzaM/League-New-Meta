@@ -20,11 +20,12 @@ def generateChampionWinLoss(version, region):
     )
     total = matches.count()
 
-    Champion.objects.filter(
+    champions = Champion.objects.filter(
         region=region_object,
         version=version_object,
         gamemode=gamemode_object
-    ).update(wins=0,picks=0,bans=0)
+    )
+    champions.update(wins=0,picks=0,bans=0)
 
     for i in xrange(total):
 
@@ -43,12 +44,7 @@ def generateChampionWinLoss(version, region):
             champ_id = player['championId']
             team_id = player['teamId']
 
-            champ = Champion.objects.get(
-                key=champ_id,
-                region=region_object,
-                version=version_object,
-                gamemode=gamemode_object
-            )
+            champ = champions.get(key=champ_id)
             
             champ.picks += 1
             
