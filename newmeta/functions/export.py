@@ -40,17 +40,13 @@ def exportChampions(gamemode, region):
 
         dict_to_add = {
             'name': pre_champ.name,
-            'picks': round( (f_post_picks / f_pre_picks - 1) * 100.0, 2 ),
-            'wins': round( (f_post_wins / f_post_picks - f_pre_wins / f_pre_picks) * 100.0, 2 ),
-            '5.11': {
-                'picks': pre_champ.picks,
-                'wins': pre_champ.wins
-            },
-            '5.14': {
-                'picks': post_champ.picks,
-                'wins': post_champ.wins
-            }
+            'pre_wr': round(f_pre_wins / f_pre_picks, 2),
+            'post_wr': round(f_post_wins / f_post_picks, 2),
+            'pre_pr': round(f_pre_picks / 10000.0, 2),
+            'post_pr': round(f_post_picks / 10000.0, 2)
         }
+        dict_to_add['d_wr'] = dict_to_add['post_wr'] - dict_to_add['pre_wr']
+        dict_to_add['d_pr'] = dict_to_add['post_pr'] - dict_to_add['pre_pr']
 
         result.append(dict_to_add)
 
