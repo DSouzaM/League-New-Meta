@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Region(models.Model):
 	name = models.CharField(max_length=3)
 
 	def __unicode__(self):
 		return self.name
+
 
 class Version(models.Model):
 	name = models.CharField(max_length=4)
@@ -12,11 +14,13 @@ class Version(models.Model):
 	def __unicode__(self):
 		return self.name
 
+
 class Gamemode(models.Model):
 	name = models.CharField(max_length=11)
 
 	def __unicode__(self):
 		return self.name
+
 
 class Match(models.Model):
     match_id = models.IntegerField()
@@ -38,6 +42,7 @@ class Match(models.Model):
     class Meta:
         unique_together = (('region', 'match_id'),)
 
+
 class Champion(models.Model):
     region = models.ForeignKey(Region, default=1)
     version = models.ForeignKey(Version, default=1)
@@ -50,11 +55,14 @@ class Champion(models.Model):
     picks = models.IntegerField(default=0)
     bans = models.IntegerField(default=0)
 
+    role = models.CharField(max_length=8, default='')
+
     def __unicode__(self):
 		return self.name
 
     class Meta:
         unique_together = (('region', 'key'),)
+
 
 class Item(models.Model):
     region = models.ForeignKey(Region, default=1)

@@ -84,7 +84,7 @@ def getBestRole(scores):
 
 
 ###################################################
-#                PRIMARY FUNCTIONS                #
+#                SECONDARY FUNCTIONS              #
 ###################################################
 
 def getClusters(match_ids,roles):
@@ -155,6 +155,10 @@ def generateNextIteration(iteration, version, gamemode, region):
     dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
     writeAllToFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=iteration+1), dataToWrite)
 
+
+###################################################
+#                PRIMARY FUNCTIONS                #
+###################################################
 
 def getIteration(iteration, version, gamemode, region):
 
