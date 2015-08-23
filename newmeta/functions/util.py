@@ -45,6 +45,17 @@ def writeAllToFile(filename, content):
         my_file.write(content)
 
 
+def getMatchIDs(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+
+    filename = 'AP_ITEM_DATASET/{v}/{g}/{r}.json'.format(v=version,g=gamemode,r=region)
+
+    return json.loads(readEntireFile(filename))
+
+
 ###################################################
 #                      INITS                      #
 ###################################################

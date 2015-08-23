@@ -25,21 +25,6 @@ API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
 
 ###################################################
-#                 HELPER FUNCTIONS                #
-###################################################
-
-def getMatchIDs(version, gamemode, region):
-
-    gamemode = gamemode.upper()
-    region = region.upper()
-    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
-
-    filename = 'AP_ITEM_DATASET/{v}/{g}/{r}.json'.format(v=version,g=gamemode,r=region)
-
-    return json.loads(readEntireFile(filename))
-
-
-###################################################
 #                GET DATA FROM API                #
 ###################################################
 
