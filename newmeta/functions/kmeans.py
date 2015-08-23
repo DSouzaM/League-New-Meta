@@ -1,6 +1,7 @@
 from apps.main.models import *
 from functions.util import *
 import json
+import os
 
 #######################################################
 #                        VARS                         #
@@ -123,9 +124,18 @@ def generateNextIteration(iteration, version, gamemode, region):
     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
     assert(iteration >= 0)
 
+    if not os.path.exists('./jsons/kmeans/{ver}'.format(ver=version)):
+        os.makedirs('./jsons/kmeans/{ver}'.format(ver=version))
+    if not os.path.exists('./jsons/kmeans/{ver}/{gm}'.format(ver=version,gm=gamemode)):
+        os.makedirs('./jsons/kmeans/{ver}/{gm}'.format(ver=version,gm=gamemode))
+    if not os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region)):
+        os.makedirs('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region))
+    if not os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region)):
+        initKMeansRoleJson('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region))
+
     roles = {'marksman': [], 'support': [], 'mage': [], 'tank': [], 'fighter': []}
 
-    roles_data = readEntireFile('./jsons/kmeans/role_data_{i}.json'.format(i=iteration))
+    roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=iteration))
     match_ids = getMatchIDs(version, gamemode, region)
 
     clusters = getClusters(match_ids=match_ids,roles=json.loads(roles_data))
@@ -143,4 +153,4 @@ def generateNextIteration(iteration, version, gamemode, region):
             roles[cluster].append({item: float(items.count(item)) / float(len(items))})
 
     dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
-    writeAllToFile('./jsons/kmeans/role_data_{i}.json'.format(i=iteration+1), dataToWrite)
+    writeAllToFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=iteration+1), dataToWrite)

@@ -72,7 +72,7 @@ def initAllVersionGamemodeRegion():
         got, created = Region.objects.get_or_create(name=region)
 
 
-def initKMeansRoleJson():
+def initKMeansRoleJson(filename):
     
     roles = {}
     
@@ -82,4 +82,5 @@ def initKMeansRoleJson():
     roles['tank'] = [{3083: 1.0}, {3143: 1.0}, {3065: 1.0}, {3102: 1.0}, {3075: 1.0}, {3068: 1.0}, {3110: 1.0}]
     roles['fighter'] = [{3078: 1.0}, {3153: 1.0}, {3071: 1.0}, {3142: 1.0}, {3035: 1.0}, {3074: 1.0}, {3155: 1.0}]
 
-    print json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
+    dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
+    writeAllToFile(filename, dataToWrite)
