@@ -50,52 +50,58 @@ $('input[type=checkbox]').change(function() {
 	});
 
 
-	/*
-	var startTime = new Date().getTime();
-	var request = $.getJSON('json/NORMAL_5X5_NA.json');
-	var chart;
-	var champs = [];
-	request.done(function(data) {
-		
-		for (var i = 0; i<data.length; i++) {
-			champs.push({name:data[i].name, data:[data[i].picks]});
-		}
-		console.log(champs);
-		chart = $('#container').highcharts();
-		champs = champs.sort(sortDescend);
-		
-		console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
 
-		$('#container').highcharts({
-			chart: {
-				type: 'column',
-				zoomType: 'x'
-			},
+var startTime = new Date().getTime();
+var request = $.getJSON('json/NORMAL_5X5_NA.json');
+var chart;
+var champs = [];
+request.done(function(data) {
+
+	for (var i = 0; i<data.length; i++) {
+		champs.push({name:data[i].name, data:[data[i].picks]});
+	}
+	console.log(champs);
+	chart = $('#container').highcharts();
+	champs = champs.sort(sortAlpha);
+
+	console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
+
+	$('#container').highcharts({
+		chart: {
+			type: 'column',
+			zoomType: 'x',
+		},
+		title: {
+			text: 'Change in Pick Rates after Patch 5.14'
+		},
+		xAxis: {
+			categories: ['Champion'],
+			min: 0
+		},
+		yAxis: {
 			title: {
-				text: 'Change in Pick Rates after Patch 5.14'
-			},
-			xAxis: {
-				categories: ['Champion'],
-				min: 0
-			},
-			yAxis: {
-				title: {
-					text: 'Percentage change'
-				},
-			},
-
-			plotOptions: {
-				series: {
-					pointPadding: 0.00,
-					groupPadding: 0.1
-				}
-			},
-			series: champs,
-			tooltip: {
-				valueSuffix: '%'
+				text: 'Percentage change'
 			}
-		});
-}); */
+		},
+
+		plotOptions: {
+			/*series: {
+				pointPadding: 0.00,
+				groupPadding: 0.1
+			}*/
+		},
+		series: champs,
+		tooltip: {
+			valueSuffix: '%'
+		}
+	});
+
+}); 
+
+$('#btn').click(function() {
+	$('#container').highcharts({series: champs})
+	console.log('pressed')
+})
 });
 
 //function used by Array.sort to sort arrays of data objects in descending order
@@ -109,6 +115,24 @@ function sortDescend(a,b) {
 	}
 }
 
+function sortAscend(a,b) { 
+	if (a.data[0] < b.data[0]) {
+		return -1;
+	} else if (a.data[0]==b.data[0]){
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
+function sortAlpha(a,b) {
+	if (a.name < b.name) {
+		return -1;
+	} else if (a.name > b.name) {
+		return 1;
+	} 
+	return 0;
+}
 
 
 function getDataSet(selection) {
