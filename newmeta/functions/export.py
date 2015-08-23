@@ -43,11 +43,14 @@ def exportChampions(gamemode, region):
             'pre_wr': round(f_pre_wins / f_pre_picks, 2),
             'post_wr': round(f_post_wins / f_post_picks, 2),
             'pre_pr': round(f_pre_picks / 10000.0, 2),
-            'post_pr': round(f_post_picks / 10000.0, 2)
+            'post_pr': round(f_post_picks / 10000.0, 2),
+            'pre_role': pre_champ.role,
+            'post_role': post_champ.role
         }
         dict_to_add['d_wr'] = round(dict_to_add['post_wr'] - dict_to_add['pre_wr'], 2)
         dict_to_add['d_pr'] = round(dict_to_add['post_pr'] - dict_to_add['pre_pr'], 2)
 
         result.append(dict_to_add)
 
-    writeAllToFile("./jsons/" + gamemode + "_" + region + ".json", json.dumps(result))
+    dataToWrite = json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
+    writeAllToFile("./jsons/" + gamemode + "_" + region + ".json", dataToWrite)

@@ -185,3 +185,56 @@ def getIteration(iteration, version, gamemode, region):
 
     for i in xrange(i0,iteration):
         generateNextIteration(i, version, gamemode, region)
+
+
+def generateChampionRoles(version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+
+    i0 = 0
+
+    if os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region)):
+        
+        file_list = os.listdir('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region))
+        
+        for my_file in file_list:
+            
+            ix = int(my_file.split('.')[0])
+            if ix > i0:
+                i0 = ix
+
+    roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=i0))
+    match_ids = getMatchIDs(version, gamemode, region)
+
+    clusters = getClusters(match_ids=match_ids,roles=json.loads(roles_data))
+
+    champs = Champion.objects.filter(version__name=version,gamemode__name=gamemode,region__name=region)
+    champs.update(role='')
+    total = champs.count()
+
+    for i in xrange(total):
+        
+        print "Processing champion {i} / {total}".format(i=i,total=total)
+
+        champ = champs[i]
+        scores = []
+
+        for cluster, data in clusters.items():
+
+            score = 0.0
+
+            for player in data:
+
+                if player['champion'] == champ.key:
+
+                    score += 1.0
+
+            scores.append([cluster,score])
+
+        bestRole = getBestRole(scores)
+
+        if bestRole:
+            champ.role = bestRole
+            champ.save()
