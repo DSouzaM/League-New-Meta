@@ -4,8 +4,8 @@ from pull import *
 
 def download():
 
-    getMatchData(5.11, 'NORMAL_5x5', 'NA')
-    getMatchData(5.14, 'NORMAL_5x5', 'NA')
+    # getMatchData(5.11, 'NORMAL_5x5', 'NA')
+    # getMatchData(5.14, 'NORMAL_5x5', 'NA')
 
     getChampions(5.11, 'NORMAL_5x5', 'NA')
     getChampions(5.14, 'NORMAL_5x5', 'NA')
