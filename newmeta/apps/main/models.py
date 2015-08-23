@@ -61,7 +61,7 @@ class Champion(models.Model):
 		return self.name
 
     class Meta:
-        unique_together = (('region', 'key'),)
+        unique_together = (('region', 'version', 'gamemode', 'key'),)
 
 
 class Item(models.Model):
@@ -79,4 +79,4 @@ class Item(models.Model):
         return self.name
 
     class Meta:
-        unique_together = (('region', 'key'),)
+        unique_together = (('region', 'version', 'gamemode', 'key'),)
