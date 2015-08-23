@@ -5,3 +5,5 @@ info type: CHAMPIONS, ITEMS // TODO add more
 queue type: NORMAL_5X5, RANKED_SOLO
 
 region: BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR
+
+10,000 games per region & queue * 10 regions * 2 queues = 400,000 games

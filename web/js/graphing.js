@@ -6,6 +6,7 @@ var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
 var selection = {'data':'','queue':[], 'region':[] };
 
 $(function() {
+
 // function to handle checkbox actions
 $('input[type=checkbox]').change(function() {
 	var name = this.name;
@@ -50,93 +51,111 @@ $('input[type=checkbox]').change(function() {
 	});
 
 
-
 var startTime = new Date().getTime();
 var request = $.getJSON('json/NORMAL_5X5_NA.json');
-var chart;
 var champs = [];
+
 request.done(function(data) {
-
-	for (var i = 0; i<data.length; i++) {
-		champs.push({name:data[i].name, data:[data[i].picks]});
-	}
-	console.log(champs);
-	chart = $('#container').highcharts();
-	champs = champs.sort(sortAlpha);
-
-	console.log('done in ' + (new Date().getTime()-startTime) + ' ms');
-
+	champs = data;
 	$('#container').highcharts({
-		chart: {
-			type: 'column',
-			zoomType: 'x',
+		'chart': {
+			'type': 'columnrange',
+			'zoomType': 'x'
 		},
-		title: {
-			text: 'Change in Pick Rates after Patch 5.14'
+		'title': {
+			'text': 'Change in Pick Rates after Patch 5.14'
 		},
-		xAxis: {
-			categories: ['Champion'],
-			min: 0
+
+		'xAxis': {
+			'categories': getCategories(champs),
+			'min': 0
 		},
-		yAxis: {
-			title: {
-				text: 'Percentage change'
+
+		'yAxis': {
+			'title': {
+				'text': 'Win Rate'
 			}
 		},
-
-		plotOptions: {
-			/*series: {
-				pointPadding: 0.00,
-				groupPadding: 0.1
-			}*/
+		'legend': {
+			'enabled':false
 		},
-		series: champs,
-		tooltip: {
-			valueSuffix: '%'
+		
+		'series': [{
+			'data': getWinSeries(champs)
+		}],
+		'tooltip': {
+			'formatter': function() {
+				// if color is red, 5.11 > 5.14 and there's a decrease
+				if (this.point.color == 'red') { 
+					return '<em>' + this.point.category + '</em><br>5.11 winrate: ' + roundOff(this.point.high) + '%<br>5.14 winrate: ' + roundOff(this.point.low) + '%<br>Change in winrate: ' + roundOff(this.point.low-this.point.high)+'%';
+				}
+				// if color is not red, 5.11 < 5.14 and there's an increase
+				return '<em>'+this.point.category + '</em><br>5.11 winrate: ' + roundOff(this.point.low) + '%<br>5.14 winrate: ' + roundOff(this.point.high) + '%<br>Change in winrate: +' + roundOff(this.point.high-this.point.low)+'%';
+			}
 		}
 	});
-
+	console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
 }); 
 
 $('#btn').click(function() {
-	$('#container').highcharts({series: champs})
-	console.log('pressed')
-})
+	//sample sort with time taken
+	var start = new Date().getTime();
+	champs = champs.sort(sortByProperty('wins'));
+	var chart = $('#container').highcharts();
+	chart.xAxis[0].setCategories(getCategories(champs));
+	chart.series[0].setData(getWinSeries(champs));
+	chart.series[0].update(chart.series[0].options);
+	console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
+});
 });
 
-//function used by Array.sort to sort arrays of data objects in descending order
-function sortDescend(a,b) {
-	if (a.data[0] > b.data[0]) {
-		return -1;
-	} else if (a.data[0] == b.data[0]) {
+// returns a callback function for Arrays.sort which will sort by one of the object's properties
+function sortByProperty(property) {
+	return function(a,b) {
+		if (a[property] < b[property]) {
+			return -1;
+		} else if (a[property] > b[property]) {
+			return 1;
+		}
 		return 0;
-	} else {
-		return 1;
 	}
 }
 
-function sortAscend(a,b) { 
-	if (a.data[0] < b.data[0]) {
-		return -1;
-	} else if (a.data[0]==b.data[0]){
-		return 0;
-	} else {
-		return 1;
+function getCategories(champs) {
+	var categories = [];
+	for (var i = 0; i < champs.length; i++) {
+		categories.push(champs[i].name);
 	}
+	return categories;
 }
 
-function sortAlpha(a,b) {
-	if (a.name < b.name) {
-		return -1;
-	} else if (a.name > b.name) {
-		return 1;
-	} 
-	return 0;
+function roundOff(num) {
+	return parseFloat((Math.round(num*100)/100).toFixed(2));
 }
 
+function getWinSeries(champs) {
+	var series = [];
+	for (var i = 0; i < champs.length; i++) {
+		var pre = roundOff(champs[i]['5.11']['wins']/champs[i]['5.11']['picks']*100);
+		var post = roundOff(champs[i]['5.14']['wins']/champs[i]['5.14']['picks']*100);
+		if (pre < post) {
+			series.push({
+				'low':pre, 'high':post, 'color':'green'
+			});
+		} else if (pre > post) {
+			series.push({
+				'low':post, 'high':pre, 'color':'red'
+			});
+		} else {
+			series.push({
+				'low':pre, 'high':post, 'color':'grey'
+			})
+		}
+	}
+	return series
+}
 
 function getDataSet(selection) {
-
 	//input sanitation
 	var dataType = selection['data'].toUpperCase()
 	var queueList = [];
@@ -168,3 +187,12 @@ function getDataSet(selection) {
 	console.log(jsons);
 }
 }
+/*
+TODO
+- set minimum size/padding so that all element names are visible along the bottom (may need to be zoomed in initially)
+- set maximum zoom size
+- set tooltip to appear for the value of whichever x the cursor is over (rather than require users to hover the bar in the y-axis as well)
+- make sortable by increasing change in rate, overall rate before, overall rate after (might require a JSON refactor since sortByProperty() requires direct 'children' of each JSON object. it would potentially save processing overhead to have rates pre-calculated in JSON)
+- make modular for other rates (pick, ban)
+- make modular for other data sets (region and queue type)
+*/
