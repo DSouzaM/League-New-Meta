@@ -3,7 +3,7 @@ from functions.util import *
 import json
 
 
-def generateChampionWinLoss(version, region):
+def count_champ_normal_5x5(version, region):
 
     gamemode = 'NORMAL_5X5'
     region = region.upper()
