@@ -154,3 +154,30 @@ def generateNextIteration(iteration, version, gamemode, region):
 
     dataToWrite = json.dumps(roles, sort_keys=True, indent=4, separators=(',', ': '))
     writeAllToFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=iteration+1), dataToWrite)
+
+
+def getIteration(iteration, version, gamemode, region):
+
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+    assert(iteration >= 0)
+
+    i0 = 0
+
+    if os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region)):
+        
+        file_list = os.listdir('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region))
+        
+        for my_file in file_list:
+            
+            ix = int(my_file.split('.')[0])
+            if ix > i0:
+                i0 = ix
+    
+    if iteration <= i0:
+        print "Already done!"
+        return
+
+    for i in xrange(i0,iteration):
+        generateNextIteration(i, version, gamemode, region)
