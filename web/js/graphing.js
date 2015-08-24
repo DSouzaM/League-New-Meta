@@ -4,13 +4,74 @@ var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
 
 // object to keep track of what data should be shown on the graph
 var selection = {'data':'','queue':[], 'region':[] };
+var chart;
 
 $(function() {
 
-// function to handle checkbox actions
-$('input[type=checkbox]').change(function() {
-	var name = this.name;
-	var value = this.value;
+	// function to handle checkbox actions
+	var startTime = new Date().getTime();
+	var dataSet = [];
+	var options = {
+		'chart': {
+			'renderTo':'container',
+			'type': 'columnrange',
+			'zoomType': 'x'
+		},
+		'title': {
+			'text': 'Change in Pick Rates after Patch 5.14'
+		},
+
+		'xAxis': {
+			'categories': getArrayOf(dataSet,'name'),
+			'min': 0,
+			'labels' : {
+				'rotation': -45,
+				
+			},
+		},
+
+		'yAxis': {
+			'title': {
+				'text': 'Win Rate'
+			}
+		},
+		'legend': {
+			'enabled':false
+		},
+		'plotOptions': {
+			'series': { 
+				'groupPadding': 0.05
+			}
+		},
+
+		'series': [{
+			'data': [] //prepareDataSet(dataSet,'wr')
+		}],
+		'tooltip': {
+			'formatter': function() {
+				// if change is negative, 5.11 > 5.14 and there's a decrease
+				if (this.point['d_'+this.point.currentInfo] < 0 ) { 
+					return '<em>' + this.point.name + '</em><br>5.11 ' + this.point.currentInfo + ': ' +this.point.high + '%<br>5.14 ' + this.point.currentInfo + ': ' + this.point.low + '%<br>Change in winrate: ' + roundOff((this.point.low-this.point.high))+'%';
+				}
+				// if change is positive, 5.11 < 5.14 and there's an increase
+				return '<em>'+this.point.name + '</em><br>5.11 winrate: ' + this.point.low + '%<br>5.14 winrate: ' + this.point.high + '%<br>Change in winrate: +' + roundOff((this.point.high-this.point.low))+'%';
+			}
+		}
+	};
+
+
+	var request = $.getJSON('json/NORMAL_5X5_NA.json');
+	request.done(function(data) {
+		dataSet = prepareDataSet(data,'wr');
+		options.series[0].data = dataSet;
+		chart = new Highcharts.Chart(options);
+		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
+	});
+
+
+	$('input[type=checkbox]').change(function() {
+		var name = this.name;
+		var value = this.value;
 
 		//check action
 		if ($(this).attr('checked')){
@@ -48,75 +109,28 @@ $('input[type=checkbox]').change(function() {
 		//TODO add graph button and later add functionality for other data types
 		selection['data'] = 'CHAMPIONS';
 		getDataSet(selection);
-	});
-
-
-var startTime = new Date().getTime();
-var request = $.getJSON('json/NORMAL_5X5_NA.json');
-var dataSet = [];
-
-request.done(function(data) {
-	dataSet = data;
-	$('#container').highcharts({
-		'chart': {
-			'type': 'columnrange',
-			'zoomType': 'x'
-		},
-		'title': {
-			'text': 'Change in Pick Rates after Patch 5.14'
-		},
-
-		'xAxis': {
-			'categories': getArrayOf(dataSet,'name'),
-			'min': 0
-		},
-
-		'yAxis': {
-			'title': {
-				'text': 'Win Rate'
-			}
-		},
-		'legend': {
-			'enabled':false
-		},
-		
-		'series': [{
-			'data': setDataSet(dataSet,'prepost','wr')//getSeries(dataSet,'')
-		}],
-		'tooltip': {
-			'formatter': function() {
-				// if color is red, 5.11 > 5.14 and there's a decrease
-				if (this.point.color == 'red') { 
-					return '<em>' + this.point.category + '</em><br>5.11 winrate: ' + roundOff(this.point.high) + '%<br>5.14 winrate: ' + roundOff(this.point.low) + '%<br>Change in winrate: ' + roundOff(this.point.low-this.point.high)+'%';
-				}
-				// if color is not red, 5.11 < 5.14 and there's an increase
-				return '<em>'+this.point.category + '</em><br>5.11 winrate: ' + roundOff(this.point.low) + '%<br>5.14 winrate: ' + roundOff(this.point.high) + '%<br>Change in winrate: +' + roundOff(this.point.high-this.point.low)+'%';
-			}
-		}
-	});
-console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
-}); 
+	}); 
 
 $('#btn').click(function() {
-	//sample sort with time taken
-	var start = new Date().getTime();
-	dataSet.sort(sortByProperty('d_wr'));	
-	var chart = $('#container').highcharts();
-	chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
-	chart.series[0].update(chart.series[0].options);
-	console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
-});
+		//sample sort with time taken
+		var start = new Date().getTime();
+		dataSet.sort(sortByProperty('d_wr'));	
+		var chart = $('#container').highcharts();
+		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
+		chart.series[0].update(chart.series[0].options);
+		console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
+	});
 $('#block').css({'width':'200px','height':'200px','background-color':'red'});
 $('#slider').on('input',function() {
 	$('#block').css('background-color',getColor($(this).val(),0,100));	
 });
 });
 
-// UNTESTED 
-//infoType = 'prepost', 'change'
+
+
 //info = 'wr','pr','br'
 //sets Point properties of each champion object. low/high for columnrange graph, y for column
-function setDataSet(dataSet, infoType, info) {
+function prepareDataSet(dataSet, info) {
 	var range = getRange(dataSet,'d_'+info);
 	var min = range[0];
 	var max = range[1];
@@ -124,28 +138,26 @@ function setDataSet(dataSet, infoType, info) {
 		if (dataSet[i]['d_'+info] > 0) {// rate increases
 			dataSet[i].low = dataSet[i]['pre_'+info]; 
 			dataSet[i].high = dataSet[i]['post_'+info];
-			//dataSet[i].color = 'green';
 		} else { // rate decreases
 			dataSet[i].low = dataSet[i]['post_'+info];
 			dataSet[i].high = dataSet[i]['pre_'+info];
-			//dataSet[i].color = 'red';
 		}
 		dataSet[i].currentInfo = info;
-		dataSet[i].y = dataSet[i]['d_'+info];
-		//console.log(dataSet[i].y,min,max);
-		dataSet[i].color = getColor(dataSet[i].y,min,max);
-		//console.log(dataSet[i].color);			
+		dataSet[i].color = getColor(dataSet[i]['d_'+info],min,max);			
 	}
 	return dataSet;
 }
 
 
-function getColor(value, min, max) { 
-	value -= min;
-	var range = max-min;
-	var green = Math.round(255*(value/range));
-	var red = Math.round(255*(1.0-(value/range)));
-	return 'rgb('+red+','+green+',0)';
+function getColor(value, min, max) { 	
+	var maxValue = Math.max(Math.abs(max),Math.abs(min));
+	if (value > 0) {
+		var greenness = Math.round(150*value/maxValue);
+		return 'rgb('+ (150-greenness) + ',230,' + (150-greenness)+ ')';
+	} else {
+		var redness = Math.round(-150*value/maxValue);
+		return 'rgb(230,' + (150-redness) + ',' + (150-redness)+')';
+	}
 }
 
 
@@ -186,11 +198,11 @@ function getArrayOf(dataSet,property){
 }
 
 function roundOff(num) {
-	return parseFloat((Math.round(num*100)/100).toFixed(2));
+	return parseFloat((Math.round(num*100.0)/100.0).toFixed(2));
 }
 
 
-// may be removed. requires regeneration of entire series. if modification of variables works through setDataSet() this can probably be deleted
+// may be removed. requires regeneration of entire series. if modification of variables works through prepareDataSet() this can probably be deleted
 //infoType = 'prepost', 'change'
 //info = 'wr','pr','br'
 function getSeries(dataSet, infoType, info) {
