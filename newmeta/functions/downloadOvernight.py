@@ -13,5 +13,8 @@ def download():
     getIteration(8, 5.11, 'RANKED_SOLO', 'NA')
     getIteration(8, 5.14, 'RANKED_SOLO', 'NA')
 
+    generateChampionRoles(5.11, 'RANKED_SOLO', 'NA')
+    generateChampionRoles(5.14, 'RANKED_SOLO', 'NA')
+
     # count_champ_normal_5x5(5.11, 'NA')
     # count_champ_normal_5x5(5.14, 'NA')
