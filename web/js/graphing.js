@@ -11,11 +11,11 @@ $(function() {
 	// function to handle checkbox actions
 	var startTime = new Date().getTime();
 	var dataSet = [];
+	var postSet = [];
 	var options = {
 		'chart': {
 			'renderTo':'container',
-			'type': 'columnrange',
-			'zoomType': 'x'
+			'zoomType': 'xy'
 		},
 		'title': {
 			'text': 'Change in Pick Rates after Patch 5.14'
@@ -26,8 +26,8 @@ $(function() {
 			'min': 0,
 			'labels' : {
 				'rotation': -45,
-				
 			},
+			'crosshair' : true
 		},
 
 		'yAxis': {
@@ -38,17 +38,21 @@ $(function() {
 		'legend': {
 			'enabled':false
 		},
-		'plotOptions': {
-			'series': { 
-				'groupPadding': 0.05
-			}
-		},
 
 		'series': [{
+			'type': 'columnrange',
 			'data': [] //prepareDataSet(dataSet,'wr')
+		},
+		{
+			'type': 'scatter',
+			'data': []
+
 		}],
 		'tooltip': {
 			'formatter': function() {
+				/*if (this.series.type == 'scatter') {
+					return '<em>' + this.point.name + '</em><br>Post-patch ' + this.point.currentInfo + ': ' + this.point.y;
+				}*/
 				// if change is negative, 5.11 > 5.14 and there's a decrease
 				if (this.point['d_'+this.point.currentInfo] < 0 ) { 
 					return '<em>' + this.point.name + '</em><br>5.11 ' + this.point.currentInfo + ': ' +this.point.high + '%<br>5.14 ' + this.point.currentInfo + ': ' + this.point.low + '%<br>Change in winrate: ' + roundOff((this.point.low-this.point.high))+'%';
@@ -63,7 +67,10 @@ $(function() {
 	var request = $.getJSON('json/NORMAL_5X5_NA.json');
 	request.done(function(data) {
 		dataSet = prepareDataSet(data,'wr');
+		postSet = getPostData(dataSet);
 		options.series[0].data = dataSet;
+		options.series[1].data = postSet;
+		
 		chart = new Highcharts.Chart(options);
 		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
 	});
@@ -114,10 +121,14 @@ $(function() {
 $('#btn').click(function() {
 		//sample sort with time taken
 		var start = new Date().getTime();
-		dataSet.sort(sortByProperty('d_wr'));	
-		var chart = $('#container').highcharts();
+		dataSet.sort(sortByProperty('d_wr'));
+
+		postSet = getPostData(dataSet);
+		//var chart = $('#container').highcharts();
 		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
+		//chart.series[1].setData(getPostData)
 		chart.series[0].update(chart.series[0].options);
+		chart.series[1].update(chart.series[1].options);
 		console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
 	});
 $('#block').css({'width':'200px','height':'200px','background-color':'red'});
@@ -160,7 +171,7 @@ function getColor(value, min, max) {
 	}
 }
 
-
+// returns 2-length array with [min, max] of the property in the given dataSet
 function getRange(dataSet,property){
 	var low = dataSet[0][property];
 	var high = dataSet[0][property];
@@ -173,6 +184,30 @@ function getRange(dataSet,property){
 		}
 	}
 	return [low,high];
+}
+
+//gets array of data points to overlay images on columnrange charts
+function getPostData(dataSet) {
+	var info = dataSet[0].currentInfo;
+	var data = [];
+	for (var i = 0; i<dataSet.length; i++) {
+		var entry = dataSet[i]; /*{
+			'name': dataSet[i].name,
+			'y': dataSet[i]['post_'+info],
+			'currentInfo': dataSet[i].currentInfo
+			'marker':{}
+		}*/
+		entry.y = dataSet[i]['post_'+info];
+		entry.marker = {};
+		if (dataSet[i]['d_'+info] > 0) {			
+			entry.marker.symbol = 'triangle';
+		} else {
+			entry.marker.symbol = 'triangle-down';
+		}
+		data.push(entry);
+	}
+	console.log(data);
+	return data;
 }
 
 
