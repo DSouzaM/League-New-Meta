@@ -2,6 +2,7 @@ from apps.main.models import *
 from functions.util import *
 import requests
 import json
+import urllib
 
 
 ############################################################
@@ -175,3 +176,41 @@ def getItems(version, gamemode, region):
 Notice how getChampions and getItems is almost identical?
 We can make it better, but that that is of low priority right now.
 """
+
+def getChampionIcons():
+
+    champs = Champion.objects.filter(region__name='NA',version__name=5.11,gamemode__name='NORMAL_5X5')
+    total = champs.count()
+
+    for i in xrange(total):
+
+        print "Processing champion {i} / {total}".format(i=i,total=total)
+
+        champ = champs[i]
+        name = champ.name.replace(" ","")
+        urllib.urlretrieve("http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/" + name + ".png", "./img/" + name + ".png")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
