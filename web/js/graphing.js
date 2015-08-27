@@ -8,14 +8,13 @@ var chart;
 
 $(function() {
 
-	// function to handle checkbox actions
 	var startTime = new Date().getTime();
 	var dataSet = [];
-	var postSet = [];
 	var options = {
 		'chart': {
 			'renderTo':'container',
-			'zoomType': 'xy'
+			'zoomType': 'xy',
+			'inverted': true
 		},
 		'title': {
 			'text': 'Change in Pick Rates after Patch 5.14'
@@ -23,18 +22,32 @@ $(function() {
 
 		'xAxis': {
 			'categories': getArrayOf(dataSet,'name'),
-			'min': 0,
 			'labels' : {
-				'rotation': -45,
+				'step' : 1
 			},
-			'crosshair' : true
+			'alternateGridColor': '#FCFCFC'
 		},
 
-		'yAxis': {
+		'yAxis': [{
 			'title': {
 				'text': 'Win Rate'
-			}
+			},
+			'plotLines':[{
+				'value': 50,
+				'width': 2,
+				'color': '#AAAAAA',
+				'dashStyle':'Dash',
+				'zIndex': 5
+			}]
+			
 		},
+		{
+			'title' : {
+				'text': 'Win Rate'
+			},
+			'linkedTo':0,
+			'opposite':true
+		}],
 		'legend': {
 			'enabled':false
 		},
@@ -42,40 +55,39 @@ $(function() {
 		'series': [{
 			'type': 'columnrange',
 			'data': [] //prepareDataSet(dataSet,'wr')
-		},
-		{
-			'type': 'scatter',
-			'data': []
-
 		}],
 		'tooltip': {
+			'shared': true,
+			'crosshairs':true,
+			'followPointer' : true,
+			'hideDelay' : 100,
 			'formatter': function() {
-				/*if (this.series.type == 'scatter') {
-					return '<em>' + this.point.name + '</em><br>Post-patch ' + this.point.currentInfo + ': ' + this.point.y;
-				}*/
+				var pt = this.points[0].point;
 				// if change is negative, 5.11 > 5.14 and there's a decrease
-				if (this.point['d_'+this.point.currentInfo] < 0 ) { 
-					return '<em>' + this.point.name + '</em><br>5.11 ' + this.point.currentInfo + ': ' +this.point.high + '%<br>5.14 ' + this.point.currentInfo + ': ' + this.point.low + '%<br>Change in winrate: ' + roundOff((this.point.low-this.point.high))+'%';
+				if (pt['d_'+pt.currentInfo] < 0 ) { 
+					return '<em>' + pt.name + '</em><br>5.11 ' + pt.currentInfo + ': ' +pt.high + '%<br>5.14 ' + pt.currentInfo + ': ' + pt.low + '%<br>Change in winrate: ' + roundOff((pt.low-pt.high))+'%';
 				}
 				// if change is positive, 5.11 < 5.14 and there's an increase
-				return '<em>'+this.point.name + '</em><br>5.11 winrate: ' + this.point.low + '%<br>5.14 winrate: ' + this.point.high + '%<br>Change in winrate: +' + roundOff((this.point.high-this.point.low))+'%';
+				return '<em>'+pt.name + '</em><br>5.11 winrate: ' + pt.low + '%<br>5.14 winrate: ' + pt.high + '%<br>Change in winrate: +' + roundOff((pt.high-pt.low))+'%';
 			}
+		},
+		'plotOptions': {
+			'stickyTracking' : true
 		}
+
 	};
 
 
 	var request = $.getJSON('json/NORMAL_5X5_NA.json');
 	request.done(function(data) {
 		dataSet = prepareDataSet(data,'wr');
-		postSet = getPostData(dataSet);
 		options.series[0].data = dataSet;
-		options.series[1].data = postSet;
 		
 		chart = new Highcharts.Chart(options);
 		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
 	});
 
-
+	
 	$('input[type=checkbox]').change(function() {
 		var name = this.name;
 		var value = this.value;
@@ -121,20 +133,12 @@ $(function() {
 $('#btn').click(function() {
 		//sample sort with time taken
 		var start = new Date().getTime();
-		dataSet.sort(sortByProperty('d_wr'));
-
-		postSet = getPostData(dataSet);
+		dataSet.sort(sortByProperty('post_wr'));
 		//var chart = $('#container').highcharts();
 		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
-		//chart.series[1].setData(getPostData)
 		chart.series[0].update(chart.series[0].options);
-		chart.series[1].update(chart.series[1].options);
 		console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
 	});
-$('#block').css({'width':'200px','height':'200px','background-color':'red'});
-$('#slider').on('input',function() {
-	$('#block').css('background-color',getColor($(this).val(),0,100));	
-});
 });
 
 
@@ -186,29 +190,6 @@ function getRange(dataSet,property){
 	return [low,high];
 }
 
-//gets array of data points to overlay images on columnrange charts
-function getPostData(dataSet) {
-	var info = dataSet[0].currentInfo;
-	var data = [];
-	for (var i = 0; i<dataSet.length; i++) {
-		var entry = dataSet[i]; /*{
-			'name': dataSet[i].name,
-			'y': dataSet[i]['post_'+info],
-			'currentInfo': dataSet[i].currentInfo
-			'marker':{}
-		}*/
-		entry.y = dataSet[i]['post_'+info];
-		entry.marker = {};
-		if (dataSet[i]['d_'+info] > 0) {			
-			entry.marker.symbol = 'triangle';
-		} else {
-			entry.marker.symbol = 'triangle-down';
-		}
-		data.push(entry);
-	}
-	console.log(data);
-	return data;
-}
 
 
 
@@ -294,7 +275,7 @@ function getDataSet(selection) {
 	var jsons = [];
 	for (var i = 0; i < queueList.length; i++) {
 		for (var j = 0; j < regionList.length; j++) {
-			jsons.push(dataType+'_'+queueList[i]+'_'+regionList[j]+'.json');
+			jsons.push('jsons/champions/'+ queueList[i]+'_'+regionList[j]+'.json');
 		}
 	}
 	console.log(jsons);

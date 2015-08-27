@@ -1,20 +1,22 @@
 from iterate import *
 from kmeans import *
 from pull import *
+from export import *
+
+
 
 def download():
+    regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN']
+    queues = ['NORMAL_5X5', 'RANKED_SOLO']
+    versions = [5.11, 5.14]
 
-    getMatchData(5.11, 'RANKED_SOLO', 'NA')
-    getMatchData(5.14, 'RANKED_SOLO', 'NA')
+    for region in regions:
+        for queue in queues:
+            for version in versions:
+                getMatchData(version, queue, region)
+                getChampions(version, queue, region)
+                getIteration(version, queue, region)
+                generateChampionRoles(version, queue, region)
 
-    getChampions(5.11, 'RANKED_SOLO', 'NA')
-    getChampions(5.14, 'RANKED_SOLO', 'NA')
-
-    getIteration(8, 5.11, 'RANKED_SOLO', 'NA')
-    getIteration(8, 5.14, 'RANKED_SOLO', 'NA')
-
-    generateChampionRoles(5.11, 'RANKED_SOLO', 'NA')
-    generateChampionRoles(5.14, 'RANKED_SOLO', 'NA')
-
-    # count_champ_normal_5x5(5.11, 'NA')
-    # count_champ_normal_5x5(5.14, 'NA')
+            count_champ(version, queue, region)
+            exportChampions(queue, region)

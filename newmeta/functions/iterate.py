@@ -3,11 +3,11 @@ from functions.util import *
 import json
 
 
-def count_champ_normal_5x5(version, region):
+def count_champ(version, gamemode, region):
 
-    gamemode = 'NORMAL_5X5'
+    gamemode = gamemode.upper()
     region = region.upper()
-    assert(assertVersionGamemodeRegion(version=version,region=region))
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
     region_object = Region.objects.get(name=region)
     version_object = Version.objects.get(name=version)
