@@ -5,7 +5,7 @@ var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
 // object to keep track of what data should be shown on the graph
 var selection = {'data':'','queue':[], 'region':[] };
 var chart;
-var sortProperties = ['name', 'pre_wr', 'post_wr'];
+var sortProperties = ['name', 'pre_wr', 'post_wr', 'd_wr', 'pre_pr', 'post_pr', 'd_pr'];
 var currentSortIndex = 0;
 
 $(function() {
