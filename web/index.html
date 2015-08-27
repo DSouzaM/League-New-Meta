@@ -26,7 +26,8 @@
             <div class="col-md-8">
                 <table class="table table-condensed table-no-div">  
                     <thead>  
-                        <tr>  
+                        <tr>
+                            <th>Data Type</th>
                             <th>Game Mode</th>
                             <th>Region</th>
                             <th>Sorting</th>
@@ -34,10 +35,10 @@
                     </thead>  
                     <tbody>  
                         <tr>  
-                            <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>  
+                            <td><input type="checkbox" name="data-type" value="win-rate" checked>Win Rate</input></td>
+                            <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>
                             <td><input type="checkbox" name="region" value="ALL">All</input></td>
-                            <td>
-                               
+                            <td>                        
                                 <div class="col-md-10">
                                     <select id="sort-type" class="form-control">
                                         <option value="name">Champion name</option>
@@ -52,10 +53,10 @@
                                 <div class="col-md-2">
                                     <button type="button" class="btn btn-primary" id="sort-data">Sort!</button>
                                 </div>
-
                             </td>
                         </tr>  
-                        <tr>  
+                        <tr>
+                            <td><input type="checkbox" name="data-type" value="pick-rate">Pick Rate</input></td>
                             <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
                             <td>
                                 <div class="row">
