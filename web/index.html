@@ -23,18 +23,37 @@
         <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <table class="table table-condensed table-no-div">  
                     <thead>  
                         <tr>  
-                            <th>Game Mode(s):</th>
-                            <th>Region(s):</th>
+                            <th>Game Mode</th>
+                            <th>Region</th>
+                            <th>Sorting</th>
                         </tr>  
                     </thead>  
                     <tbody>  
                         <tr>  
                             <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>  
                             <td><input type="checkbox" name="region" value="ALL">All</input></td>
+                            <td>
+                               
+                                <div class="col-md-10">
+                                    <select id="sort-type" class="form-control">
+                                        <option value="name">Champion name</option>
+                                        <option value="pre_wr">Win rate (pre-patch)</option>
+                                        <option value="post_wr">Win rate (post-patch)</option>
+                                        <option value="d_wr">Win rate (change)</option>
+                                        <option value="pre_pr">Pick rate (pre-patch)</option>
+                                        <option value="post_pr">Pick rate (post-patch)</option>
+                                        <option value="d_pr">Pick rate (change)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" id="sort-data">Sort!</button>
+                                </div>
+
+                            </td>
                         </tr>  
                         <tr>  
                             <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
@@ -74,14 +93,12 @@
                                     </div>
                                 </div>
                             </td>
+                            <td>
+                                Currently sorting by: <span id="currently-sorting-by">Champion name</span>
+                            </td>
                         </tr>
                     </tbody>  
                 </table> 
-            </div>
-            <div class="col-md-4">
-                Currently sorting by: <span id="currently-sorting-by">name</span>
-                <br>
-                <button type="button" class="btn btn-primary" id="cycle-sorting">Sort!</button>
             </div>
         </div>
         <br>
