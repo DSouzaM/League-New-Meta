@@ -5,6 +5,8 @@ var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
 // object to keep track of what data should be shown on the graph
 var selection = {'data':'','queue':[], 'region':[] };
 var chart;
+var sortProperties = ['name', 'pre_wr', 'post_wr'];
+var currentSortIndex = 0;
 
 $(function() {
 
@@ -130,10 +132,12 @@ $(function() {
 		getDataSet(selection);
 	}); 
 
-$('#btn').click(function() {
+    $('#cycle-sorting').on('click', function() {
 		//sample sort with time taken
 		var start = new Date().getTime();
-		dataSet.sort(sortByProperty('post_wr'));
+        currentSortIndex = (currentSortIndex + 1) % sortProperties.length
+		dataSet.sort(sortByProperty(sortProperties[currentSortIndex]));
+        $('#currently-sorting-by').html(sortProperties[currentSortIndex]);
 		//var chart = $('#container').highcharts();
 		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
 		chart.series[0].update(chart.series[0].options);
