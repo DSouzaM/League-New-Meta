@@ -16,6 +16,9 @@ $(function() {
 			'zoomType': 'xy',
 			'inverted': true
 		},
+		'credits': {
+		      enabled: false
+		},
 		'title': {
 			'text': 'Change in Pick Rates after Patch 5.14'
 		},
