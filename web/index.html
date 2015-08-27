@@ -1,77 +1,118 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Metashift : An analysis of the Ability Power changes in 5.13</title>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-	<script type="text/javascript" src="http://code.highcharts.com/highcharts-more.js"></script>
-	<script type="text/javascript" src="js/graphing.js"></script>
-</head>
-<body>
-	<h1> Metashift </h1>
-	<table style="margin-left:auto; margin-right:auto;">
-		<tr>
-			<th>Game Mode(s):</th>
-			<th>Region(s):</th>
-		</tr>
-		<tr>
-			<td>
-				<form>
-					<input type="checkbox" name="queue" value="normal_5x5">Normal</input>
-					<br>
-					<input type="checkbox" name="queue" value="ranked_solo">Ranked</input>
-				</form>
-			</td>
-			<td>
-				<form>
-					<table>
-						<tr>
-							<td>
-								<input type="checkbox" name="region" value="ALL">All</input>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="region" value="NA">NA</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="EUW">EUW</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="EUNE">EUNE</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="KR">KR</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="BR">BR</input>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="region" value="LAN">LAN</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="LAS">LAS</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="OCE">OCE</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="RU">RU</input>
-							</td>
-							<td>
-								<input type="checkbox" name="region" value="TR">TR</input>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</td>
-		</tr>
-	</table>
-	<br>		
-	<div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
-	<input type="button" id="btn" value="Click">
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="An analysis of the Ability Power changes in 5.13">
+        <meta name="keywords" content="league of legends, ap, patch, change, meta">
+        <meta name="author" content="Matt D'Souza and Dongyu Zheng">
+        <title>Metashift | An analysis of the Ability Power changes in 5.13</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <style>
+            .table-no-div th, .table-no-div td { 
+                 border-top: none !important; 
+             }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="text-center">Metashift</h1>
+        <br><br>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <table class="table table-condensed table-no-div">  
+                    <thead>  
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Game Mode</th>
+                            <th>Region</th>
+                            <th>Sorting</th>
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr>  
+                            <td><input type="checkbox" name="data-type" value="win-rate" checked>Win Rate</input></td>
+                            <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>
+                            <td><input type="checkbox" name="region" value="ALL">All</input></td>
+                            <td>                        
+                                <div class="col-md-10">
+                                    <select id="sort-type" class="form-control">
+                                        <option value="name">Champion name</option>
+                                        <option value="pre_wr">Win rate (pre-patch)</option>
+                                        <option value="post_wr">Win rate (post-patch)</option>
+                                        <option value="d_wr">Win rate (change)</option>
+                                        <option value="pre_pr">Pick rate (pre-patch)</option>
+                                        <option value="post_pr">Pick rate (post-patch)</option>
+                                        <option value="d_pr">Pick rate (change)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" id="sort-data">Sort!</button>
+                                </div>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td><input type="checkbox" name="data-type" value="pick-rate">Pick Rate</input></td>
+                            <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="NA" checked>NA</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="EUW">EUW</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="EUNE">EUNE</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="KR">KR</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="BR">BR</input>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="LAN">LAN</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="LAS">LAS</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="OCE">OCE</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="RU">RU</input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" name="region" value="TR">TR</input>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                Currently sorting by: <span id="currently-sorting-by">Champion name</span>
+                            </td>
+                        </tr>
+                    </tbody>  
+                </table> 
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>      
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>      
+        <script src="js/graphing.js"></script>
+    </body>
 </html>

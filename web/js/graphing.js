@@ -16,6 +16,9 @@ $(function() {
 			'zoomType': 'xy',
 			'inverted': true
 		},
+		'credits': {
+		      enabled: false
+		},
 		'title': {
 			'text': 'Change in Pick Rates after Patch 5.14'
 		},
@@ -130,10 +133,11 @@ $(function() {
 		getDataSet(selection);
 	}); 
 
-$('#btn').click(function() {
+    $('#sort-data').on('click', function() {
 		//sample sort with time taken
 		var start = new Date().getTime();
-		dataSet.sort(sortByProperty('post_wr'));
+		dataSet.sort(sortByProperty($('#sort-type').val()));
+        $('#currently-sorting-by').html($("option[value="+$('#sort-type').val()+"]").html());
 		//var chart = $('#container').highcharts();
 		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
 		chart.series[0].update(chart.series[0].options);
