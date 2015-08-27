@@ -87,7 +87,7 @@ def getBestRole(scores):
 #                SECONDARY FUNCTIONS              #
 ###################################################
 
-def getClusters(match_ids,roles):
+def getClusters(match_ids,region,roles):
 
     clusters = {'marksman': [], 'support': [], 'mage': [], 'tank': [], 'fighter': []}
 
@@ -98,7 +98,7 @@ def getClusters(match_ids,roles):
         print "Processing match {i} / {total}".format(i=i,total=total)
 
         match_id = match_ids[i]
-        playerList = getMatchItems(match_id,'NA')
+        playerList = getMatchItems(match_id,region)
 
         for player in playerList:
 
@@ -138,7 +138,7 @@ def generateNextIteration(iteration, version, gamemode, region):
     roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=iteration))
     match_ids = getMatchIDs(version, gamemode, region)
 
-    clusters = getClusters(match_ids=match_ids,roles=json.loads(roles_data))
+    clusters = getClusters(match_ids=match_ids, region=region, roles=json.loads(roles_data))
 
     for cluster, data in clusters.items():
 
