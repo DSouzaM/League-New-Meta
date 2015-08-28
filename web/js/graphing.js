@@ -1,6 +1,7 @@
 var dataTypes = ['CHAMPIONS','ITEMS'];
 var queueTypes = ['NORMAL_5X5', 'RANKED_SOLO'];
 var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
+var abbrev = {'wr':'win rate','pr':'pick rate'}
 
 // object to keep track of what data should be shown on the graph
 var selection = {'data':'','queue':[], 'region':[] };
@@ -28,7 +29,7 @@ $(function() {
 			'labels' : {
 				'step' : 1
 			},
-			'alternateGridColor': '#FCFCFC'
+			'alternateGridColor': '#FAFAFA'
 		},
 
 		'yAxis': [{
@@ -66,12 +67,13 @@ $(function() {
 			'hideDelay' : 100,
 			'formatter': function() {
 				var pt = this.points[0].point;
+				var info = abbrev[pt.currentInfo]
 				// if change is negative, 5.11 > 5.14 and there's a decrease
 				if (pt['d_'+pt.currentInfo] < 0 ) { 
-					return '<em>' + pt.name + '</em><br>5.11 ' + pt.currentInfo + ': ' +pt.high + '%<br>5.14 ' + pt.currentInfo + ': ' + pt.low + '%<br>Change in winrate: ' + roundOff((pt.low-pt.high))+'%';
+					return '<em>' + pt.name + '</em><br>5.11 ' + info + ': ' +pt.high + '%<br>5.14 ' + info + ': ' + pt.low + '%<br>Change in ' + info + ': ' + roundOff((pt.low-pt.high))+'%';
 				}
 				// if change is positive, 5.11 < 5.14 and there's an increase
-				return '<em>'+pt.name + '</em><br>5.11 winrate: ' + pt.low + '%<br>5.14 winrate: ' + pt.high + '%<br>Change in winrate: +' + roundOff((pt.high-pt.low))+'%';
+				return '<em>'+pt.name + '</em><br>5.11 ' + info + ': ' + pt.low + '%<br>5.14 ' + info + ': '+ pt.high + '%<br>Change in '+ info + ': +' + roundOff((pt.high-pt.low))+'%';
 			}
 		},
 		'plotOptions': {
@@ -150,9 +152,6 @@ $(function() {
 //info = 'wr','pr','br'
 //sets Point properties of each champion object. low/high for columnrange graph, y for column
 function prepareDataSet(dataSet, info) {
-	var range = getRange(dataSet,'d_'+info);
-	var min = range[0];
-	var max = range[1];
 	for (var i = 0; i < dataSet.length; i++) {
 		if (dataSet[i]['d_'+info] > 0) {// rate increases
 			dataSet[i].low = dataSet[i]['pre_'+info]; 
@@ -162,38 +161,10 @@ function prepareDataSet(dataSet, info) {
 			dataSet[i].high = dataSet[i]['pre_'+info];
 		}
 		dataSet[i].currentInfo = info;
-		dataSet[i].color = getColor(dataSet[i]['d_'+info],min,max);			
+		dataSet[i].color = (dataSet[i]['d_'+info] > 0) ? 'rgb(20,230,20)' : 'rgb(230,20,20)';		
 	}
 	return dataSet;
 }
-
-
-function getColor(value, min, max) { 	
-	var maxValue = Math.max(Math.abs(max),Math.abs(min));
-	if (value > 0) {
-		var greenness = Math.round(150*value/maxValue);
-		return 'rgb('+ (150-greenness) + ',230,' + (150-greenness)+ ')';
-	} else {
-		var redness = Math.round(-150*value/maxValue);
-		return 'rgb(230,' + (150-redness) + ',' + (150-redness)+')';
-	}
-}
-
-// returns 2-length array with [min, max] of the property in the given dataSet
-function getRange(dataSet,property){
-	var low = dataSet[0][property];
-	var high = dataSet[0][property];
-	for (var i = 0; i < dataSet.length; i++){
-		var value = dataSet[i][property];
-		if (value < low) {
-			low = value;
-		} else if (value > high) {
-			high = value;
-		}
-	}
-	return [low,high];
-}
-
 
 
 

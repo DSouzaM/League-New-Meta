@@ -6,8 +6,8 @@ from export import *
 
 
 def download():
-    #regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN']
-    regions = ['LAS', 'OCE', 'RU', 'TR']
+    regions = ['EUNE', 'EUW', 'KR', 'LAN']
+    #regions = ['LAS', 'OCE', 'RU', 'TR']
     queues = ['NORMAL_5X5', 'RANKED_SOLO']
     versions = [5.11, 5.14]
 

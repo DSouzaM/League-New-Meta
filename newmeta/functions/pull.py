@@ -20,7 +20,7 @@ except:
 #                       VARS                      #
 ###################################################
 
-API_MATCH_URL = "https://{region}.api.pvp.net/api/lol/{region}/v2.2/match/{match_id}?api_key={api_key}&includeTimeline={include_timeline}"
+API_MATCH_URL = "https://{region}.api.pvp.net/api/lol/{region}/v2.2/match/{match_id}?api_key={api_key}"
 API_STATIC_DATA_URL = "https://{region}.api.pvp.net/api/lol/static-data/{region}/v1.2/{data_type}/?api_key={api_key}"
 API_KEY = "7ef5d6cc-917a-4ffe-b31e-1abd46f70374"
 
@@ -67,8 +67,7 @@ def getMatchData(version, gamemode, region):
                     API_MATCH_URL.format(
                         region=region.lower(),
                         match_id=match_id,
-                        api_key=API_KEY,
-                        include_timeline='true'
+                        api_key=API_KEY
                     )
                 )
 
