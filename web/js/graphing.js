@@ -10,22 +10,22 @@ var chart;
 $(function() {
 
 	var startTime = new Date().getTime();
-	var dataSet = [];
+	var dataSeries = {};
+	var markerSeries = {};
 	var options = {
 		'chart': {
 			'renderTo':'container',
-			'zoomType': 'xy',
 			'inverted': true
 		},
 		'credits': {
-		      enabled: false
+			enabled: false
 		},
 		'title': {
 			'text': 'Change in Pick Rates after Patch 5.14'
 		},
 
 		'xAxis': {
-			'categories': getArrayOf(dataSet,'name'),
+			'categories': [],
 			'labels' : {
 				'step' : 1
 			},
@@ -56,46 +56,55 @@ $(function() {
 			'enabled':false
 		},
 
-		'series': [{
-			'type': 'columnrange',
-			'data': [] //prepareDataSet(dataSet,'wr')
-		}],
+		'series': [],
 		'tooltip': {
-			'shared': true,
+			'shared':true,
 			'crosshairs':true,
-			'followPointer' : true,
-			'hideDelay' : 100,
-			'formatter': function() {
-				var pt = this.points[0].point;
-				var info = abbrev[pt.currentInfo]
-				// if change is negative, 5.11 > 5.14 and there's a decrease
-				if (pt['d_'+pt.currentInfo] < 0 ) { 
-					return '<em>' + pt.name + '</em><br>5.11 ' + info + ': ' +pt.high + '%<br>5.14 ' + info + ': ' + pt.low + '%<br>Change in ' + info + ': ' + roundOff((pt.low-pt.high))+'%';
+			'followPointer':true,
+			'hideDelay':100,
+			'formatter':function() {
+				var pt;
+				if (typeof this.points == 'undefined'){
+					pt = this.point;
+				} else {
+					pt = this.points[0].point;
 				}
-				// if change is positive, 5.11 < 5.14 and there's an increase
-				return '<em>'+pt.name + '</em><br>5.11 ' + info + ': ' + pt.low + '%<br>5.14 ' + info + ': '+ pt.high + '%<br>Change in '+ info + ': +' + roundOff((pt.high-pt.low))+'%';
+				var info = abbrev[pt.currentInfo]
+					// if change is negative, 5.11 > 5.14 and there's a decrease
+					if (pt['d_'+pt.currentInfo] < 0 ) { 
+						return '<em>' + pt.name + '</em><br>5.11 ' + info + ': ' +pt.high + '%<br>5.14 ' + info + ': ' + pt.low + '%<br>Change in ' + info + ': ' + roundOff((pt.low-pt.high))+'%';
+					}
+					// if change is positive, 5.11 < 5.14 and there's an increase
+					return '<em>'+pt.name + '</em><br>5.11 ' + info + ': ' + pt.low + '%<br>5.14 ' + info + ': '+ pt.high + '%<br>Change in '+ info + ': +' + roundOff((pt.high-pt.low))+'%';
+				}
+			},
+			'plotOptions': {
+				'stickyTracking' : true
 			}
-		},
-		'plotOptions': {
-			'stickyTracking' : true
-		}
 
-	};
+		};
 
 
-	var request = $.getJSON('json/NORMAL_5X5_NA.json');
-	request.done(function(data) {
-		dataSet = prepareDataSet(data,'wr');
-		options.series[0].data = dataSet;
-		
-		chart = new Highcharts.Chart(options);
-		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
-	});
+		var request = $.getJSON('json/NORMAL_5X5_NA.json');
+		request.done(function(data) {
+			dataSeries.currentInfo = 'wr';
+			dataSeries.data = prepareRangeData(data,'wr');
+			dataSeries.type = 'columnrange';
+			markerSeries.currentInfo = 'wr';
+			markerSeries.data = prepareMarkerData(dataSeries.data,'wr');
+			markerSeries.type = 'scatter';
+			options.xAxis.categories = getArrayOf(dataSeries.data,'name');
+			options.series.push(dataSeries);
+			options.series.push(markerSeries);
 
-	
-	$('input[type=checkbox]').change(function() {
-		var name = this.name;
-		var value = this.value;
+			chart = new Highcharts.Chart(options);
+			console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
+		});
+
+
+		$('input[type=checkbox]').change(function() {
+			var name = this.name;
+			var value = this.value;
 
 		//check action
 		if ($(this).attr('checked')){
@@ -135,23 +144,24 @@ $(function() {
 		getDataSet(selection);
 	}); 
 
-    $('#sort-data').on('click', function() {
+$('#sort-data').on('click', function() {
 		//sample sort with time taken
-		var start = new Date().getTime();
-		dataSet.sort(sortByProperty($('#sort-type').val()));
-        $('#currently-sorting-by').html($("option[value="+$('#sort-type').val()+"]").html());
-		//var chart = $('#container').highcharts();
-		chart.xAxis[0].setCategories(getArrayOf(dataSet,'name'));
+		//var start = new Date().getTime();
+		dataSeries.data.sort(sortByProperty($('#sort-type').val()));
+		$('#currently-sorting-by').html($("option[value="+$('#sort-type').val()+"]").html());
+		markerSeries.data = prepareMarkerData(dataSeries.data,dataSeries.currentInfo);
+		chart.xAxis[0].setCategories(getArrayOf(dataSeries.data,'name'));
 		chart.series[0].update(chart.series[0].options);
-		console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
+		chart.series[1].update(chart.series[1].options);
+		//console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
 	});
 });
 
 
 
-//info = 'wr','pr','br'
-//sets Point properties of each champion object. low/high for columnrange graph, y for column
-function prepareDataSet(dataSet, info) {
+//info = 'wr','pr'
+//sets Point properties of each champion object.
+function prepareRangeData(dataSet, info) {
 	for (var i = 0; i < dataSet.length; i++) {
 		if (dataSet[i]['d_'+info] > 0) {// rate increases
 			dataSet[i].low = dataSet[i]['pre_'+info]; 
@@ -164,6 +174,18 @@ function prepareDataSet(dataSet, info) {
 		dataSet[i].color = (dataSet[i]['d_'+info] > 0) ? 'rgb(20,230,20)' : 'rgb(230,20,20)';		
 	}
 	return dataSet;
+}
+
+function prepareMarkerData(markerSet,info) {
+	for (var i = 0; i < markerSet.length; i++) {
+		markerSet[i].y = markerSet[i]['post_'+info];
+		markerSet[i].marker = {
+			'enabled':true,
+			'symbol':(markerSet[i]['d_'+info] > 0) ? 'triangle' : 'triangle-down',
+			'radius':6
+		};
+	}
+	return markerSet;
 }
 
 
@@ -190,38 +212,6 @@ function getArrayOf(dataSet,property){
 
 function roundOff(num) {
 	return parseFloat((Math.round(num*100.0)/100.0).toFixed(2));
-}
-
-
-// may be removed. requires regeneration of entire series. if modification of variables works through prepareDataSet() this can probably be deleted
-//infoType = 'prepost', 'change'
-//info = 'wr','pr','br'
-function getSeries(dataSet, infoType, info) {
-	var series = [];
-	if (true/*infoType == 'prepost'*/) {
-		for (var i = 0; i < dataSet.length; i++) {
-			var pre = roundOff(dataSet[i]['5.11']['wins']/dataSet[i]['5.11']['picks']*100);
-			var post = roundOff(dataSet[i]['5.14']['wins']/dataSet[i]['5.14']['picks']*100);
-			if (pre < post) {
-				series.push({
-					'low':pre, 'high':post, 'color':'green'
-				});
-			} else if (pre > post) {
-				series.push({
-					'low':post, 'high':pre, 'color':'red'
-				});
-			} else {
-				series.push({
-					'low':pre, 'high':post, 'color':'grey'
-				})
-			}
-		}
-	} else if (infoType == 'change') {
-		for (var i = 0; i < dataSet.length; i++) {
-			series.push(dataSet['d_'+infoType]);
-		}
-	}
-	return series
 }
 
 function getDataSet(selection) {
