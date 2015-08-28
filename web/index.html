@@ -10,6 +10,7 @@
         <title>Metashift | An analysis of the Ability Power changes in 5.13</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
         <style>
             .table-no-div th, .table-no-div td { 
                  border-top: none !important; 
@@ -106,13 +107,58 @@
         <div class="row">
             <div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
         </div>
+        <div class="row" style="width: 95%; margin-left:auto; margin-right:auto;">
+            <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Champion</th>
+                        <th>Pre Win Rate</th>
+                        <th>Post Win Rate</th>
+                        <th>Change in Win Rate</th>
+                        <th>Pre Pick Rate</th>
+                        <th>Post Pick Rate</th>
+                        <th>Change in Pick Rate</th>
+                        <th>Pre Role</th>
+                        <th>Post Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>      
-        <script src="https://code.highcharts.com/highcharts-more.js"></script>      
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
         <script src="js/graphing.js"></script>
+        <script>
+
+            $(document).ready(function() {
+                var $table = $('#example').DataTable();
+                $.getJSON('json/NORMAL_5X5_NA.json', function(json) {
+                    $table.clear();
+                    for (champion of json) {
+                        $table.row.add( [
+                            champion['name'],
+                            champion['pre_wr'].toFixed(2) + "%",
+                            champion['post_wr'].toFixed(2) + "%",
+                            champion['d_wr'].toFixed(2) + "%",
+                            champion['pre_pr'].toFixed(2) + "%",
+                            champion['post_pr'].toFixed(2) + "%",
+                            champion['d_pr'].toFixed(2) + "%",
+                            champion['pre_role'],
+                            champion['post_role']
+                        ] );
+                        console.log(champion);
+                    }
+                    $table.draw();
+                });
+            } );
+
+        </script>
     </body>
 </html>
