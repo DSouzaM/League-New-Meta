@@ -53,9 +53,9 @@ class Champion(models.Model):
 
     wins = models.IntegerField(default=0)
     picks = models.IntegerField(default=0)
-    bans = models.IntegerField(default=0)
 
-    role = models.CharField(max_length=8, default='')
+    pre_roles = models.TextField(default="")
+    post_roles = models.TextField(default="")
 
     def __unicode__(self):
 		return self.name

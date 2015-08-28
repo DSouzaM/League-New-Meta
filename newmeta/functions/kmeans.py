@@ -211,7 +211,12 @@ def generateChampionRoles(version, gamemode, region):
     clusters = getClusters(match_ids=match_ids,roles=json.loads(roles_data))
 
     champs = Champion.objects.filter(version__name=version,gamemode__name=gamemode,region__name=region)
-    champs.update(role='')
+    
+    if version == 5.11:
+        champs.update(pre_roles="")
+    elif version == 5.14:
+        champs.update(post_roles="")
+    
     total = champs.count()
 
     for i in xrange(total):
@@ -233,8 +238,9 @@ def generateChampionRoles(version, gamemode, region):
 
             scores.append([cluster,score])
 
-        bestRole = getBestRole(scores)
-
-        if bestRole:
-            champ.role = bestRole
-            champ.save()
+        if version == 5.11:
+            champ.pre_roles = json.dumps(scores)
+        elif version == 5.14:
+            champ.post_roles = json.dumps(scores)
+        print scores
+        #champ.save()
