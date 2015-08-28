@@ -107,6 +107,7 @@
         <div class="row">
             <div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
         </div>
+        <br>
         <div class="row" style="width: 95%; margin-left:auto; margin-right:auto;">
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
@@ -122,6 +123,19 @@
                         <th>Post Role</th>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <th>Champion</th>
+                        <th>Pre Win Rate</th>
+                        <th>Post Win Rate</th>
+                        <th>Change in Win Rate</th>
+                        <th>Pre Pick Rate</th>
+                        <th>Post Pick Rate</th>
+                        <th>Change in Pick Rate</th>
+                        <th>Pre Role</th>
+                        <th>Post Role</th>
+                    </tr>
+                </tfoot>
                 <tbody>
                 </tbody>
             </table>
@@ -138,7 +152,9 @@
         <script>
 
             $(document).ready(function() {
-                var $table = $('#example').DataTable();
+                var $table = $('#example').DataTable( {
+                    "bPaginate": false
+                } );
                 $.getJSON('json/NORMAL_5X5_NA.json', function(json) {
                     $table.clear();
                     for (champion of json) {
