@@ -25,7 +25,7 @@ def count_champ(version, gamemode, region):
         version=version_object,
         gamemode=gamemode_object
     )
-    champions.update(wins=0,picks=0,bans=0)
+    champions.update(wins=0,picks=0)
 
     for i in xrange(total):
 
