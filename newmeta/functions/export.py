@@ -44,8 +44,8 @@ def exportChampions(gamemode, region):
             'post_wr': round( (f_post_wins / f_post_picks) * 100 , 2),
             'pre_pr': round( f_pre_picks / 100.0 , 2),
             'post_pr': round( f_post_picks / 100.0 , 2),
-            'pre_role': pre_champ.role,
-            'post_role': post_champ.role
+            'pre_roles': json.loads(pre_champ.roles),
+            'post_roles': json.loads(post_champ.roles)
         }
         dict_to_add['d_wr'] = round(dict_to_add['post_wr'] - dict_to_add['pre_wr'], 2)
         dict_to_add['d_pr'] = round(dict_to_add['post_pr'] - dict_to_add['pre_pr'], 2)
