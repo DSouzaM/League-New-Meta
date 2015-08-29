@@ -1,5 +1,5 @@
 from apps.main.models import *
-regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN']
+regions = ['EUNE', 'EUW', 'KR', 'LAN']
 queues = ['NORMAL_5X5', 'RANKED_SOLO']
 versions = [5.11, 5.14]
 
