@@ -9,6 +9,9 @@ def count_champ(version, gamemode, region):
     region = region.upper()
     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
+    # if gamemode == "NORMAL_5X5" and region == "NA":
+    #     return
+
     region_object = Region.objects.get(name=region)
     version_object = Version.objects.get(name=version)
     gamemode_object = Gamemode.objects.get(name=gamemode)
@@ -29,7 +32,7 @@ def count_champ(version, gamemode, region):
 
     for i in xrange(total):
 
-        print "Processing match {i} / {total}".format(i=i,total=total)
+        print "Counting match {i} / {total}".format(i=i,total=total)
 
         match = matches[i]
         data = json.loads(match.data)

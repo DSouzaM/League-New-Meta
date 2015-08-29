@@ -187,69 +187,67 @@ def getIteration(iteration, version, gamemode, region):
         generateNextIteration(i, version, gamemode, region)
 
 
-def generateChampionRoles(version, gamemode, region):
+# def generateChampionRoles(version, gamemode, region):
 
-    gamemode = gamemode.upper()
-    region = region.upper()
-    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+#     gamemode = gamemode.upper()
+#     region = region.upper()
+#     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
-    i0 = 0
+#     i0 = 0
 
-    if os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region)):
+#     if os.path.exists('./jsons/kmeans/{ver}/{gm}/{reg}/0.json'.format(ver=version,gm=gamemode,reg=region)):
         
-        file_list = os.listdir('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region))
+#         file_list = os.listdir('./jsons/kmeans/{ver}/{gm}/{reg}'.format(ver=version,gm=gamemode,reg=region))
         
-        for my_file in file_list:
+#         for my_file in file_list:
             
-            ix = int(my_file.split('.')[0])
-            if ix > i0:
-                i0 = ix
+#             ix = int(my_file.split('.')[0])
+#             if ix > i0:
+#                 i0 = ix
 
-    roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=i0))
-    match_ids = getMatchIDs(version, gamemode, region)
+#     roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=i0))
+#     match_ids = getMatchIDs(version, gamemode, region)
 
-    clusters = getClusters(match_ids=match_ids,region=region,roles=json.loads(roles_data))
+#     clusters = getClusters(match_ids=match_ids,region=region,roles=json.loads(roles_data))
 
-    champs = Champion.objects.filter(version__name=version,gamemode__name=gamemode,region__name=region)
+#     champs = Champion.objects.filter(version__name=version,gamemode__name=gamemode,region__name=region)
     
-    champs.update(roles="")
+#     champs.update(roles="")
     
-    total = champs.count()
+#     total = champs.count()
 
-    for i in xrange(total):
+#     for i in xrange(total):
         
-        print "Processing champion {i} / {total}".format(i=i,total=total)
+#         print "Processing champion {i} / {total}".format(i=i,total=total)
 
-        champ = champs[i]
-        scores = {}
+#         champ = champs[i]
+#         scores = {}
 
-        for cluster, data in clusters.items():
+#         for cluster, data in clusters.items():
 
-            score = 0.0
+#             score = 0.0
 
-            for player in data:
+#             for player in data:
 
-                if player['champion'] == champ.key:
+#                 if player['champion'] == champ.key:
 
-                    score += 1.0
+#                     score += 1.0
 
-            scores[cluster] = score
+#             scores[cluster] = score
 
-        total_score = 0.0
+#         total_score = 0.0
 
-        for k,v in scores.iteritems():
-            total_score += v
+#         for k,v in scores.iteritems():
+#             total_score += v
 
-        if total_score == 0.0:
-            champ.roles = '{"tank": 0.00, "support": 0.00, "fighter": 0.00, "marksman": 0.00, "mage": 0.00}'
-
-        for k in scores.keys():
-            scores[k] = round( (scores[k] / total_score) * 100 , 2)
-
-        champ.roles = json.dumps(scores)
-
-        champ.save()
+#         if total_score == 0.0:
 
 
-
-
+#         for k in scores.keys():
+#             try:
+#                 scores[k] = round( (scores[k] / total_score) * 100 , 2)
+#             except:
+#                 scores[k] = 0.00
+        
+#         champ.roles = json.dumps(scores)
+#         champ.save()

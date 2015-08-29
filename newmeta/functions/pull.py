@@ -50,7 +50,7 @@ def getMatchData(version, gamemode, region):
 
         for i in range(numMatches):
 
-            print "Processing match {i} / {total} with {n} errors".format(
+            print "Downloading match {i} / {total} with {n} errors".format(
                 i=i,
                 total=numMatches,
                 n=len(errorMatches)
@@ -183,7 +183,7 @@ def getChampionIcons():
 
     for i in xrange(total):
 
-        print "Processing champion {i} / {total}".format(i=i,total=total)
+        print "Downlading champion icon {i} / {total}".format(i=i,total=total)
 
         champ = champs[i]
         name = champ.name.replace(" ","")
