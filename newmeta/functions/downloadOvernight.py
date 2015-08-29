@@ -4,8 +4,8 @@ from pull import *
 from export import *
 
 def download():
-    #regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN']
-    regions = ['NA', 'LAS', 'OCE', 'RU', 'TR']
+    regions = ['EUNE', 'EUW', 'KR', 'LAN'] # 'BR'
+    #regions = ['NA', 'LAS', 'OCE', 'RU', 'TR']
     queues = ['NORMAL_5X5', 'RANKED_SOLO']
     versions = [5.11, 5.14]
 
@@ -14,7 +14,7 @@ def download():
             for version in versions:
 
                 getMatchData(version, queue, region)
-                getChampions(version, queue, region)
+                #getChampions(version, queue, region)
                 #getIteration(8, version, queue, region)
                 #generateChampionRoles(version, queue, region)
                 #count_champ(version, queue, region)

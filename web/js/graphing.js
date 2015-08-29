@@ -1,110 +1,43 @@
 var dataTypes = ['CHAMPIONS','ITEMS'];
 var queueTypes = ['NORMAL_5X5', 'RANKED_SOLO'];
 var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
-var abbrev = {'wr':'win rate','pr':'pick rate'}
-
+var abbrev = {'wr':'Win','pr':'Pick'}
+var DEFAULT_INFO = 'wr';
 // object to keep track of what data should be shown on the graph
-var selection = {'data':'','queue':[], 'region':[] };
-var chart;
+
 
 $(function() {
-
+	var selection = {'data':'','queue':[], 'region':[] };
+	var jsonData;
+	var chart;
 	var startTime = new Date().getTime();
-	var dataSeries = {};
-	var markerSeries = {};
-	var options = {
-		'chart': {
-			'renderTo':'container',
-			'inverted': true
-		},
-		'credits': {
-			enabled: false
-		},
-		'title': {
-			'text': 'Change in Pick Rates after Patch 5.14'
-		},
+	var dataSeries = {
+		'currentInfo' : DEFAULT_INFO,
+		'type' : 'columnrange'
+	};
+	var markerSeries = {
+		'currentInfo' : DEFAULT_INFO,
+		'type' : 'scatter'
+	};
+	var options = generateChartOptions(DEFAULT_INFO);
 
-		'xAxis': {
-			'categories': [],
-			'labels' : {
-				'step' : 1
-			},
-			'alternateGridColor': '#FAFAFA'
-		},
+	var request = $.getJSON('json/NORMAL_5X5_NA.json');
+	request.done(function(data) {
+		jsonData = data;
+		dataSeries.data = prepareRangeData(jsonData,DEFAULT_INFO);
+		markerSeries.data = prepareMarkerData(dataSeries.data,DEFAULT_INFO);
+		options.xAxis.categories = getArrayOf(dataSeries.data,'name');
+		options.series.push(dataSeries);
+		options.series.push(markerSeries);
 
-		'yAxis': [{
-			'title': {
-				'text': 'Win Rate'
-			},
-			'plotLines':[{
-				'value': 50,
-				'width': 2,
-				'color': '#AAAAAA',
-				'dashStyle':'Dash',
-				'zIndex': 5
-			}]
-			
-		},
-		{
-			'title' : {
-				'text': 'Win Rate'
-			},
-			'linkedTo':0,
-			'opposite':true
-		}],
-		'legend': {
-			'enabled':false
-		},
-
-		'series': [],
-		'tooltip': {
-			'shared':true,
-			'crosshairs':true,
-			'followPointer':true,
-			'hideDelay':100,
-			'formatter':function() {
-				var pt;
-				if (typeof this.points == 'undefined'){
-					pt = this.point;
-				} else {
-					pt = this.points[0].point;
-				}
-				var info = abbrev[pt.currentInfo]
-					// if change is negative, 5.11 > 5.14 and there's a decrease
-					if (pt['d_'+pt.currentInfo] < 0 ) { 
-						return '<em>' + pt.name + '</em><br>5.11 ' + info + ': ' +pt.high + '%<br>5.14 ' + info + ': ' + pt.low + '%<br>Change in ' + info + ': ' + roundOff((pt.low-pt.high))+'%';
-					}
-					// if change is positive, 5.11 < 5.14 and there's an increase
-					return '<em>'+pt.name + '</em><br>5.11 ' + info + ': ' + pt.low + '%<br>5.14 ' + info + ': '+ pt.high + '%<br>Change in '+ info + ': +' + roundOff((pt.high-pt.low))+'%';
-				}
-			},
-			'plotOptions': {
-				'stickyTracking' : true
-			}
-
-		};
+		chart = new Highcharts.Chart(options);
+		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
+	});
 
 
-		var request = $.getJSON('json/NORMAL_5X5_NA.json');
-		request.done(function(data) {
-			dataSeries.currentInfo = 'wr';
-			dataSeries.data = prepareRangeData(data,'wr');
-			dataSeries.type = 'columnrange';
-			markerSeries.currentInfo = 'wr';
-			markerSeries.data = prepareMarkerData(dataSeries.data,'wr');
-			markerSeries.type = 'scatter';
-			options.xAxis.categories = getArrayOf(dataSeries.data,'name');
-			options.series.push(dataSeries);
-			options.series.push(markerSeries);
-
-			chart = new Highcharts.Chart(options);
-			console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
-		});
-
-
-		$('input[type=checkbox]').change(function() {
-			var name = this.name;
-			var value = this.value;
+	$('input[type=checkbox]').change(function() {
+		var name = this.name;
+		var value = this.value;
 
 		//check action
 		if ($(this).attr('checked')){
@@ -143,8 +76,21 @@ $(function() {
 		selection['data'] = 'CHAMPIONS';
 		getDataSet(selection);
 	}); 
+	$('input[type=radio]').change(function() {
+		var value = this.value;
+		options = generateChartOptions(value);
+		dataSeries.data = prepareRangeData(jsonData,value);
+		dataSeries.currentInfo = value;
+		markerSeries.data = prepareMarkerData(dataSeries.data,value);
+		markerSeries.currentInfo = value;
+		options.xAxis.categories = getArrayOf(dataSeries.data,'name');
+		options.series.push(dataSeries);
+		options.series.push(markerSeries);
 
-$('#sort-data').on('click', function() {
+		chart = new Highcharts.Chart(options);
+	})
+
+	$('#sort-data').on('click', function() {
 		//sample sort with time taken
 		//var start = new Date().getTime();
 		dataSeries.data.sort(sortByProperty($('#sort-type').val()));
@@ -157,7 +103,83 @@ $('#sort-data').on('click', function() {
 	});
 });
 
+function generateChartOptions(info) {
+	var infoType = abbrev[info];
+	var options = {
+		'chart': {
+			'renderTo':'container',
+			'inverted': true
+		},
+		'credits': {
+			'enabled': false
+		},
+		'title': {
+			'text': 'Change in '+ infoType + ' Rate after Patch 5.14'
+		},
 
+		'xAxis': {
+			'categories': [],
+			'labels' : {
+				'step' : 1
+			},
+			'alternateGridColor': '#FAFAFA'
+		},
+
+		'yAxis': [{
+			'title': {
+				'text': infoType + ' Rate'
+			},
+			'plotLines': []			
+		},
+		{
+			'title' : {
+				'text': infoType + ' Rate'
+			},
+			'linkedTo':0,
+			'opposite':true
+		}],
+		'legend': {
+			'enabled':false
+		},
+
+		'series': [],
+		'tooltip': {
+			'shared':true,
+			'crosshairs':true,
+			'followPointer':true,
+			'hideDelay':100,
+			'formatter':function() {
+				var pt;
+				if (typeof this.points == 'undefined'){
+					pt = this.point;
+				} else {
+					pt = this.points[0].point;
+				}
+				var info = infoType.toLowerCase() + ' rate';
+					// if change is negative, 5.11 > 5.14 and there's a decrease
+					if (pt['d_'+pt.currentInfo] < 0 ) { 
+						return '<em>' + pt.name + '</em><br>5.11 ' + info + ': ' +pt.high + '%<br>5.14 ' + info + ': ' + pt.low + '%<br>Change in ' + info + ': ' + roundOff((pt.low-pt.high))+'%';
+					}
+					// if change is positive, 5.11 < 5.14 and there's an increase
+					return '<em>'+pt.name + '</em><br>5.11 ' + info + ': ' + pt.low + '%<br>5.14 ' + info + ': '+ pt.high + '%<br>Change in '+ info + ': +' + roundOff((pt.high-pt.low))+'%';
+				}
+			},
+			'plotOptions': {
+				'stickyTracking' : true
+			}
+
+		};
+		if (info == 'wr') {
+			options['yAxis'][0]['plotLines'].push({
+				'value': 50,
+				'width': 2,
+				'color': '#AAAAAA',
+				'dashStyle':'Dash',
+				'zIndex': 5
+			});	
+		}
+		return options;
+	}
 
 //info = 'wr','pr'
 //sets Point properties of each champion object.
@@ -182,7 +204,7 @@ function prepareMarkerData(markerSet,info) {
 		markerSet[i].marker = {
 			'enabled':true,
 			'symbol':(markerSet[i]['d_'+info] > 0) ? 'triangle' : 'triangle-down',
-			'radius':6
+			'radius':5
 		};
 	}
 	return markerSet;
@@ -246,12 +268,3 @@ function getDataSet(selection) {
 	console.log(jsons);
 }
 }
-/*
-TODO
-- set minimum size/padding so that all element names are visible along the bottom (may need to be zoomed in initially)
-- set maximum zoom size
-- set tooltip to appear for the value of whichever x the cursor is over (rather than require users to hover the bar in the y-axis as well)
-- make sortable by increasing change in rate, overall rate before, overall rate after (might require a JSON refactor since sortByProperty() requires direct 'children' of each JSON object. it would potentially save processing overhead to have rates pre-calculated in JSON)
-- make modular for other rates (pick, ban)
-- make modular for other data sets (region and queue type)
-*/
