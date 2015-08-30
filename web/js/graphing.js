@@ -1,16 +1,16 @@
-var dataTypes = ['CHAMPIONS','ITEMS'];
-var queueTypes = ['NORMAL_5X5', 'RANKED_SOLO'];
-var regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
-var abbrev = {'wr':'Win','pr':'Pick'}
+var DATA_TYPES = ['CHAMPIONS','ITEMS'];
+var QUEUE_TYPES = ['NORMAL_5X5', 'RANKED_SOLO'];
+var REGIONS = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
+var COMMON_PROPERTIES = [ 'd_pr','d_wr','post_pr','post_wr','pre_pr','pre_wr']
+var ABBREVIATIONS = {'wr':'Win','pr':'Pick'}
 var DEFAULT_INFO = 'wr';
 // object to keep track of what data should be shown on the graph
 
 
 $(function() {
-	var selection = {'data':'','queue':['NORMAL_5X5'], 'region':['NA'] };
+	var selection = {'data':'CHAMPIONS','queue':['NORMAL_5X5'], 'region':['NA'] };
 	var jsonData;
 	var chart;
-	var startTime = new Date().getTime();
 	var dataSeries = {
 		'currentInfo' : DEFAULT_INFO,
 		'type' : 'columnrange'
@@ -30,8 +30,7 @@ $(function() {
 		options.series.push(dataSeries);
 		options.series.push(markerSeries);
 
-		chart = new Highcharts.Chart(options);
-		console.log('Initialization done in ' + (new Date().getTime()-startTime) + ' ms.');
+		chart = new Highcharts.Chart(options);	
 	});
 
 
@@ -76,40 +75,39 @@ $(function() {
 		selection['data'] = 'CHAMPIONS';
 		getDataSet(selection);
 	}); 
-	$('input[type=radio]').change(function() {
-		var value = this.value;
-		options = generateChartOptions(value);
-		dataSeries.data = prepareRangeData(jsonData,value);
-		dataSeries.currentInfo = value;
-		markerSeries.data = prepareMarkerData(dataSeries.data,value);
-		markerSeries.currentInfo = value;
-		options.xAxis.categories = getArrayOf(dataSeries.data,'name');
-		options.series.push(dataSeries);
-		options.series.push(markerSeries);
+$('input[type=radio]').change(function() {
+	var value = this.value;
+	options = generateChartOptions(value);
+	dataSeries.data = prepareRangeData(jsonData,value);
+	dataSeries.currentInfo = value;
+	markerSeries.data = prepareMarkerData(dataSeries.data,value);
+	markerSeries.currentInfo = value;
+	options.xAxis.categories = getArrayOf(dataSeries.data,'name');
+	options.series.push(dataSeries);
+	options.series.push(markerSeries);
 
-		chart = new Highcharts.Chart(options);
-	})
+	chart = new Highcharts.Chart(options);
+})
 
-	$('#sort-data').on('click', function() {
+$('#update-selection').on('click', function() {
 		//sample sort with time taken
 		//var start = new Date().getTime();
-		dataSeries.data.sort(sortByProperty($('#sort-type').val()));
+
+		jsonData = getDataSet(selection);
+
+
+		/*dataSeries.data.sort(sortByProperty($('#sort-type').val()));
 		$('#currently-sorting-by').html($("option[value="+$('#sort-type').val()+"]").html());
 		markerSeries.data = prepareMarkerData(dataSeries.data,dataSeries.currentInfo);
 		chart.xAxis[0].setCategories(getArrayOf(dataSeries.data,'name'));
 		chart.series[0].update(chart.series[0].options);
-		chart.series[1].update(chart.series[1].options);
+		chart.series[1].update(chart.series[1].options);*/
 		//console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
 	});
-	$('#get-data').on('click', function() {
-		jsonData = getDataSet(selection);
-		console.log(jsonData);
-
-	})
 });
 
 function generateChartOptions(info) {
-	var infoType = abbrev[info];
+	var infoType = ABBREVIATIONS[info];
 	var options = {
 		'chart': {
 			'renderTo':'container',
@@ -255,29 +253,48 @@ function getDataSet(selection) {
 	})
 
 	//input validation
-	if (dataType=='' || dataTypes.indexOf(dataType)<0 || queueList.length==0 ||  !queueList.every(function(queue){
-		return (queueTypes.indexOf(queue)>=0);
+	if (dataType=='' || DATA_TYPES.indexOf(dataType)<0 || queueList.length==0 ||  !queueList.every(function(queue){
+		return (QUEUE_TYPES.indexOf(queue)>=0);
 	}) || regionList.length==0 || !regionList.every(function(region) {
-		return (regions.indexOf(region)>=0);
+		return (REGIONS.indexOf(region)>=0);
 	})) {
 		console.log('Invalid data set request:\ndataType: ' + dataType + '\nqueueList: ' + queueList + '\nregionList: ' + regionList);
 	}
 	else {
 
 	//compiles array of required JSON files
-	var jsons = [];
-	var combined = {};
+	var requests = [];
+	var numOfSets = queueList.length * regionList.length;
+	console.log(numOfSets);
+	var combined = [];
 	for (var i = 0; i < queueList.length; i++) {
 		for (var j = 0; j < regionList.length; j++) {
 			var request = $.getJSON('json/'+ queueList[i]+'_'+regionList[j]+'_'+selection.data +'.json');
-			request.done(function() {
-
-			})
-			jsons.push(request);
+			//when each request is done, add the pre_, post_, and d_ values
+			request.done(function(data) { 
+				if (combined.length == 0) {
+					data.forEach(function(entry) {
+						combined.push(entry);
+					});
+				} else {					
+					for (var i = 0; i < data.length; i++) {
+						COMMON_PROPERTIES.forEach(function(property) {
+							combined[i][property]+=data[i][property];
+						});
+					}
+				}
+			});
+			requests.push(request);
 		}
+		$.when.apply($,requests).done(function() {
+			for (var i = 0; i < combined.length; i++) {
+				COMMON_PROPERTIES.forEach(function(property){
+					combined[i][property] = roundOff(combined[i][property]/numOfSets);
+				});
+			}
+		});
 	}
-	
-
-	console.log(jsons);
+	console.log(combined);
+	return combined;
 }
 }
