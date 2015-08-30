@@ -183,6 +183,14 @@
         <script src="js/graphing.js"></script>
         <script>
 
+            function green(text){
+                return "<span style='color:green'>" + text + "</span>";
+            }
+
+            function red(text){
+                return "<span style='color:red'>" + text + "</span>";
+            }
+
             $(document).ready(function() {
 
                 var $table = $('#example').DataTable( {
@@ -198,14 +206,16 @@
                 $.getJSON('json/NORMAL_5X5_NA_CHAMPIONS.json', function(json) {
                     $table.clear();
                     for (champion of json) {
+                        var d_wr = champion['d_wr'] >= 0.0 ? green(champion['d_wr'].toFixed(2) + "%") : red(champion['d_wr'].toFixed(2) + "%");
+                        var d_pr = champion['d_pr'] >= 0.0 ? green(champion['d_pr'].toFixed(2) + "%") : red(champion['d_pr'].toFixed(2) + "%");
                         $table.row.add( [
                             champion['name'],
                             champion['pre_wr'].toFixed(2) + "%",
                             champion['post_wr'].toFixed(2) + "%",
-                            champion['d_wr'].toFixed(2) + "%",
+                            d_wr,
                             champion['pre_pr'].toFixed(2) + "%",
                             champion['post_pr'].toFixed(2) + "%",
-                            champion['d_pr'].toFixed(2) + "%",
+                            d_pr,
                             champion['pre_roles']['fighter'].toFixed(2) + "%",
                             champion['post_roles']['fighter'].toFixed(2) + "%",
                             champion['pre_roles']['mage'].toFixed(2) + "%",
