@@ -54,7 +54,7 @@ class Champion(models.Model):
     wins = models.IntegerField(default=0)
     picks = models.IntegerField(default=0)
 
-    roles = models.TextField(default="")
+    roles = models.TextField(default="{}")
 
     def __unicode__(self):
 		return self.name
