@@ -177,20 +177,23 @@
         <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
         <script src="js/graphing.js"></script>
         <script>
-
             function green(text){
                 return "<span style='color:green'>" + text + "</span>";
             }
-
             function red(text){
                 return "<span style='color:red'>" + text + "</span>";
             }
-
             $(document).ready(function() {
                 var $table = $('#example').DataTable( {
-                    "bPaginate": false
+                    "bPaginate": false,
+                    "columnDefs": [
+                        {
+                            "targets": [ 7,8,9,10,11,12,13,14,15,16 ],
+                            "visible": false
+                        }
+                    ]
                 } );
-                $.getJSON('json/NORMAL_5X5_NA.json', function(json) {
+                $.getJSON('json/NORMAL_5X5_NA_CHAMPIONS.json', function(json) {
                     $table.clear();
                     for (champion of json) {
                         var d_wr = champion['d_wr'] >= 0.0 ? green(champion['d_wr'].toFixed(2) + "%") : red(champion['d_wr'].toFixed(2) + "%");
@@ -202,11 +205,6 @@
                             d_wr,
                             champion['pre_pr'].toFixed(2) + "%",
                             champion['post_pr'].toFixed(2) + "%",
-<<<<<<< HEAD
-                            champion['d_pr'].toFixed(2) + "%",
-                            champion['pre_role'],
-                            champion['post_role']
-=======
                             d_pr,
                             champion['pre_roles']['fighter'].toFixed(2) + "%",
                             champion['post_roles']['fighter'].toFixed(2) + "%",
@@ -218,14 +216,25 @@
                             champion['post_roles']['support'].toFixed(2) + "%",
                             champion['pre_roles']['tank'].toFixed(2) + "%",
                             champion['post_roles']['tank'].toFixed(2) + "%",
->>>>>>> c26c8af780676d8153d76259241a98b0d34721fc
                         ] );
-                        //console.log(champion);
                     }
                     $table.draw();
                 });
+                $('#wins-picks-chart').on('click', function(){
+                    $(this).hasClass('active') ? $(this).removeClass('active') : $(this).addClass('active');
+                    for (var i=1; i<=6; i++) {
+                        var column = $table.column( i );
+                        column.visible( ! column.visible() );
+                    }
+                });
+                $('#roles-chart').on('click', function(){
+                    $(this).hasClass('active') ? $(this).removeClass('active') : $(this).addClass('active');
+                    for (var i=7; i<=16; i++) {
+                        var column = $table.column( i );
+                        column.visible( ! column.visible() );
+                    }
+                });
             } );
-
         </script>
     </body>
 </html>
