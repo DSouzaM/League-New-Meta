@@ -22,9 +22,9 @@
         <h1 class="text-center">Metashift</h1>
         <br><br>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-xs-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <table class="table table-condensed table-no-div">  
                     <thead>  
                         <tr>
@@ -40,7 +40,7 @@
                             <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>
                             <td><input type="checkbox" name="region" value="ALL">All</input></td>
                             <td>                        
-                                <div class="col-md-10">
+                                <div class="col-xs-10">
                                     <select id="sort-type" class="form-control">
                                         <option value="name">Champion name</option>
                                         <option value="pre_wr">Win rate (pre-patch)</option>
@@ -51,7 +51,7 @@
                                         <option value="d_pr">Pick rate (change)</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-xs-2">
                                     <button type="button" class="btn btn-primary" id="update-selection">Update Selection</button>
                                 </div>
                             </td>
@@ -61,36 +61,36 @@
                             <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
                             <td>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="NA" checked>NA</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="EUW">EUW</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="EUNE">EUNE</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="KR">KR</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="BR">BR</input>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="LAN">LAN</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="LAS">LAS</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="OCE">OCE</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="RU">RU</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="TR">TR</input>
                                     </div>
                                 </div>
@@ -110,30 +110,36 @@
         <br>
         <div class="row" style="width:95%; margin-left:auto; margin-right:auto;">
             <h2 class="text-center">Table</h2>
-            <div class="pull-right">
-                <strong>Toggle:</strong> <button type="button" class="btn btn-info active" id="wins-picks-chart">Win/Pick Rate</button> <button type="button" class="btn btn-info" id="roles-chart">Roles</button>
+            <div class="row">
+                <div class="col-xs-6">
+                    <strong>A: v5.11<br>
+                    B: v5.14</strong>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <strong>Toggle:</strong> <button type="button" class="btn btn-info active" id="wins-picks-chart">Win/Pick Rate</button> <button type="button" class="btn btn-info" id="roles-chart">Roles</button>
+                </div>
             </div>
-            <br><br>
+            <br>
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Champion</th>
-                        <th>Win 1</th>
-                        <th>Win 2</th>
+                        <th>Win (A)</th>
+                        <th>Win (B)</th>
                         <th>&Delta; Win</th>
-                        <th>Pick 1</th>
-                        <th>Pick 2</th>
+                        <th>Pick (A)</th>
+                        <th>Pick (B)</th>
                         <th>&Delta; Pick</th>
-                        <th>Fighter 1</th>
-                        <th>Fighter 2</th>
-                        <th>Mage 1</th>
-                        <th>Mage 2</th>
-                        <th>Marksman 1</th>
-                        <th>Marksman 2</th>
-                        <th>Support 1</th>
-                        <th>Support 2</th>
-                        <th>Tank 1</th>
-                        <th>Tank 2</th>
+                        <th>Fighter (A)</th>
+                        <th>Fighter (B)</th>
+                        <th>Mage (A)</th>
+                        <th>Mage (B)</th>
+                        <th>Marksman (A)</th>
+                        <th>Marksman (B)</th>
+                        <th>Support (A)</th>
+                        <th>Support (B)</th>
+                        <th>Tank (A)</th>
+                        <th>Tank (B)</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -145,16 +151,16 @@
                         <th>Pre Pick Rate</th>
                         <th>Post Pick Rate</th>
                         <th>Change in Pick Rate</th>
-                        <th>Fighter 1</th>
-                        <th>Fighter 2</th>
-                        <th>Mage 1</th>
-                        <th>Mage 2</th>
-                        <th>Marksman 1</th>
-                        <th>Marksman 2</th>
-                        <th>Support 1</th>
-                        <th>Support 2</th>
-                        <th>Tank 1</th>
-                        <th>Tank 2</th>
+                        <th>Fighter (A)</th>
+                        <th>Fighter (B)</th>
+                        <th>Mage (A)</th>
+                        <th>Mage (B)</th>
+                        <th>Marksman (A)</th>
+                        <th>Marksman (B)</th>
+                        <th>Support (A)</th>
+                        <th>Support (B)</th>
+                        <th>Tank (A)</th>
+                        <th>Tank (B)</th>
                     </tr>
                 </tfoot>
                 <tbody>
