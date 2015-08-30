@@ -22,12 +22,15 @@ def exportChampions(gamemode, region):
         if pre_champ.wins == 0 or pre_champ.picks == 0:
             continue
 
-        post_champ = Champion.objects.get(
-            key=pre_champ.key,
-            version__name=5.14,
-            gamemode__name=gamemode,
-            region__name=region
-        )
+        try:
+            post_champ = Champion.objects.get(
+                key=pre_champ.key,
+                version__name=5.14,
+                gamemode__name=gamemode,
+                region__name=region
+            )
+        except:
+            continue
 
         if post_champ.wins == 0 or post_champ.picks == 0:
             continue
@@ -75,13 +78,16 @@ def exportItems(gamemode, region):
         if pre_item.wins == 0 or pre_item.picks == 0:
             continue
 
-        post_item = Item.objects.get(
-            key=pre_item.key,
-            version__name=5.14,
-            gamemode__name=gamemode,
-            region__name=region
-        )
-
+        try:
+            post_item = Item.objects.get(
+                key=pre_item.key,
+                version__name=5.14,
+                gamemode__name=gamemode,
+                region__name=region
+            )
+        except:
+            continue
+        
         if post_item.wins == 0 or post_item.picks == 0:
             continue
 

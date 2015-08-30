@@ -22,9 +22,9 @@
         <h1 class="text-center">Metashift</h1>
         <br><br>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-xs-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <table class="table table-condensed table-no-div">  
                     <thead>  
                         <tr>
@@ -40,7 +40,7 @@
                             <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>
                             <td><input type="checkbox" name="region" value="ALL">All</input></td>
                             <td>                        
-                                <div class="col-md-10">
+                                <div class="col-xs-10">
                                     <select id="sort-type" class="form-control">
                                         <option value="name">Champion name</option>
                                         <option value="pre_wr">Win rate (pre-patch)</option>
@@ -51,7 +51,7 @@
                                         <option value="d_pr">Pick rate (change)</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-xs-2">
                                     <button type="button" class="btn btn-primary" id="update-selection">Update Selection</button>
                                 </div>
                             </td>
@@ -61,36 +61,36 @@
                             <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
                             <td>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="NA" checked>NA</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="EUW">EUW</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="EUNE">EUNE</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="KR">KR</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="BR">BR</input>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="LAN">LAN</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="LAS">LAS</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="OCE">OCE</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="RU">RU</input>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-xs-2">
                                         <input type="checkbox" name="region" value="TR">TR</input>
                                     </div>
                                 </div>
@@ -108,19 +108,38 @@
             <div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
         </div>
         <br>
-        <div class="row" style="width: 95%; margin-left:auto; margin-right:auto;">
+        <div class="row" style="width:95%; margin-left:auto; margin-right:auto;">
+            <h2 class="text-center">Table</h2>
+            <div class="row">
+                <div class="col-xs-6">
+                    <strong>A: v5.11<br>
+                    B: v5.14</strong>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <strong>Toggle:</strong> <button type="button" class="btn btn-info active" id="wins-picks-chart">Win/Pick Rate</button> <button type="button" class="btn btn-info" id="roles-chart">Roles</button>
+                </div>
+            </div>
+            <br>
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Champion</th>
-                        <th>Pre Win Rate</th>
-                        <th>Post Win Rate</th>
-                        <th>Change in Win Rate</th>
-                        <th>Pre Pick Rate</th>
-                        <th>Post Pick Rate</th>
-                        <th>Change in Pick Rate</th>
-                        <th>Pre Role</th>
-                        <th>Post Role</th>
+                        <th>Win (A)</th>
+                        <th>Win (B)</th>
+                        <th>&Delta; Win</th>
+                        <th>Pick (A)</th>
+                        <th>Pick (B)</th>
+                        <th>&Delta; Pick</th>
+                        <th>Fighter (A)</th>
+                        <th>Fighter (B)</th>
+                        <th>Mage (A)</th>
+                        <th>Mage (B)</th>
+                        <th>Marksman (A)</th>
+                        <th>Marksman (B)</th>
+                        <th>Support (A)</th>
+                        <th>Support (B)</th>
+                        <th>Tank (A)</th>
+                        <th>Tank (B)</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -132,8 +151,16 @@
                         <th>Pre Pick Rate</th>
                         <th>Post Pick Rate</th>
                         <th>Change in Pick Rate</th>
-                        <th>Pre Role</th>
-                        <th>Post Role</th>
+                        <th>Fighter (A)</th>
+                        <th>Fighter (B)</th>
+                        <th>Mage (A)</th>
+                        <th>Mage (B)</th>
+                        <th>Marksman (A)</th>
+                        <th>Marksman (B)</th>
+                        <th>Support (A)</th>
+                        <th>Support (B)</th>
+                        <th>Tank (A)</th>
+                        <th>Tank (B)</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -151,6 +178,14 @@
         <script src="js/graphing.js"></script>
         <script>
 
+            function green(text){
+                return "<span style='color:green'>" + text + "</span>";
+            }
+
+            function red(text){
+                return "<span style='color:red'>" + text + "</span>";
+            }
+
             $(document).ready(function() {
                 var $table = $('#example').DataTable( {
                     "bPaginate": false
@@ -158,16 +193,32 @@
                 $.getJSON('json/NORMAL_5X5_NA.json', function(json) {
                     $table.clear();
                     for (champion of json) {
+                        var d_wr = champion['d_wr'] >= 0.0 ? green(champion['d_wr'].toFixed(2) + "%") : red(champion['d_wr'].toFixed(2) + "%");
+                        var d_pr = champion['d_pr'] >= 0.0 ? green(champion['d_pr'].toFixed(2) + "%") : red(champion['d_pr'].toFixed(2) + "%");
                         $table.row.add( [
                             champion['name'],
                             champion['pre_wr'].toFixed(2) + "%",
                             champion['post_wr'].toFixed(2) + "%",
-                            champion['d_wr'].toFixed(2) + "%",
+                            d_wr,
                             champion['pre_pr'].toFixed(2) + "%",
                             champion['post_pr'].toFixed(2) + "%",
+<<<<<<< HEAD
                             champion['d_pr'].toFixed(2) + "%",
                             champion['pre_role'],
                             champion['post_role']
+=======
+                            d_pr,
+                            champion['pre_roles']['fighter'].toFixed(2) + "%",
+                            champion['post_roles']['fighter'].toFixed(2) + "%",
+                            champion['pre_roles']['mage'].toFixed(2) + "%",
+                            champion['post_roles']['mage'].toFixed(2) + "%",
+                            champion['pre_roles']['marksman'].toFixed(2) + "%",
+                            champion['post_roles']['marksman'].toFixed(2) + "%",
+                            champion['pre_roles']['support'].toFixed(2) + "%",
+                            champion['post_roles']['support'].toFixed(2) + "%",
+                            champion['pre_roles']['tank'].toFixed(2) + "%",
+                            champion['post_roles']['tank'].toFixed(2) + "%",
+>>>>>>> c26c8af780676d8153d76259241a98b0d34721fc
                         ] );
                         //console.log(champion);
                     }

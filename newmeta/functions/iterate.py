@@ -71,7 +71,7 @@ def count_item(version, gamemode, region):
         region=region_object,
         version=version_object,
         gamemode=gamemode_object
-    )[0:10]
+    )
     total = matches.count()
 
     items = Item.objects.filter(
@@ -93,7 +93,7 @@ def count_item(version, gamemode, region):
             data['teams'][1]['teamId']:data['teams'][1]['winner']
         }
 
-        for player in j['participants']:
+        for player in data['participants']:
 
             team_id = player['teamId']
 
@@ -101,12 +101,16 @@ def count_item(version, gamemode, region):
 
                 item = 'item'+str(i)
                 itemId = int(player['stats'][item])
-                print itemId
-                item = items.get(key=item)
-
-                item.picks += 1
-
-                if teams[team_id]:
-                    item.wins += 1
                 
-                item.save()
+                if itemId:
+                    try:
+                        item = items.get(key=itemId)
+                    except:
+                        continue
+
+                    item.picks += 1
+
+                    if teams[team_id]:
+                        item.wins += 1
+                    
+                    item.save()
