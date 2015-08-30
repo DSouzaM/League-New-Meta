@@ -4,10 +4,10 @@
         "d_wr": 0.69,
         "name": "Aatrox",
         "post_pr": 6.1,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.11,
         "pre_pr": 4.33,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 52.42
     },
     {
@@ -15,10 +15,10 @@
         "d_wr": 2.23,
         "name": "Ahri",
         "post_pr": 10.18,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 53.05,
         "pre_pr": 8.58,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.82
     },
     {
@@ -26,10 +26,10 @@
         "d_wr": 0.85,
         "name": "Akali",
         "post_pr": 4.52,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.56,
         "pre_pr": 4.64,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.71
     },
     {
@@ -37,10 +37,10 @@
         "d_wr": -1.58,
         "name": "Alistar",
         "post_pr": 6.5,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 48.0,
         "pre_pr": 7.08,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 49.58
     },
     {
@@ -48,10 +48,10 @@
         "d_wr": -0.51,
         "name": "Amumu",
         "post_pr": 4.46,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 55.16,
         "pre_pr": 6.09,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 55.67
     },
     {
@@ -59,10 +59,10 @@
         "d_wr": 0.37,
         "name": "Anivia",
         "post_pr": 2.71,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 48.71,
         "pre_pr": 2.11,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.34
     },
     {
@@ -70,10 +70,10 @@
         "d_wr": -0.87,
         "name": "Annie",
         "post_pr": 12.8,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 50.47,
         "pre_pr": 13.03,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.34
     },
     {
@@ -81,10 +81,10 @@
         "d_wr": 0.45,
         "name": "Ashe",
         "post_pr": 18.98,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 51.16,
         "pre_pr": 30.39,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 50.71
     },
     {
@@ -92,10 +92,10 @@
         "d_wr": 5.89,
         "name": "Azir",
         "post_pr": 6.55,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.92,
         "pre_pr": 7.45,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 44.03
     },
     {
@@ -103,10 +103,10 @@
         "d_wr": -2.59,
         "name": "Bard",
         "post_pr": 5.71,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 43.61,
         "pre_pr": 7.9,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 46.2
     },
     {
@@ -114,10 +114,10 @@
         "d_wr": 2.02,
         "name": "Blitzcrank",
         "post_pr": 17.26,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 55.56,
         "pre_pr": 15.41,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 53.54
     },
     {
@@ -125,10 +125,10 @@
         "d_wr": 2.51,
         "name": "Brand",
         "post_pr": 11.14,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.51,
         "pre_pr": 2.86,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.0
     },
     {
@@ -136,10 +136,10 @@
         "d_wr": 3.9,
         "name": "Braum",
         "post_pr": 5.92,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 55.24,
         "pre_pr": 4.85,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 51.34
     },
     {
@@ -147,10 +147,10 @@
         "d_wr": 1.74,
         "name": "Cassiopeia",
         "post_pr": 2.65,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 47.92,
         "pre_pr": 3.53,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.18
     },
     {
@@ -158,10 +158,10 @@
         "d_wr": 1.89,
         "name": "Cho'Gath",
         "post_pr": 6.66,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.55,
         "pre_pr": 7.54,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.66
     },
     {
@@ -169,10 +169,10 @@
         "d_wr": 0.86,
         "name": "Corki",
         "post_pr": 4.16,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 50.72,
         "pre_pr": 3.57,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.86
     },
     {
@@ -180,10 +180,10 @@
         "d_wr": 1.06,
         "name": "Darius",
         "post_pr": 7.14,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.4,
         "pre_pr": 5.88,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.34
     },
     {
@@ -191,10 +191,10 @@
         "d_wr": -0.02,
         "name": "Diana",
         "post_pr": 7.53,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 53.25,
         "pre_pr": 5.65,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 53.27
     },
     {
@@ -202,10 +202,10 @@
         "d_wr": -4.5,
         "name": "Dr. Mundo",
         "post_pr": 2.28,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 42.98,
         "pre_pr": 2.38,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 47.48
     },
     {
@@ -213,10 +213,10 @@
         "d_wr": -3.81,
         "name": "Draven",
         "post_pr": 7.2,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 48.06,
         "pre_pr": 8.02,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.87
     },
     {
@@ -224,10 +224,10 @@
         "d_wr": 0.81,
         "name": "Ekko",
         "post_pr": 10.24,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.12,
         "pre_pr": 62.89,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.31
     },
     {
@@ -235,10 +235,10 @@
         "d_wr": 16.43,
         "name": "Elise",
         "post_pr": 9.34,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.14,
         "pre_pr": 1.54,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 35.71
     },
     {
@@ -246,10 +246,10 @@
         "d_wr": 1.93,
         "name": "Evelynn",
         "post_pr": 4.07,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 45.21,
         "pre_pr": 4.39,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 43.28
     },
     {
@@ -257,10 +257,10 @@
         "d_wr": -3.6,
         "name": "Ezreal",
         "post_pr": 20.54,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 45.57,
         "pre_pr": 13.81,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.17
     },
     {
@@ -268,10 +268,10 @@
         "d_wr": 2.91,
         "name": "Fiddlesticks",
         "post_pr": 3.08,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.68,
         "pre_pr": 4.34,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.77
     },
     {
@@ -279,10 +279,10 @@
         "d_wr": -2.49,
         "name": "Fiora",
         "post_pr": 5.71,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 51.31,
         "pre_pr": 5.0,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 53.8
     },
     {
@@ -290,10 +290,10 @@
         "d_wr": -3.49,
         "name": "Fizz",
         "post_pr": 18.23,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 50.3,
         "pre_pr": 8.83,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 53.79
     },
     {
@@ -301,10 +301,10 @@
         "d_wr": 0.94,
         "name": "Galio",
         "post_pr": 1.09,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.29,
         "pre_pr": 0.74,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.35
     },
     {
@@ -312,10 +312,10 @@
         "d_wr": -5.51,
         "name": "Gangplank",
         "post_pr": 20.7,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 44.49,
         "pre_pr": 4.28,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 50.0
     },
     {
@@ -323,10 +323,10 @@
         "d_wr": 0.78,
         "name": "Garen",
         "post_pr": 12.18,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.64,
         "pre_pr": 9.34,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.86
     },
     {
@@ -334,10 +334,10 @@
         "d_wr": 4.49,
         "name": "Gnar",
         "post_pr": 8.58,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 49.53,
         "pre_pr": 9.77,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 45.04
     },
     {
@@ -345,10 +345,10 @@
         "d_wr": -9.66,
         "name": "Gragas",
         "post_pr": 3.71,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 42.86,
         "pre_pr": 6.36,
-        "pre_role": "tank",
+        "pre_roles": {},
         "pre_wr": 52.52
     },
     {
@@ -356,10 +356,10 @@
         "d_wr": -2.94,
         "name": "Graves",
         "post_pr": 14.71,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 49.9,
         "pre_pr": 8.44,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 52.84
     },
     {
@@ -367,10 +367,10 @@
         "d_wr": -1.75,
         "name": "Hecarim",
         "post_pr": 4.06,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.97,
         "pre_pr": 5.38,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 53.72
     },
     {
@@ -378,10 +378,10 @@
         "d_wr": -2.71,
         "name": "Heimerdinger",
         "post_pr": 6.49,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 54.55,
         "pre_pr": 6.06,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 57.26
     },
     {
@@ -389,10 +389,10 @@
         "d_wr": 2.24,
         "name": "Irelia",
         "post_pr": 6.41,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 50.86,
         "pre_pr": 7.63,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 48.62
     },
     {
@@ -400,10 +400,10 @@
         "d_wr": 2.07,
         "name": "Janna",
         "post_pr": 6.54,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 51.99,
         "pre_pr": 5.91,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 49.92
     },
     {
@@ -411,10 +411,10 @@
         "d_wr": -2.15,
         "name": "Jarvan IV",
         "post_pr": 4.58,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 46.29,
         "pre_pr": 4.17,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 48.44
     },
     {
@@ -422,10 +422,10 @@
         "d_wr": 3.23,
         "name": "Jax",
         "post_pr": 9.55,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.3,
         "pre_pr": 7.03,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.07
     },
     {
@@ -433,10 +433,10 @@
         "d_wr": 0.87,
         "name": "Jinx",
         "post_pr": 19.55,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 51.41,
         "pre_pr": 22.12,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 50.54
     },
     {
@@ -444,10 +444,10 @@
         "d_wr": -6.3,
         "name": "Kalista",
         "post_pr": 7.2,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 43.61,
         "pre_pr": 11.68,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.91
     },
     {
@@ -455,10 +455,10 @@
         "d_wr": -3.22,
         "name": "Karma",
         "post_pr": 3.65,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 48.49,
         "pre_pr": 4.1,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.71
     },
     {
@@ -466,10 +466,10 @@
         "d_wr": -5.26,
         "name": "Karthus",
         "post_pr": 1.72,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 51.16,
         "pre_pr": 1.79,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 56.42
     },
     {
@@ -477,10 +477,10 @@
         "d_wr": -3.56,
         "name": "Kassadin",
         "post_pr": 3.99,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 39.85,
         "pre_pr": 2.05,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 43.41
     },
     {
@@ -488,10 +488,10 @@
         "d_wr": 0.93,
         "name": "Katarina",
         "post_pr": 9.75,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.21,
         "pre_pr": 12.07,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.28
     },
     {
@@ -499,10 +499,10 @@
         "d_wr": 3.26,
         "name": "Kayle",
         "post_pr": 7.03,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.2,
         "pre_pr": 2.82,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.94
     },
     {
@@ -510,10 +510,10 @@
         "d_wr": 11.88,
         "name": "Kennen",
         "post_pr": 2.59,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 59.46,
         "pre_pr": 2.48,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 47.58
     },
     {
@@ -521,10 +521,10 @@
         "d_wr": -6.33,
         "name": "Kha'Zix",
         "post_pr": 6.35,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 45.83,
         "pre_pr": 8.32,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 52.16
     },
     {
@@ -532,10 +532,10 @@
         "d_wr": 0.65,
         "name": "Kog'Maw",
         "post_pr": 4.55,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 49.67,
         "pre_pr": 3.57,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.02
     },
     {
@@ -543,10 +543,10 @@
         "d_wr": -2.69,
         "name": "LeBlanc",
         "post_pr": 5.24,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 42.75,
         "pre_pr": 8.78,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 45.44
     },
     {
@@ -554,10 +554,10 @@
         "d_wr": -1.29,
         "name": "Lee Sin",
         "post_pr": 14.83,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 46.12,
         "pre_pr": 16.43,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 47.41
     },
     {
@@ -565,10 +565,10 @@
         "d_wr": 2.07,
         "name": "Leona",
         "post_pr": 8.3,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 54.1,
         "pre_pr": 21.97,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 52.03
     },
     {
@@ -576,10 +576,10 @@
         "d_wr": 3.74,
         "name": "Lissandra",
         "post_pr": 2.13,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 50.7,
         "pre_pr": 2.3,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.96
     },
     {
@@ -587,10 +587,10 @@
         "d_wr": -5.79,
         "name": "Lucian",
         "post_pr": 6.29,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 45.79,
         "pre_pr": 12.62,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.58
     },
     {
@@ -598,10 +598,10 @@
         "d_wr": -2.39,
         "name": "Lulu",
         "post_pr": 4.63,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 47.3,
         "pre_pr": 4.91,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 49.69
     },
     {
@@ -609,10 +609,10 @@
         "d_wr": 3.61,
         "name": "Lux",
         "post_pr": 13.76,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 51.89,
         "pre_pr": 20.3,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.28
     },
     {
@@ -620,10 +620,10 @@
         "d_wr": 0.86,
         "name": "Malphite",
         "post_pr": 5.21,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.98,
         "pre_pr": 7.77,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 52.12
     },
     {
@@ -631,10 +631,10 @@
         "d_wr": 0.11,
         "name": "Malzahar",
         "post_pr": 3.33,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 50.45,
         "pre_pr": 2.94,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.34
     },
     {
@@ -642,10 +642,10 @@
         "d_wr": 6.23,
         "name": "Maokai",
         "post_pr": 3.25,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.31,
         "pre_pr": 3.95,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 46.08
     },
     {
@@ -653,10 +653,10 @@
         "d_wr": 0.73,
         "name": "Master Yi",
         "post_pr": 19.93,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 50.93,
         "pre_pr": 14.9,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 50.2
     },
     {
@@ -664,10 +664,10 @@
         "d_wr": 0.05,
         "name": "Miss Fortune",
         "post_pr": 19.18,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 51.62,
         "pre_pr": 5.41,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.57
     },
     {
@@ -675,10 +675,10 @@
         "d_wr": 5.67,
         "name": "Mordekaiser",
         "post_pr": 1.99,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 56.78,
         "pre_pr": 2.25,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.11
     },
     {
@@ -686,10 +686,10 @@
         "d_wr": -2.22,
         "name": "Morgana",
         "post_pr": 9.52,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 48.74,
         "pre_pr": 10.38,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.96
     },
     {
@@ -697,10 +697,10 @@
         "d_wr": -0.73,
         "name": "Nami",
         "post_pr": 9.64,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 49.17,
         "pre_pr": 4.95,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 49.9
     },
     {
@@ -708,10 +708,10 @@
         "d_wr": 2.53,
         "name": "Nasus",
         "post_pr": 8.67,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.71,
         "pre_pr": 13.85,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.18
     },
     {
@@ -719,10 +719,10 @@
         "d_wr": 0.88,
         "name": "Nautilus",
         "post_pr": 20.0,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.2,
         "pre_pr": 23.75,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.32
     },
     {
@@ -730,10 +730,10 @@
         "d_wr": 0.91,
         "name": "Nidalee",
         "post_pr": 14.94,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 47.52,
         "pre_pr": 10.04,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.61
     },
     {
@@ -741,10 +741,10 @@
         "d_wr": 6.44,
         "name": "Nocturne",
         "post_pr": 3.56,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.53,
         "pre_pr": 2.56,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 46.09
     },
     {
@@ -752,10 +752,10 @@
         "d_wr": -2.27,
         "name": "Nunu",
         "post_pr": 5.09,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 48.53,
         "pre_pr": 5.63,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.8
     },
     {
@@ -763,10 +763,10 @@
         "d_wr": 1.23,
         "name": "Olaf",
         "post_pr": 4.04,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 48.51,
         "pre_pr": 11.04,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 47.28
     },
     {
@@ -774,10 +774,10 @@
         "d_wr": 0.07,
         "name": "Orianna",
         "post_pr": 5.55,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 47.03,
         "pre_pr": 3.45,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.96
     },
     {
@@ -785,10 +785,10 @@
         "d_wr": -4.88,
         "name": "Pantheon",
         "post_pr": 4.8,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 47.29,
         "pre_pr": 5.77,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 52.17
     },
     {
@@ -796,10 +796,10 @@
         "d_wr": -2.66,
         "name": "Poppy",
         "post_pr": 1.79,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 46.37,
         "pre_pr": 1.55,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.03
     },
     {
@@ -807,10 +807,10 @@
         "d_wr": -0.82,
         "name": "Quinn",
         "post_pr": 5.38,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 50.37,
         "pre_pr": 3.79,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.19
     },
     {
@@ -818,10 +818,10 @@
         "d_wr": 1.7,
         "name": "Rammus",
         "post_pr": 2.29,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 50.66,
         "pre_pr": 2.41,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 48.96
     },
     {
@@ -829,10 +829,10 @@
         "d_wr": -5.78,
         "name": "Rek'Sai",
         "post_pr": 5.3,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 44.15,
         "pre_pr": 7.49,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.93
     },
     {
@@ -840,10 +840,10 @@
         "d_wr": 7.07,
         "name": "Renekton",
         "post_pr": 3.38,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 56.8,
         "pre_pr": 13.05,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.73
     },
     {
@@ -851,10 +851,10 @@
         "d_wr": -2.01,
         "name": "Rengar",
         "post_pr": 11.22,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 47.42,
         "pre_pr": 9.59,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.43
     },
     {
@@ -862,10 +862,10 @@
         "d_wr": 1.38,
         "name": "Riven",
         "post_pr": 20.49,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 48.71,
         "pre_pr": 13.29,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 47.33
     },
     {
@@ -873,10 +873,10 @@
         "d_wr": 2.57,
         "name": "Rumble",
         "post_pr": 3.48,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.43,
         "pre_pr": 3.5,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.86
     },
     {
@@ -884,10 +884,10 @@
         "d_wr": -6.56,
         "name": "Ryze",
         "post_pr": 2.81,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 41.99,
         "pre_pr": 8.26,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 48.55
     },
     {
@@ -895,10 +895,10 @@
         "d_wr": -3.82,
         "name": "Sejuani",
         "post_pr": 2.33,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 45.49,
         "pre_pr": 4.36,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.31
     },
     {
@@ -906,10 +906,10 @@
         "d_wr": -1.69,
         "name": "Shaco",
         "post_pr": 7.94,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 49.12,
         "pre_pr": 11.73,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 50.81
     },
     {
@@ -917,10 +917,10 @@
         "d_wr": -3.93,
         "name": "Shen",
         "post_pr": 7.59,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.38,
         "pre_pr": 7.54,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 55.31
     },
     {
@@ -928,10 +928,10 @@
         "d_wr": -1.36,
         "name": "Shyvana",
         "post_pr": 11.82,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.45,
         "pre_pr": 7.49,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 53.81
     },
     {
@@ -939,10 +939,10 @@
         "d_wr": 6.06,
         "name": "Singed",
         "post_pr": 2.67,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.31,
         "pre_pr": 2.21,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 45.25
     },
     {
@@ -950,10 +950,10 @@
         "d_wr": -0.89,
         "name": "Sion",
         "post_pr": 3.46,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.89,
         "pre_pr": 4.63,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 53.78
     },
     {
@@ -961,10 +961,10 @@
         "d_wr": 6.35,
         "name": "Sivir",
         "post_pr": 10.25,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 55.51,
         "pre_pr": 15.42,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.16
     },
     {
@@ -972,10 +972,10 @@
         "d_wr": -1.88,
         "name": "Skarner",
         "post_pr": 1.41,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 46.1,
         "pre_pr": 1.98,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 47.98
     },
     {
@@ -983,10 +983,10 @@
         "d_wr": -0.22,
         "name": "Sona",
         "post_pr": 14.67,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.87,
         "pre_pr": 9.33,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 52.09
     },
     {
@@ -994,10 +994,10 @@
         "d_wr": 2.41,
         "name": "Soraka",
         "post_pr": 6.42,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 49.53,
         "pre_pr": 5.9,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 47.12
     },
     {
@@ -1005,10 +1005,10 @@
         "d_wr": -1.26,
         "name": "Swain",
         "post_pr": 5.38,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 50.19,
         "pre_pr": 1.73,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.45
     },
     {
@@ -1016,10 +1016,10 @@
         "d_wr": -6.95,
         "name": "Syndra",
         "post_pr": 2.19,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 40.18,
         "pre_pr": 1.74,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 47.13
     },
     {
@@ -1027,10 +1027,10 @@
         "d_wr": -5.09,
         "name": "Talon",
         "post_pr": 4.33,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 51.73,
         "pre_pr": 4.91,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 56.82
     },
     {
@@ -1038,10 +1038,10 @@
         "d_wr": -5.69,
         "name": "Taric",
         "post_pr": 3.4,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 49.12,
         "pre_pr": 2.08,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 54.81
     },
     {
@@ -1049,10 +1049,10 @@
         "d_wr": 0.11,
         "name": "Teemo",
         "post_pr": 16.7,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 51.38,
         "pre_pr": 20.91,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.27
     },
     {
@@ -1060,10 +1060,10 @@
         "d_wr": 0.14,
         "name": "Thresh",
         "post_pr": 20.66,
-        "post_role": "support",
+        "post_roles": {},
         "post_wr": 50.29,
         "pre_pr": 23.05,
-        "pre_role": "support",
+        "pre_roles": {},
         "pre_wr": 50.15
     },
     {
@@ -1071,10 +1071,10 @@
         "d_wr": 2.75,
         "name": "Tristana",
         "post_pr": 13.06,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 49.54,
         "pre_pr": 8.57,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 46.79
     },
     {
@@ -1082,10 +1082,10 @@
         "d_wr": 3.33,
         "name": "Trundle",
         "post_pr": 2.8,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.57,
         "pre_pr": 2.09,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.24
     },
     {
@@ -1093,10 +1093,10 @@
         "d_wr": 1.52,
         "name": "Tryndamere",
         "post_pr": 7.98,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 54.89,
         "pre_pr": 11.86,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 53.37
     },
     {
@@ -1104,10 +1104,10 @@
         "d_wr": 3.24,
         "name": "Twisted Fate",
         "post_pr": 15.48,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.1,
         "pre_pr": 5.32,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 45.86
     },
     {
@@ -1115,10 +1115,10 @@
         "d_wr": 2.53,
         "name": "Twitch",
         "post_pr": 4.25,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 48.71,
         "pre_pr": 14.79,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 46.18
     },
     {
@@ -1126,10 +1126,10 @@
         "d_wr": -0.76,
         "name": "Udyr",
         "post_pr": 9.34,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 50.86,
         "pre_pr": 8.31,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 51.62
     },
     {
@@ -1137,10 +1137,10 @@
         "d_wr": 0.59,
         "name": "Urgot",
         "post_pr": 1.01,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 44.55,
         "pre_pr": 1.82,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 43.96
     },
     {
@@ -1148,10 +1148,10 @@
         "d_wr": 1.51,
         "name": "Varus",
         "post_pr": 8.55,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 53.1,
         "pre_pr": 8.2,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.59
     },
     {
@@ -1159,10 +1159,10 @@
         "d_wr": -1.75,
         "name": "Vayne",
         "post_pr": 35.69,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 49.48,
         "pre_pr": 27.23,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 51.23
     },
     {
@@ -1170,10 +1170,10 @@
         "d_wr": 4.64,
         "name": "Veigar",
         "post_pr": 5.14,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.03,
         "pre_pr": 4.01,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 44.39
     },
     {
@@ -1181,10 +1181,10 @@
         "d_wr": -0.68,
         "name": "Vel'Koz",
         "post_pr": 3.7,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 47.03,
         "pre_pr": 3.06,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 47.71
     },
     {
@@ -1192,10 +1192,10 @@
         "d_wr": -3.92,
         "name": "Vi",
         "post_pr": 6.53,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 48.39,
         "pre_pr": 8.64,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 52.31
     },
     {
@@ -1203,10 +1203,10 @@
         "d_wr": -1.16,
         "name": "Viktor",
         "post_pr": 8.23,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 49.33,
         "pre_pr": 4.06,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 50.49
     },
     {
@@ -1214,10 +1214,10 @@
         "d_wr": -4.03,
         "name": "Vladimir",
         "post_pr": 4.81,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 43.66,
         "pre_pr": 6.27,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 47.69
     },
     {
@@ -1225,10 +1225,10 @@
         "d_wr": 3.21,
         "name": "Volibear",
         "post_pr": 4.83,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.62,
         "pre_pr": 7.32,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.41
     },
     {
@@ -1236,10 +1236,10 @@
         "d_wr": 3.14,
         "name": "Warwick",
         "post_pr": 10.43,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.79,
         "pre_pr": 7.7,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 50.65
     },
     {
@@ -1247,10 +1247,10 @@
         "d_wr": -4.57,
         "name": "Wukong",
         "post_pr": 7.97,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 52.7,
         "pre_pr": 6.88,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 57.27
     },
     {
@@ -1258,10 +1258,10 @@
         "d_wr": 6.84,
         "name": "Xerath",
         "post_pr": 2.42,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.89,
         "pre_pr": 10.25,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 46.05
     },
     {
@@ -1269,10 +1269,10 @@
         "d_wr": 1.67,
         "name": "Xin Zhao",
         "post_pr": 9.9,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 55.15,
         "pre_pr": 8.34,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 53.48
     },
     {
@@ -1280,10 +1280,10 @@
         "d_wr": 1.01,
         "name": "Yasuo",
         "post_pr": 22.57,
-        "post_role": "marksman",
+        "post_roles": {},
         "post_wr": 50.47,
         "pre_pr": 19.57,
-        "pre_role": "marksman",
+        "pre_roles": {},
         "pre_wr": 49.46
     },
     {
@@ -1291,10 +1291,10 @@
         "d_wr": 7.47,
         "name": "Yorick",
         "post_pr": 1.45,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 53.79,
         "pre_pr": 1.36,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 46.32
     },
     {
@@ -1302,10 +1302,10 @@
         "d_wr": -4.18,
         "name": "Zac",
         "post_pr": 7.29,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 44.58,
         "pre_pr": 4.04,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 48.76
     },
     {
@@ -1313,10 +1313,10 @@
         "d_wr": -1.81,
         "name": "Zed",
         "post_pr": 14.19,
-        "post_role": "fighter",
+        "post_roles": {},
         "post_wr": 47.29,
         "pre_pr": 11.61,
-        "pre_role": "fighter",
+        "pre_roles": {},
         "pre_wr": 49.1
     },
     {
@@ -1324,10 +1324,10 @@
         "d_wr": 2.89,
         "name": "Ziggs",
         "post_pr": 2.93,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 52.56,
         "pre_pr": 3.02,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 49.67
     },
     {
@@ -1335,10 +1335,10 @@
         "d_wr": -4.55,
         "name": "Zilean",
         "post_pr": 1.84,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 47.28,
         "pre_pr": 1.64,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 51.83
     },
     {
@@ -1346,10 +1346,10 @@
         "d_wr": -6.97,
         "name": "Zyra",
         "post_pr": 2.36,
-        "post_role": "mage",
+        "post_roles": {},
         "post_wr": 45.34,
         "pre_pr": 1.95,
-        "pre_role": "mage",
+        "pre_roles": {},
         "pre_wr": 52.31
     }
 ]

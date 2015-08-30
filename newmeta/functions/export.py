@@ -53,7 +53,7 @@ def exportChampions(gamemode, region):
         result.append(dict_to_add)
 
     dataToWrite = json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
-    writeAllToFile("./jsons/" + gamemode + "_" + region + ".json", dataToWrite)
+    writeAllToFile("./jsons/" + gamemode + "_" + region + "_" + "CHAMPIONS.json", dataToWrite)
 
 
 def exportItems(gamemode, region):
