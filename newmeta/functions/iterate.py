@@ -71,7 +71,7 @@ def count_item(version, gamemode, region):
         region=region_object,
         version=version_object,
         gamemode=gamemode_object
-    )[0:10]
+    )
     total = matches.count()
 
     items = Item.objects.filter(

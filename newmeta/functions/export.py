@@ -87,7 +87,7 @@ def exportItems(gamemode, region):
             )
         except:
             continue
-
+        
         if post_item.wins == 0 or post_item.picks == 0:
             continue
 
