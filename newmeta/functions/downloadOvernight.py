@@ -16,8 +16,9 @@ def download():
 
                 #getMatchData(version, queue, region)
                 #getChampions(version, queue, region)
+                getItems(version,queue,region)
                 #getIteration(8, version, queue, region)
-                generateChampionRoles(version, queue, region)
+                #generateChampionRoles(version, queue, region)
                 #count_champ(version, queue, region)
             
-            exportChampions(queue, region)
+            #exportChampions(queue, region)
