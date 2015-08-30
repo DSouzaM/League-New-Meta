@@ -7,7 +7,7 @@ var DEFAULT_INFO = 'wr';
 
 
 $(function() {
-	var selection = {'data':'','queue':[], 'region':[] };
+	var selection = {'data':'','queue':['NORMAL_5X5'], 'region':['NA'] };
 	var jsonData;
 	var chart;
 	var startTime = new Date().getTime();
@@ -21,7 +21,7 @@ $(function() {
 	};
 	var options = generateChartOptions(DEFAULT_INFO);
 
-	var request = $.getJSON('json/NORMAL_5X5_NA.json');
+	var request = $.getJSON('json/NORMAL_5X5_NA_CHAMPIONS.json');
 	request.done(function(data) {
 		jsonData = data;
 		dataSeries.data = prepareRangeData(jsonData,DEFAULT_INFO);
@@ -101,6 +101,11 @@ $(function() {
 		chart.series[1].update(chart.series[1].options);
 		//console.log('Update done in ' + (new Date().getTime()-start) + ' ms.');
 	});
+	$('#get-data').on('click', function() {
+		jsonData = getDataSet(selection);
+		console.log(jsonData);
+
+	})
 });
 
 function generateChartOptions(info) {
@@ -237,6 +242,7 @@ function roundOff(num) {
 }
 
 function getDataSet(selection) {
+	console.log(selection);
 	//input sanitation
 	var dataType = selection['data'].toUpperCase()
 	var queueList = [];
@@ -260,11 +266,18 @@ function getDataSet(selection) {
 
 	//compiles array of required JSON files
 	var jsons = [];
+	var combined = {};
 	for (var i = 0; i < queueList.length; i++) {
 		for (var j = 0; j < regionList.length; j++) {
-			jsons.push('jsons/champions/'+ queueList[i]+'_'+regionList[j]+'.json');
+			var request = $.getJSON('json/'+ queueList[i]+'_'+regionList[j]+'_'+selection.data +'.json');
+			request.done(function() {
+
+			})
+			jsons.push(request);
 		}
 	}
+	
+
 	console.log(jsons);
 }
 }
