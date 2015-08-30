@@ -20,15 +20,14 @@ def download():
                 #getIteration(8, version, queue, region)
                 #generateChampionRoles(version, queue, region)
                 #count_champ(version, queue, region)
-            
+                pass
             #exportChampions(queue, region)
 
 
-def temp():
+def asdsa():
     count_champ(5.11, 'RANKED_SOLO', 'NA')
     count_champ(5.14, 'RANKED_SOLO', 'NA')
     exportChampions('RANKED_SOLO', 'NA')
-
     count_item(5.11, 'RANKED_SOLO', 'NA')
     count_item(5.14, 'RANKED_SOLO', 'NA')
     exportItems('RANKED_SOLO', 'NA')
