@@ -57,7 +57,7 @@
                             </td>
                         </tr>  
                         <tr>
-                            <td><input type="radio" name="data-type" value="pick-rate">Pick Rate</input></td>
+                            <td><input type="radio" name="data-type" value="pr">Pick Rate</input></td>
                             <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
                             <td>
                                 <div class="row">
@@ -108,32 +108,19 @@
             <div id="container" style="width:80%; height:1500px; margin-left:auto; margin-right:auto;"></div>
         </div>
         <br>
-        <div class="row" style="width:95%; margin-left:auto; margin-right:auto;">
-            <h2 class="text-center">Table</h2>
-            <div class="pull-right">
-                <strong>Toggle:</strong> <button type="button" class="btn btn-info active" id="wins-picks-chart">Win/Pick Rate</button> <button type="button" class="btn btn-info" id="roles-chart">Roles</button>
-            </div>
-            <br><br>
+        <div class="row" style="width: 95%; margin-left:auto; margin-right:auto;">
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Champion</th>
-                        <th>Win 1</th>
-                        <th>Win 2</th>
-                        <th>&Delta; Win</th>
-                        <th>Pick 1</th>
-                        <th>Pick 2</th>
-                        <th>&Delta; Pick</th>
-                        <th>Fighter 1</th>
-                        <th>Fighter 2</th>
-                        <th>Mage 1</th>
-                        <th>Mage 2</th>
-                        <th>Marksman 1</th>
-                        <th>Marksman 2</th>
-                        <th>Support 1</th>
-                        <th>Support 2</th>
-                        <th>Tank 1</th>
-                        <th>Tank 2</th>
+                        <th>Pre Win Rate</th>
+                        <th>Post Win Rate</th>
+                        <th>Change in Win Rate</th>
+                        <th>Pre Pick Rate</th>
+                        <th>Post Pick Rate</th>
+                        <th>Change in Pick Rate</th>
+                        <th>Pre Role</th>
+                        <th>Post Role</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -145,16 +132,8 @@
                         <th>Pre Pick Rate</th>
                         <th>Post Pick Rate</th>
                         <th>Change in Pick Rate</th>
-                        <th>Fighter 1</th>
-                        <th>Fighter 2</th>
-                        <th>Mage 1</th>
-                        <th>Mage 2</th>
-                        <th>Marksman 1</th>
-                        <th>Marksman 2</th>
-                        <th>Support 1</th>
-                        <th>Support 2</th>
-                        <th>Tank 1</th>
-                        <th>Tank 2</th>
+                        <th>Pre Role</th>
+                        <th>Post Role</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -173,18 +152,10 @@
         <script>
 
             $(document).ready(function() {
-
                 var $table = $('#example').DataTable( {
-                    "bPaginate": false,
-                    "columnDefs": [
-                        {
-                            "targets": [ 7,8,9,10,11,12,13,14,15,16 ],
-                            "visible": false
-                        }
-                    ]
+                    "bPaginate": false
                 } );
-
-                $.getJSON('json/NORMAL_5X5_NA_CHAMPIONS.json', function(json) {
+                $.getJSON('json/NORMAL_5X5_NA.json', function(json) {
                     $table.clear();
                     for (champion of json) {
                         $table.row.add( [
@@ -195,37 +166,13 @@
                             champion['pre_pr'].toFixed(2) + "%",
                             champion['post_pr'].toFixed(2) + "%",
                             champion['d_pr'].toFixed(2) + "%",
-                            champion['pre_roles']['fighter'].toFixed(2) + "%",
-                            champion['post_roles']['fighter'].toFixed(2) + "%",
-                            champion['pre_roles']['mage'].toFixed(2) + "%",
-                            champion['post_roles']['mage'].toFixed(2) + "%",
-                            champion['pre_roles']['marksman'].toFixed(2) + "%",
-                            champion['post_roles']['marksman'].toFixed(2) + "%",
-                            champion['pre_roles']['support'].toFixed(2) + "%",
-                            champion['post_roles']['support'].toFixed(2) + "%",
-                            champion['pre_roles']['tank'].toFixed(2) + "%",
-                            champion['post_roles']['tank'].toFixed(2) + "%",
+                            champion['pre_role'],
+                            champion['post_role']
                         ] );
+                        //console.log(champion);
                     }
                     $table.draw();
                 });
-
-                $('#wins-picks-chart').on('click', function(){
-                    $(this).hasClass('active') ? $(this).removeClass('active') : $(this).addClass('active');
-                    for (var i=1; i<=6; i++) {
-                        var column = $table.column( i );
-                        column.visible( ! column.visible() );
-                    }
-                });
-
-                $('#roles-chart').on('click', function(){
-                    $(this).hasClass('active') ? $(this).removeClass('active') : $(this).addClass('active');
-                    for (var i=7; i<=16; i++) {
-                        var column = $table.column( i );
-                        column.visible( ! column.visible() );
-                    }
-                });
-
             } );
 
         </script>
