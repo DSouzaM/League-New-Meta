@@ -22,43 +22,43 @@
         <h1 class="text-center">Metashift</h1>
         <br><br>
         <div class="row">
-            <div class="col-xs-2">
-            </div>
-            <div class="col-xs-8">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
                 <table class="table table-condensed table-no-div">  
                     <thead>  
                         <tr>
                             <th>Data Type</th>
+                            <th>Sorting</th>
                             <th>Game Mode</th>
                             <th>Region</th>
-                            <th>Sorting</th>
                         </tr>  
                     </thead>  
                     <tbody>  
                         <tr>  
                             <td><input type="radio" name="data-type" value="wr" checked>Win Rate</input></td>
+                            <td>
+                                <select id="sort-type" class="form-control">
+                                    <option value="name">Champion name</option>
+                                    <option value="pre_wr">Win rate (pre-patch)</option>
+                                    <option value="post_wr">Win rate (post-patch)</option>
+                                    <option value="d_wr">Win rate (change)</option>
+                                    <option value="pre_pr">Pick rate (pre-patch)</option>
+                                    <option value="post_pr">Pick rate (post-patch)</option>
+                                    <option value="d_pr">Pick rate (change)</option>
+                                </select>
+                            </td>
                             <td><input type="checkbox" name="queue" value="normal_5x5" checked>Normal</input></td>
-                            <td><input type="checkbox" name="region" value="ALL" onclick="return false;" disabled="disabled">All</input></td>
-                            <td>                        
-                                <div class="col-xs-10">
-                                    <select id="sort-type" class="form-control">
-                                        <option value="name">Champion name</option>
-                                        <option value="pre_wr">Win rate (pre-patch)</option>
-                                        <option value="post_wr">Win rate (post-patch)</option>
-                                        <option value="d_wr">Win rate (change)</option>
-                                        <option value="pre_pr">Pick rate (pre-patch)</option>
-                                        <option value="post_pr">Pick rate (post-patch)</option>
-                                        <option value="d_pr">Pick rate (change)</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <button type="button" class="btn btn-primary" id="update-selection">Update Selection</button>
-                                </div>
+                            <td>
+                                <input type="checkbox" name="region" value="ALL" onclick="return false;" disabled="disabled">All</input>
+                                <button type="button" class="btn btn-primary pull-right" id="update-selection">Update Selection</button>
                             </td>
                         </tr>  
                         <tr>
                             <td><input type="radio" name="data-type" value="pr">Pick Rate</input></td>
-                            <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>  
+                            <td>
+                                Currently sorting by: <span id="currently-sorting-by">Champion name</span>
+                            </td>
+                            <td><input type="checkbox" name="queue" value="ranked_solo">Ranked</input></td>
                             <td>
                                 <div class="row">
                                     <div class="col-xs-2">
@@ -94,9 +94,6 @@
                                         <input type="checkbox" name="region" value="TR" onclick="return false;" disabled="disabled">TR</input>
                                     </div>
                                 </div>
-                            </td>
-                            <td>
-                                Currently sorting by: <span id="currently-sorting-by">Champion name</span>
                             </td>
                         </tr>
                     </tbody>  
