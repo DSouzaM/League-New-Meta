@@ -21,43 +21,52 @@
 
 \section{Abstract}
 
-Created for the League of Legends API Challenge 2.0, Metashift is a web app which uses Riot Games\'API to query the game information and present a graphical analysis of thousands of League of Legends matches before and after the 5.13 patch. Many of the changes were made to the items with the Ability Power stat. The goal of this project is to systematically look for a shift in the \"metagame\", the most popular (and often most successful) characters played both before and after patch 5.13.
+Created for the League of Legends API Challenge 2.0, Metashift is a web app which uses Riot Games' API to query the game information and present a graphical analysis of thousands of League of Legends matches before and after the 5.13 patch. Many of the changes were made to the items with respect to the Ability Power stat. The goal of this project is to systematically look for a shift in the 'metagame' - the most popular (and often most successful) characters played both before and after patch 5.13.
 
 
 \section{Features}
 
-\subsection{Our Ideas}
+\subsection{What Got Done}
 \begin{itemize}
-    \item pick/win/ban rates of champions, with graphing and charting
-    \item purchase/win rates of items with respect to champions, with graphing and charting
-    \item time of purchases (earlier/later \"power spikes\")
-    \item look for any emerging meta picks
-    \item sortable by region, queue, rank if applicable
-    \item more general game trends of before \& after: first dragon, first baron, first tower, average kills at a certain time, etc.
-    \item before and after champion roles calculated with K-Means Clustering
+    \item Graphical and charted display of change in win/pick rate per champion
+    \item Charted display of change in champion roles 
+    \item Sortable by data type, game mode, region, \& rate type
 \end{itemize}
 
-\subsection{Selected for Development}
+\subsection{Our Ideas / Selected for Development}
 \begin{itemize}
-    \item pick/win/ban rates of champions, with graphing and charting
-    \item purchase/win rates of items, with graphing and charting
-    \item before and after champion roles calculated with K-Means Clustering
+    \item Purchase/win rates of items with respect to champions
+    \item Time of purchases (earlier/later 'power spikes')
+    \item Look for any emerging meta picks
+    \item More general game trends of before \& after: first dragon, first baron, first tower, average kills at a certain time, etc.
+\end{itemize}
+
+\subsection{Complications}
+\begin{itemize}
+    \item High computing time - there is A LOT of data to download and parse through
+    \item Poor script testing - overnight scripts failed multiple times
+    \item No time to work on this - both developers have other work to do
 \end{itemize}
 
 
 \section{Backend}
+Although our web app is a static site, we used Django help us manage the database as we are both experience in Python and Django.
 
 \subsection{Database}
-lorem ipsum
+We used SQlite for our databse. We were originally going to use PSQL, but neither of us could host and we did not want to spend money renting a server. The database schema was set up using Django models, and there are tables for match data, champions, and items.
+
+The match table has columns for match\_id, region, version, gamemode, and data. The data field is a json string dump of the data we receive from the API.
+
+Both the champion and item tables have region, version, gamemode, picks, wins, and name.
 
 \subsection{Downloading}
-lorem ipsum
+We ran Python scripts to download and populate the database with data required.
 
 \subsection{Counting}
-lorem ipsum
+To count how mand picks/wins a champion or item has, we would iterate through each match of the specified region, version, and gamemode to count and save the picks and wins.
 
 \subsection{K-Means Clustering}
-lorem ipsum
+A simple machine learning algorithm was implemented to see if a champion's in-game role differed between the two game versions. 
 
 \subsection{Exporting}
 lorem ipsum
