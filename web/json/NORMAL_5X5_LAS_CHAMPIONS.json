@@ -2,6 +2,7 @@
     {
         "d_pr": 2.7,
         "d_wr": 0.79,
+        "id": 266,
         "name": "Aatrox",
         "post_pr": 7.31,
         "post_roles": {
@@ -25,6 +26,7 @@
     {
         "d_pr": 2.43,
         "d_wr": 2.06,
+        "id": 103,
         "name": "Ahri",
         "post_pr": 10.65,
         "post_roles": {
@@ -48,6 +50,7 @@
     {
         "d_pr": 0.58,
         "d_wr": 0.09,
+        "id": 84,
         "name": "Akali",
         "post_pr": 5.29,
         "post_roles": {
@@ -71,6 +74,7 @@
     {
         "d_pr": 1.83,
         "d_wr": 0.18,
+        "id": 12,
         "name": "Alistar",
         "post_pr": 6.99,
         "post_roles": {
@@ -94,6 +98,7 @@
     {
         "d_pr": -1.03,
         "d_wr": -4.34,
+        "id": 32,
         "name": "Amumu",
         "post_pr": 4.33,
         "post_roles": {
@@ -117,6 +122,7 @@
     {
         "d_pr": 0.21,
         "d_wr": 6.52,
+        "id": 34,
         "name": "Anivia",
         "post_pr": 1.41,
         "post_roles": {
@@ -140,6 +146,7 @@
     {
         "d_pr": 0.74,
         "d_wr": 0.72,
+        "id": 1,
         "name": "Annie",
         "post_pr": 10.57,
         "post_roles": {
@@ -163,6 +170,7 @@
     {
         "d_pr": -12.32,
         "d_wr": 0.06,
+        "id": 22,
         "name": "Ashe",
         "post_pr": 14.59,
         "post_roles": {
@@ -186,6 +194,7 @@
     {
         "d_pr": -0.71,
         "d_wr": -0.15,
+        "id": 268,
         "name": "Azir",
         "post_pr": 4.76,
         "post_roles": {
@@ -209,6 +218,7 @@
     {
         "d_pr": -0.69,
         "d_wr": -0.96,
+        "id": 432,
         "name": "Bardo",
         "post_pr": 3.52,
         "post_roles": {
@@ -232,6 +242,7 @@
     {
         "d_pr": 2.76,
         "d_wr": 1.85,
+        "id": 53,
         "name": "Blitzcrank",
         "post_pr": 21.44,
         "post_roles": {
@@ -255,6 +266,7 @@
     {
         "d_pr": 8.81,
         "d_wr": 0.16,
+        "id": 63,
         "name": "Brand",
         "post_pr": 11.54,
         "post_roles": {
@@ -278,6 +290,7 @@
     {
         "d_pr": 0.8,
         "d_wr": 2.44,
+        "id": 201,
         "name": "Braum",
         "post_pr": 7.18,
         "post_roles": {
@@ -301,6 +314,7 @@
     {
         "d_pr": -1.0,
         "d_wr": 1.08,
+        "id": 69,
         "name": "Cassiopeia",
         "post_pr": 1.99,
         "post_roles": {
@@ -324,6 +338,7 @@
     {
         "d_pr": -1.54,
         "d_wr": 2.73,
+        "id": 31,
         "name": "Cho'Gath",
         "post_pr": 5.99,
         "post_roles": {
@@ -347,6 +362,7 @@
     {
         "d_pr": 0.09,
         "d_wr": 9.65,
+        "id": 42,
         "name": "Corki",
         "post_pr": 2.49,
         "post_roles": {
@@ -370,6 +386,7 @@
     {
         "d_pr": 1.82,
         "d_wr": -4.0,
+        "id": 122,
         "name": "Darius",
         "post_pr": 8.33,
         "post_roles": {
@@ -393,6 +410,7 @@
     {
         "d_pr": 3.12,
         "d_wr": -2.66,
+        "id": 131,
         "name": "Diana",
         "post_pr": 7.61,
         "post_roles": {
@@ -416,6 +434,7 @@
     {
         "d_pr": -0.1,
         "d_wr": 1.94,
+        "id": 36,
         "name": "Dr. Mundo",
         "post_pr": 2.29,
         "post_roles": {
@@ -439,6 +458,7 @@
     {
         "d_pr": -1.74,
         "d_wr": -1.62,
+        "id": 119,
         "name": "Draven",
         "post_pr": 7.55,
         "post_roles": {
@@ -462,6 +482,7 @@
     {
         "d_pr": -60.71,
         "d_wr": -3.55,
+        "id": 245,
         "name": "Ekko",
         "post_pr": 10.39,
         "post_roles": {
@@ -485,6 +506,7 @@
     {
         "d_pr": 4.92,
         "d_wr": -0.66,
+        "id": 60,
         "name": "Elise",
         "post_pr": 5.96,
         "post_roles": {
@@ -508,6 +530,7 @@
     {
         "d_pr": 0.2,
         "d_wr": 0.08,
+        "id": 28,
         "name": "Evelynn",
         "post_pr": 3.22,
         "post_roles": {
@@ -531,6 +554,7 @@
     {
         "d_pr": 7.77,
         "d_wr": -2.89,
+        "id": 81,
         "name": "Ezreal",
         "post_pr": 19.45,
         "post_roles": {
@@ -554,6 +578,7 @@
     {
         "d_pr": -0.33,
         "d_wr": -6.77,
+        "id": 9,
         "name": "Fiddlesticks",
         "post_pr": 2.95,
         "post_roles": {
@@ -577,6 +602,7 @@
     {
         "d_pr": 2.72,
         "d_wr": 2.65,
+        "id": 114,
         "name": "Fiora",
         "post_pr": 9.72,
         "post_roles": {
@@ -600,6 +626,7 @@
     {
         "d_pr": 10.27,
         "d_wr": -0.41,
+        "id": 105,
         "name": "Fizz",
         "post_pr": 16.99,
         "post_roles": {
@@ -623,6 +650,7 @@
     {
         "d_pr": 0.08,
         "d_wr": 0.09,
+        "id": 3,
         "name": "Galio",
         "post_pr": 0.71,
         "post_roles": {
@@ -646,6 +674,7 @@
     {
         "d_pr": 11.64,
         "d_wr": -6.09,
+        "id": 41,
         "name": "Gangplank",
         "post_pr": 16.03,
         "post_roles": {
@@ -669,6 +698,7 @@
     {
         "d_pr": 0.77,
         "d_wr": 1.4,
+        "id": 86,
         "name": "Garen",
         "post_pr": 11.14,
         "post_roles": {
@@ -692,6 +722,7 @@
     {
         "d_pr": 1.32,
         "d_wr": 0.84,
+        "id": 150,
         "name": "Gnar",
         "post_pr": 8.44,
         "post_roles": {
@@ -715,6 +746,7 @@
     {
         "d_pr": -3.37,
         "d_wr": -8.49,
+        "id": 79,
         "name": "Gragas",
         "post_pr": 3.77,
         "post_roles": {
@@ -738,6 +770,7 @@
     {
         "d_pr": 8.49,
         "d_wr": 0.02,
+        "id": 104,
         "name": "Graves",
         "post_pr": 20.17,
         "post_roles": {
@@ -761,6 +794,7 @@
     {
         "d_pr": -1.16,
         "d_wr": -1.44,
+        "id": 120,
         "name": "Hecarim",
         "post_pr": 4.26,
         "post_roles": {
@@ -784,6 +818,7 @@
     {
         "d_pr": 0.61,
         "d_wr": -1.15,
+        "id": 74,
         "name": "Heimerdinger",
         "post_pr": 5.79,
         "post_roles": {
@@ -807,6 +842,7 @@
     {
         "d_pr": -0.98,
         "d_wr": -0.99,
+        "id": 39,
         "name": "Irelia",
         "post_pr": 5.03,
         "post_roles": {
@@ -830,6 +866,7 @@
     {
         "d_pr": -0.24,
         "d_wr": 5.51,
+        "id": 40,
         "name": "Janna",
         "post_pr": 4.63,
         "post_roles": {
@@ -853,6 +890,7 @@
     {
         "d_pr": -0.11,
         "d_wr": 0.13,
+        "id": 59,
         "name": "Jarvan IV",
         "post_pr": 3.75,
         "post_roles": {
@@ -876,6 +914,7 @@
     {
         "d_pr": 1.81,
         "d_wr": -1.98,
+        "id": 24,
         "name": "Jax",
         "post_pr": 9.43,
         "post_roles": {
@@ -899,6 +938,7 @@
     {
         "d_pr": -4.01,
         "d_wr": -3.56,
+        "id": 222,
         "name": "Jinx",
         "post_pr": 22.23,
         "post_roles": {
@@ -922,6 +962,7 @@
     {
         "d_pr": -1.96,
         "d_wr": 1.51,
+        "id": 429,
         "name": "Kalista",
         "post_pr": 6.12,
         "post_roles": {
@@ -945,6 +986,7 @@
     {
         "d_pr": -0.13,
         "d_wr": -2.94,
+        "id": 43,
         "name": "Karma",
         "post_pr": 3.2,
         "post_roles": {
@@ -968,6 +1010,7 @@
     {
         "d_pr": -0.42,
         "d_wr": -6.27,
+        "id": 30,
         "name": "Karthus",
         "post_pr": 1.11,
         "post_roles": {
@@ -991,6 +1034,7 @@
     {
         "d_pr": 1.76,
         "d_wr": 4.06,
+        "id": 38,
         "name": "Kassadin",
         "post_pr": 3.5,
         "post_roles": {
@@ -1014,6 +1058,7 @@
     {
         "d_pr": -1.96,
         "d_wr": -0.61,
+        "id": 55,
         "name": "Katarina",
         "post_pr": 12.05,
         "post_roles": {
@@ -1037,6 +1082,7 @@
     {
         "d_pr": 2.58,
         "d_wr": 2.31,
+        "id": 10,
         "name": "Kayle",
         "post_pr": 4.58,
         "post_roles": {
@@ -1060,6 +1106,7 @@
     {
         "d_pr": 0.03,
         "d_wr": 4.24,
+        "id": 85,
         "name": "Kennen",
         "post_pr": 2.27,
         "post_roles": {
@@ -1083,6 +1130,7 @@
     {
         "d_pr": -0.24,
         "d_wr": -3.79,
+        "id": 121,
         "name": "Kha'Zix",
         "post_pr": 5.11,
         "post_roles": {
@@ -1106,6 +1154,7 @@
     {
         "d_pr": 0.37,
         "d_wr": 2.95,
+        "id": 96,
         "name": "Kog'Maw",
         "post_pr": 2.02,
         "post_roles": {
@@ -1129,6 +1178,7 @@
     {
         "d_pr": -2.37,
         "d_wr": 0.71,
+        "id": 7,
         "name": "LeBlanc",
         "post_pr": 5.57,
         "post_roles": {
@@ -1152,6 +1202,7 @@
     {
         "d_pr": -3.04,
         "d_wr": -0.41,
+        "id": 64,
         "name": "Lee Sin",
         "post_pr": 28.56,
         "post_roles": {
@@ -1175,6 +1226,7 @@
     {
         "d_pr": -18.36,
         "d_wr": 1.49,
+        "id": 89,
         "name": "Leona",
         "post_pr": 9.78,
         "post_roles": {
@@ -1198,6 +1250,7 @@
     {
         "d_pr": -0.44,
         "d_wr": 16.21,
+        "id": 127,
         "name": "Lissandra",
         "post_pr": 1.68,
         "post_roles": {
@@ -1221,6 +1274,7 @@
     {
         "d_pr": -5.2,
         "d_wr": -0.33,
+        "id": 236,
         "name": "Lucian",
         "post_pr": 6.63,
         "post_roles": {
@@ -1244,6 +1298,7 @@
     {
         "d_pr": -0.26,
         "d_wr": 0.75,
+        "id": 117,
         "name": "Lulu",
         "post_pr": 3.52,
         "post_roles": {
@@ -1267,6 +1322,7 @@
     {
         "d_pr": -9.26,
         "d_wr": 1.69,
+        "id": 99,
         "name": "Lux",
         "post_pr": 12.42,
         "post_roles": {
@@ -1290,6 +1346,7 @@
     {
         "d_pr": 2.74,
         "d_wr": 0.18,
+        "id": 11,
         "name": "Maestro Yi",
         "post_pr": 16.46,
         "post_roles": {
@@ -1313,6 +1370,7 @@
     {
         "d_pr": -0.8,
         "d_wr": 2.9,
+        "id": 54,
         "name": "Malphite",
         "post_pr": 5.97,
         "post_roles": {
@@ -1336,6 +1394,7 @@
     {
         "d_pr": 0.5,
         "d_wr": 0.52,
+        "id": 90,
         "name": "Malzahar",
         "post_pr": 2.66,
         "post_roles": {
@@ -1359,6 +1418,7 @@
     {
         "d_pr": -0.18,
         "d_wr": -3.09,
+        "id": 57,
         "name": "Maokai",
         "post_pr": 2.51,
         "post_roles": {
@@ -1382,6 +1442,7 @@
     {
         "d_pr": 17.57,
         "d_wr": 1.35,
+        "id": 21,
         "name": "Miss Fortune",
         "post_pr": 26.79,
         "post_roles": {
@@ -1405,6 +1466,7 @@
     {
         "d_pr": -0.62,
         "d_wr": 2.58,
+        "id": 82,
         "name": "Mordekaiser",
         "post_pr": 1.84,
         "post_roles": {
@@ -1428,6 +1490,7 @@
     {
         "d_pr": -0.9,
         "d_wr": -0.01,
+        "id": 25,
         "name": "Morgana",
         "post_pr": 10.33,
         "post_roles": {
@@ -1451,6 +1514,7 @@
     {
         "d_pr": 5.87,
         "d_wr": -2.2,
+        "id": 267,
         "name": "Nami",
         "post_pr": 9.89,
         "post_roles": {
@@ -1474,6 +1538,7 @@
     {
         "d_pr": -5.1,
         "d_wr": 0.33,
+        "id": 75,
         "name": "Nasus",
         "post_pr": 8.52,
         "post_roles": {
@@ -1497,6 +1562,7 @@
     {
         "d_pr": -3.18,
         "d_wr": -0.01,
+        "id": 111,
         "name": "Nautilus",
         "post_pr": 22.63,
         "post_roles": {
@@ -1520,6 +1586,7 @@
     {
         "d_pr": 2.86,
         "d_wr": -1.03,
+        "id": 76,
         "name": "Nidalee",
         "post_pr": 11.76,
         "post_roles": {
@@ -1543,6 +1610,7 @@
     {
         "d_pr": 0.43,
         "d_wr": 2.92,
+        "id": 56,
         "name": "Nocturne",
         "post_pr": 2.86,
         "post_roles": {
@@ -1566,6 +1634,7 @@
     {
         "d_pr": 0.42,
         "d_wr": -8.06,
+        "id": 20,
         "name": "Nunu",
         "post_pr": 3.93,
         "post_roles": {
@@ -1589,6 +1658,7 @@
     {
         "d_pr": -9.48,
         "d_wr": -3.68,
+        "id": 2,
         "name": "Olaf",
         "post_pr": 3.67,
         "post_roles": {
@@ -1612,6 +1682,7 @@
     {
         "d_pr": 0.36,
         "d_wr": -3.55,
+        "id": 61,
         "name": "Orianna",
         "post_pr": 3.87,
         "post_roles": {
@@ -1635,6 +1706,7 @@
     {
         "d_pr": -0.85,
         "d_wr": 3.11,
+        "id": 80,
         "name": "Pantheon",
         "post_pr": 6.28,
         "post_roles": {
@@ -1658,6 +1730,7 @@
     {
         "d_pr": 0.68,
         "d_wr": -2.5,
+        "id": 78,
         "name": "Poppy",
         "post_pr": 2.31,
         "post_roles": {
@@ -1681,6 +1754,7 @@
     {
         "d_pr": 0.36,
         "d_wr": -2.42,
+        "id": 133,
         "name": "Quinn",
         "post_pr": 3.34,
         "post_roles": {
@@ -1704,6 +1778,7 @@
     {
         "d_pr": -0.39,
         "d_wr": 2.49,
+        "id": 33,
         "name": "Rammus",
         "post_pr": 1.74,
         "post_roles": {
@@ -1727,6 +1802,7 @@
     {
         "d_pr": -0.48,
         "d_wr": -8.17,
+        "id": 421,
         "name": "Rek'Sai",
         "post_pr": 4.83,
         "post_roles": {
@@ -1750,6 +1826,7 @@
     {
         "d_pr": -10.42,
         "d_wr": 2.44,
+        "id": 58,
         "name": "Renekton",
         "post_pr": 4.81,
         "post_roles": {
@@ -1773,6 +1850,7 @@
     {
         "d_pr": 0.96,
         "d_wr": -0.23,
+        "id": 107,
         "name": "Rengar",
         "post_pr": 11.99,
         "post_roles": {
@@ -1796,6 +1874,7 @@
     {
         "d_pr": 9.29,
         "d_wr": -0.91,
+        "id": 92,
         "name": "Riven",
         "post_pr": 23.53,
         "post_roles": {
@@ -1819,6 +1898,7 @@
     {
         "d_pr": -0.18,
         "d_wr": 2.31,
+        "id": 68,
         "name": "Rumble",
         "post_pr": 2.9,
         "post_roles": {
@@ -1842,6 +1922,7 @@
     {
         "d_pr": -4.05,
         "d_wr": 2.06,
+        "id": 13,
         "name": "Ryze",
         "post_pr": 2.43,
         "post_roles": {
@@ -1865,6 +1946,7 @@
     {
         "d_pr": -2.85,
         "d_wr": -5.14,
+        "id": 113,
         "name": "Sejuani",
         "post_pr": 3.34,
         "post_roles": {
@@ -1888,6 +1970,7 @@
     {
         "d_pr": -1.12,
         "d_wr": 2.53,
+        "id": 35,
         "name": "Shaco",
         "post_pr": 11.21,
         "post_roles": {
@@ -1911,6 +1994,7 @@
     {
         "d_pr": 2.26,
         "d_wr": 0.97,
+        "id": 98,
         "name": "Shen",
         "post_pr": 7.4,
         "post_roles": {
@@ -1934,6 +2018,7 @@
     {
         "d_pr": 1.44,
         "d_wr": 2.61,
+        "id": 102,
         "name": "Shyvana",
         "post_pr": 8.17,
         "post_roles": {
@@ -1957,6 +2042,7 @@
     {
         "d_pr": 0.01,
         "d_wr": -0.36,
+        "id": 27,
         "name": "Singed",
         "post_pr": 1.36,
         "post_roles": {
@@ -1980,6 +2066,7 @@
     {
         "d_pr": -0.54,
         "d_wr": -1.92,
+        "id": 14,
         "name": "Sion",
         "post_pr": 3.75,
         "post_roles": {
@@ -2003,6 +2090,7 @@
     {
         "d_pr": -4.77,
         "d_wr": 4.84,
+        "id": 15,
         "name": "Sivir",
         "post_pr": 7.32,
         "post_roles": {
@@ -2026,6 +2114,7 @@
     {
         "d_pr": -0.41,
         "d_wr": -3.49,
+        "id": 72,
         "name": "Skarner",
         "post_pr": 1.35,
         "post_roles": {
@@ -2049,6 +2138,7 @@
     {
         "d_pr": 7.21,
         "d_wr": -3.74,
+        "id": 37,
         "name": "Sona",
         "post_pr": 15.76,
         "post_roles": {
@@ -2072,6 +2162,7 @@
     {
         "d_pr": 0.25,
         "d_wr": -3.5,
+        "id": 16,
         "name": "Soraka",
         "post_pr": 4.62,
         "post_roles": {
@@ -2095,6 +2186,7 @@
     {
         "d_pr": 4.27,
         "d_wr": -5.5,
+        "id": 50,
         "name": "Swain",
         "post_pr": 5.74,
         "post_roles": {
@@ -2118,6 +2210,7 @@
     {
         "d_pr": 0.15,
         "d_wr": -2.43,
+        "id": 134,
         "name": "Syndra",
         "post_pr": 1.53,
         "post_roles": {
@@ -2141,6 +2234,7 @@
     {
         "d_pr": -1.31,
         "d_wr": 3.5,
+        "id": 91,
         "name": "Talon",
         "post_pr": 4.72,
         "post_roles": {
@@ -2164,6 +2258,7 @@
     {
         "d_pr": 1.68,
         "d_wr": 0.16,
+        "id": 44,
         "name": "Taric",
         "post_pr": 4.21,
         "post_roles": {
@@ -2187,6 +2282,7 @@
     {
         "d_pr": -2.69,
         "d_wr": 0.73,
+        "id": 17,
         "name": "Teemo",
         "post_pr": 14.69,
         "post_roles": {
@@ -2210,6 +2306,7 @@
     {
         "d_pr": -1.66,
         "d_wr": 0.26,
+        "id": 412,
         "name": "Thresh",
         "post_pr": 20.73,
         "post_roles": {
@@ -2233,6 +2330,7 @@
     {
         "d_pr": -0.32,
         "d_wr": -1.12,
+        "id": 18,
         "name": "Tristana",
         "post_pr": 8.81,
         "post_roles": {
@@ -2256,6 +2354,7 @@
     {
         "d_pr": 0.97,
         "d_wr": -1.45,
+        "id": 48,
         "name": "Trundle",
         "post_pr": 2.34,
         "post_roles": {
@@ -2279,6 +2378,7 @@
     {
         "d_pr": -2.57,
         "d_wr": 1.2,
+        "id": 23,
         "name": "Tryndamere",
         "post_pr": 10.75,
         "post_roles": {
@@ -2302,6 +2402,7 @@
     {
         "d_pr": 8.82,
         "d_wr": -0.28,
+        "id": 4,
         "name": "Twisted Fate",
         "post_pr": 14.13,
         "post_roles": {
@@ -2325,6 +2426,7 @@
     {
         "d_pr": -12.14,
         "d_wr": -0.45,
+        "id": 29,
         "name": "Twitch",
         "post_pr": 3.4,
         "post_roles": {
@@ -2348,6 +2450,7 @@
     {
         "d_pr": 1.36,
         "d_wr": -0.04,
+        "id": 77,
         "name": "Udyr",
         "post_pr": 6.32,
         "post_roles": {
@@ -2371,6 +2474,7 @@
     {
         "d_pr": -0.42,
         "d_wr": -1.83,
+        "id": 6,
         "name": "Urgot",
         "post_pr": 0.98,
         "post_roles": {
@@ -2394,6 +2498,7 @@
     {
         "d_pr": 0.44,
         "d_wr": 1.26,
+        "id": 110,
         "name": "Varus",
         "post_pr": 7.53,
         "post_roles": {
@@ -2417,6 +2522,7 @@
     {
         "d_pr": 9.13,
         "d_wr": -1.82,
+        "id": 67,
         "name": "Vayne",
         "post_pr": 44.24,
         "post_roles": {
@@ -2440,6 +2546,7 @@
     {
         "d_pr": 1.38,
         "d_wr": -0.05,
+        "id": 45,
         "name": "Veigar",
         "post_pr": 4.29,
         "post_roles": {
@@ -2463,6 +2570,7 @@
     {
         "d_pr": 0.23,
         "d_wr": -7.84,
+        "id": 161,
         "name": "Vel'Koz",
         "post_pr": 2.57,
         "post_roles": {
@@ -2486,6 +2594,7 @@
     {
         "d_pr": 1.39,
         "d_wr": 0.35,
+        "id": 254,
         "name": "Vi",
         "post_pr": 9.88,
         "post_roles": {
@@ -2509,6 +2618,7 @@
     {
         "d_pr": 2.39,
         "d_wr": 2.48,
+        "id": 112,
         "name": "Viktor",
         "post_pr": 4.39,
         "post_roles": {
@@ -2532,6 +2642,7 @@
     {
         "d_pr": -0.97,
         "d_wr": -6.72,
+        "id": 8,
         "name": "Vladimir",
         "post_pr": 4.29,
         "post_roles": {
@@ -2555,6 +2666,7 @@
     {
         "d_pr": -0.54,
         "d_wr": -0.31,
+        "id": 106,
         "name": "Volibear",
         "post_pr": 6.6,
         "post_roles": {
@@ -2578,6 +2690,7 @@
     {
         "d_pr": 2.31,
         "d_wr": 3.21,
+        "id": 19,
         "name": "Warwick",
         "post_pr": 9.74,
         "post_roles": {
@@ -2601,6 +2714,7 @@
     {
         "d_pr": 0.75,
         "d_wr": 1.86,
+        "id": 62,
         "name": "Wukong",
         "post_pr": 4.96,
         "post_roles": {
@@ -2624,6 +2738,7 @@
     {
         "d_pr": -7.92,
         "d_wr": 5.39,
+        "id": 101,
         "name": "Xerath",
         "post_pr": 2.35,
         "post_roles": {
@@ -2647,6 +2762,7 @@
     {
         "d_pr": 2.72,
         "d_wr": 2.47,
+        "id": 5,
         "name": "Xin Zhao",
         "post_pr": 14.04,
         "post_roles": {
@@ -2670,6 +2786,7 @@
     {
         "d_pr": 4.14,
         "d_wr": 3.98,
+        "id": 157,
         "name": "Yasuo",
         "post_pr": 26.03,
         "post_roles": {
@@ -2693,6 +2810,7 @@
     {
         "d_pr": 0.07,
         "d_wr": 5.23,
+        "id": 83,
         "name": "Yorick",
         "post_pr": 1.09,
         "post_roles": {
@@ -2716,6 +2834,7 @@
     {
         "d_pr": 5.42,
         "d_wr": -3.17,
+        "id": 154,
         "name": "Zac",
         "post_pr": 8.87,
         "post_roles": {
@@ -2739,6 +2858,7 @@
     {
         "d_pr": 3.07,
         "d_wr": 0.38,
+        "id": 238,
         "name": "Zed",
         "post_pr": 20.25,
         "post_roles": {
@@ -2762,6 +2882,7 @@
     {
         "d_pr": 0.17,
         "d_wr": 9.05,
+        "id": 115,
         "name": "Ziggs",
         "post_pr": 2.38,
         "post_roles": {
@@ -2785,6 +2906,7 @@
     {
         "d_pr": 0.17,
         "d_wr": -0.75,
+        "id": 26,
         "name": "Zilean",
         "post_pr": 1.62,
         "post_roles": {
@@ -2808,6 +2930,7 @@
     {
         "d_pr": 0.19,
         "d_wr": 5.63,
+        "id": 143,
         "name": "Zyra",
         "post_pr": 1.51,
         "post_roles": {

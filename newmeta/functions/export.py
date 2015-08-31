@@ -43,6 +43,7 @@ def exportChampions(gamemode, region):
 
         dict_to_add = {
             'name': pre_champ.name,
+            'id': pre_champ.key,
             'pre_wr': round( (f_pre_wins / f_pre_picks) * 100 , 2),
             'post_wr': round( (f_post_wins / f_post_picks) * 100 , 2),
             'pre_pr': round( f_pre_picks / 100.0 , 2),
@@ -99,6 +100,7 @@ def exportItems(gamemode, region):
 
         dict_to_add = {
             'name': pre_item.name,
+            'id': pre_item.key,
             'pre_wr': round( (f_pre_wins / f_pre_picks) * 100 , 2),
             'post_wr': round( (f_post_wins / f_post_picks) * 100 , 2),
             'pre_pr': round( f_pre_picks / 100.0 , 2),

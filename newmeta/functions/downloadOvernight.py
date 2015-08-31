@@ -21,7 +21,7 @@ def download():
                 #generateChampionRoles(version, queue, region)
                 #count_champ(version, queue, region)
                 pass
-            #exportChampions(queue, region)
+            exportChampions(queue, region)
 
 
 def asdsa():
