@@ -64,14 +64,15 @@ $(function() {
 	}); 
 $('input[type=radio]').change(function() {
 	currentInfo = this.value;
-	console.log(currentInfo);
 	generateDataSet(selection, $('#sort-type').val());
+})
+$('#sort-type').change(function() {
+	sort($(this).val());
 })
 
 $('#update-selection').on('click', function() {
 	var sortProperty = $('#sort-type').val()
 	if (needsNewChart) {
-		console.log('creating new chart');
 		generateDataSet(selection, sortProperty);
 	}
 	needsNewChart = false;
@@ -120,7 +121,6 @@ function generateDataSet(selection, sortProperty) {
 
 	//compiles array of required JSON files
 	var requests = [];
-	var numOfSets = queueList.length * regionList.length;
 	var combined = [];
 	for (var i = 0; i < queueList.length; i++) {
 		for (var j = 0; j < regionList.length; j++) {
@@ -147,6 +147,7 @@ function generateDataSet(selection, sortProperty) {
 						combined[i][property] = roundOff(combined[i][property]/numOfSets);
 					});
 				}
+				console.log(combined);
 				generateChart(combined);
 				if (sortProperty != 'name') {
 					sort(sortProperty);
@@ -263,12 +264,14 @@ function generateChartOptions(info) {
 }
 
 function sort(property){
+	chart.showLoading();
 	dataSeries.data.sort(sortByProperty(property));
 	$('#currently-sorting-by').html($("option[value="+property+"]").html());
 	markerSeries.data = generateMarkerData(dataSeries.data,dataSeries.currentInfo);
 	chart.xAxis[0].setCategories(getArrayOf(dataSeries.data,'name'));
 	chart.series[0].update(chart.series[0].options);
 	chart.series[1].update(chart.series[1].options);
+	chart.hideLoading();
 }
 
 // returns a callback function for Arrays.sort which will sort by one of the object's properties
