@@ -121,6 +121,8 @@ function generateDataSet(selection, sortProperty) {
 
 	//compiles array of required JSON files
 	var requests = [];
+	var numOfSets = queueList.length * regionList.length;
+	//console.log('there are ' + numOfSets + ' sets')
 	var combined = [];
 	for (var i = 0; i < queueList.length; i++) {
 		for (var j = 0; j < regionList.length; j++) {
