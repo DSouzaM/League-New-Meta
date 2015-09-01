@@ -1,87 +1,80 @@
-var DATA_TYPES = ['CHAMPIONS','ITEMS'];
+// Constants
+var DATA_TYPES = ['CHAMPIONS','ITEMS']; 
 var QUEUE_TYPES = ['NORMAL_5X5', 'RANKED_SOLO'];
 var REGIONS = ['BR', 'EUNE', 'EUW', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR']
-var COMMON_PROPERTIES = [ 'd_pr','d_wr','post_pr','post_wr','pre_pr','pre_wr']
+var COMMON_PROPERTIES = [ 'd_pr','d_wr','post_pr','post_wr','pre_pr','pre_wr'] // Properties common to all champion/object items, used for aggregation between data sets
 var ABBREVIATIONS = {'wr':'Win','pr':'Pick'}
 var DEFAULT_INFO = 'wr';
 
-var selection = {'data':'CHAMPIONS','queue':['NORMAL_5X5'], 'region':['NA'] };
 var jsonData;
 var chart;
-var dataSeries = {
+var dataSeries = { // The series responsible for the horizontal bar on the graph
 	'currentInfo' : DEFAULT_INFO,
 	'type' : 'columnrange'
 };
-var markerSeries = {
-	'currentInfo' : DEFAULT_INFO,
-	'type' : 'scatter'
+var markerSeries = { // The series responsible for the 'arrow' effect in the direction of the change
+'currentInfo' : DEFAULT_INFO,
+'type' : 'scatter'
 };
 var options;
-var currentInfo = 'wr'
+var currentInfo = 'wr' 
 var needsNewChart = true;
 
 $(function() {
-	generateDataSet(selection);
+	$('input[type=checkbox][value=normal_5x5]').attr('checked',true);
+	$('input[type=checkbox][value=NA]').attr('checked',true);
 
+	generateDataSet(generateSelection());
+
+	// Signifies that a new chart & data set must be generated when a new data set selection is chosen
 	$('input[type=checkbox]').change(function() {
-		var name = this.name;
-		var value = this.value;
-
-		//check action
-		if ($(this).attr('checked')){
-			if (value == 'ALL') {
-				//selects all checkboxes with the given name, checks them, and adds them to the according selection array
-				$('input[type=checkbox][name=' + name + ']').each(function() {
-					$(this).attr('checked',true);
-					if (this.value != 'ALL' && selection[this.name].indexOf(this.value) < 0) {
-						selection[this.name].push(this.value);
-					}
-				});
-			} else {
-				//pushes value to according selection array
-				selection[name].push(value);
-			}
-		}
-
-		//uncheck action
-		else {
-			if (value == 'ALL') {
-				//selects all checkboxes with the given name, unchecks them, and removes them from the according selection array
-				$('input[type=checkbox][name=' + name + ']').each(function() {
-					$(this).attr('checked',false);
-					if (selection[this.name].indexOf(this.value) >= 0) {
-						selection[this.name].splice(selection[this.name].indexOf(this.value),1);
-					}
-				});
-			} else {
-				//removes value from according selection array
-				selection[name].splice(selection[name].indexOf(value),1);
-				$('input[type=checkbox][name=' + name + '][value=ALL]').attr('checked',false);
-			}
-		}
 		needsNewChart = true;
-		//selection['data'] = 'CHAMPIONS';
 	}); 
-$('input[type=radio]').change(function() {
-	currentInfo = this.value;
-	generateDataSet(selection, $('#sort-type').val());
-})
-$('#sort-type').change(function() {
-	sort($(this).val());
-})
-
-$('#update-selection').on('click', function() {
-	var sortProperty = $('#sort-type').val()
-	if (needsNewChart) {
-		generateDataSet(selection, sortProperty);
-	}
-	needsNewChart = false;
-	if (sortProperty != 'name') {
-		sort(sortProperty);
-	}
-});	
+	// Generates a new chart with the info type chosen (win / pick)
+	$('input[type=radio]').change(function() {
+		currentInfo = this.value;
+		generateDataSet(generateSelection(), $('#sort-type').val());
+	})
+	// Sorts the current data set by the given value
+	$('#sort-type').change(function() {
+		sort($(this).val());
+	})
+	// Updates the chart based on all the selections
+	$('#update-selection').on('click', function() {
+		var sortProperty = $('#sort-type').val()
+		if (needsNewChart) {
+			generateDataSet(generateSelection(), sortProperty);
+		}
+		needsNewChart = false;
+		if (sortProperty != 'name') {
+			sort(sortProperty);
+		}
+	});	
 });
 
+// Generates a selection object from checkboxes; used to choose appropriate JSON files
+function generateSelection() {
+	var queue = [];
+	$('input[type=checkbox][name=queue]').each(function() {
+		if ($(this).prop('checked')) {
+			queue.push($(this).val());
+		}
+	});
+	var region = [];
+	$('input[type=checkbox][name=region]').each(function() {
+		if ($(this).prop('checked')) {
+			region.push($(this).val());
+		}
+	})
+	return {
+		'data':'CHAMPIONS',
+		'queue':queue, 
+		'region':region 
+	}
+}
+
+// After receiving the data set, generates the xAxis categories, two data series, and chart options before creating a new chart
+// jsonData : an array of JSON objects containing information about champions/items
 function generateChart(jsonData) {
 	dataSeries.data = generateRangeData(jsonData, currentInfo);
 	dataSeries.currentInfo = currentInfo;
@@ -97,8 +90,11 @@ function generateChart(jsonData) {
 	needsNewChart = false;
 }
 
+// Uses selection argument to GET appropriate JSON files, combines them into one, and sorts them if necessary
+// selection : an object containing properties 'data', 'queue', and 'region' (from generateSelection())
+// sortProperty : a string indicating how to sort the data once it is retrieved 
 function generateDataSet(selection, sortProperty) {
-	//input sanitation
+	// Input sanitation
 	var dataType = selection['data'].toUpperCase()
 	var queueList = [];
 	$.each(selection['queue'], function(index, queue){
@@ -109,7 +105,7 @@ function generateDataSet(selection, sortProperty) {
 		regionList.push(region.toUpperCase());
 	})
 
-	//input validation
+	// Input validation
 	if (dataType=='' || DATA_TYPES.indexOf(dataType)<0 || queueList.length==0 ||  !queueList.every(function(queue){
 		return (QUEUE_TYPES.indexOf(queue)>=0);
 	}) || regionList.length==0 || !regionList.every(function(region) {
@@ -119,62 +115,77 @@ function generateDataSet(selection, sortProperty) {
 	}
 	else {
 
-	//compiles array of required JSON files
-	var requests = [];
-	var numOfSets = queueList.length * regionList.length;
-	//console.log('there are ' + numOfSets + ' sets')
-	var combined = [];
-	for (var i = 0; i < queueList.length; i++) {
-		for (var j = 0; j < regionList.length; j++) {
-			var request = $.getJSON('json/'+ queueList[i]+'_'+regionList[j]+'_'+selection.data +'.json');
-				//when each request is done, add the pre_, post_, and d_ values
-				request.done(function(data) { 
-					if (combined.length == 0) {
-						data.forEach(function(entry) {
-							combined.push(entry);
-						});
-					} else {					
-						for (var i = 0; i < data.length; i++) {
-							COMMON_PROPERTIES.forEach(function(property) {
-								combined[i][property]+=data[i][property];
+		// Compiles array of required JSON files
+		var requests = [];
+		var numOfSets = 0;
+		var combined = [];
+		for (var i = 0; i < queueList.length; i++) {
+			for (var j = 0; j < regionList.length; j++) {
+				var request = $.getJSON('json/'+ queueList[i]+'_'+regionList[j]+'_'+selection.data +'.json');
+					// When each request is done, add the pre_, post_, and d_ values to the combined array
+					request.done(function(data) {
+						numOfSets++;
+						if (combined.length == 0) {
+							data.forEach(function(entry) {
+								combined.push(JSON.parse(JSON.stringify(entry)));
 							});
+
+						} else {					
+							for (var i = 0; i < data.length; i++) {
+								var champID = data[i]['id'];
+								for (var j = 0; j < combined.length; j++) {
+									if (combined[j].id == champID) {
+										COMMON_PROPERTIES.forEach(function(property) {
+											combined[j][property]+=data[i][property];
+										});
+										break;
+									}
+								}
+								
+							}
 						}
-					}
-				});
-				requests.push(request);
+					});
+					requests.push(request);
+				}
 			}
+			// Once all requests have completed, divide each property by the number of sets used to get an average
 			$.when.apply($,requests).done(function() {
 				for (var i = 0; i < combined.length; i++) {
 					COMMON_PROPERTIES.forEach(function(property){
 						combined[i][property] = roundOff(combined[i][property]/numOfSets);
 					});
 				}
-				console.log(combined);
-				generateChart(combined);
-				if (sortProperty != 'name') {
-					sort(sortProperty);
-				}
-			});
+					// Creates the chart
+					generateChart(combined);
+					// Sorts the chart if necessary
+					if (sortProperty != 'name') {
+						sort(sortProperty);
+					}
+				});
 		}
 	}
-}
-//info = 'wr','pr'
-//sets Point properties of each champion object.
+
+// Generates an array of data usable in columnrange charts to show a bar (high and low properties)	
+// dataSet : an array of objects from which to determine the high and low properties 
+// info : a string indicating what data is being displayed ('wr', 'pr')
 function generateRangeData(dataSet, info) {
 	for (var i = 0; i < dataSet.length; i++) {
-		if (dataSet[i]['d_'+info] > 0) {// rate increases
+		if (dataSet[i]['d_'+info] > 0) { // Rate increases
 			dataSet[i].low = dataSet[i]['pre_'+info]; 
 			dataSet[i].high = dataSet[i]['post_'+info];
-		} else { // rate decreases
+		} else { // Rate decreases
 			dataSet[i].low = dataSet[i]['post_'+info];
 			dataSet[i].high = dataSet[i]['pre_'+info];
 		}
 		dataSet[i].currentInfo = info;
-		dataSet[i].color = (dataSet[i]['d_'+info] > 0) ? 'rgb(20,230,20)' : 'rgb(230,20,20)';		
+		dataSet[i].color = (dataSet[i]['d_'+info] > 0) ? 'rgb(20,230,20)' : 'rgb(230,20,20)'; // If the change is positive, the colour is green; if the change is negative, the colour is red
 	}
 	return dataSet;
 }
 
+// Generates an array of data usable in scatter charts to show arrows in the direction of change (y property)
+// markerSet : an array of objects from which to determine the y property
+// info : a string indicating what data is being displayed ('wr', 'pr')
 function generateMarkerData(markerSet,info) {
 	for (var i = 0; i < markerSet.length; i++) {
 		markerSet[i].y = markerSet[i]['post_'+info];
@@ -187,6 +198,8 @@ function generateMarkerData(markerSet,info) {
 	return markerSet;
 }
 
+// Generates the options of the chart
+// info : a string indicating what data is being displayed ('wr', 'pr')
 function generateChartOptions(info) {
 	var infoType = ABBREVIATIONS[info];
 	var options = {
@@ -252,31 +265,31 @@ function generateChartOptions(info) {
 				'stickyTracking' : true
 			}
 
-	};
-	if (info == 'wr') {
-		options['yAxis'][0]['plotLines'].push({
-			'value': 50,
-			'width': 2,
-			'color': '#AAAAAA',
-			'dashStyle':'Dash',
-			'zIndex': 5
-		});	
+		};
+		if (info == 'wr') {
+			options['yAxis'][0]['plotLines'].push({
+				'value': 50,
+				'width': 2,
+				'color': '#AAAAAA',
+				'dashStyle':'Dash',
+				'zIndex': 5
+			});	
+		}
+		return options;
 	}
-	return options;
-}
+	// Sorts the chart based on the property given
+	// property : a string identifying the property by which to sort the graph
+	function sort(property){
+		dataSeries.data.sort(sortByProperty(property));
+		$('#currently-sorting-by').html($("option[value="+property+"]").html());
+		markerSeries.data = generateMarkerData(dataSeries.data,dataSeries.currentInfo);
+		chart.xAxis[0].setCategories(getArrayOf(dataSeries.data,'name'));
+		chart.series[0].update(chart.series[0].options);
+		chart.series[1].update(chart.series[1].options);
+	}
 
-function sort(property){
-	chart.showLoading();
-	dataSeries.data.sort(sortByProperty(property));
-	$('#currently-sorting-by').html($("option[value="+property+"]").html());
-	markerSeries.data = generateMarkerData(dataSeries.data,dataSeries.currentInfo);
-	chart.xAxis[0].setCategories(getArrayOf(dataSeries.data,'name'));
-	chart.series[0].update(chart.series[0].options);
-	chart.series[1].update(chart.series[1].options);
-	chart.hideLoading();
-}
-
-// returns a callback function for Arrays.sort which will sort by one of the object's properties
+// A function generator used by Arrays.sort to sort by the given property
+// property : a string identifying the property by which to sort the array
 function sortByProperty(property) {
 	return function(a,b) {
 		if (a[property] < b[property]) {
@@ -288,6 +301,9 @@ function sortByProperty(property) {
 	}
 }
 
+// Returns an array of the given property for each element in dataSet
+// dataSet : an array of objects from which to get the property
+// property : a string indicating which property to make an array of
 function getArrayOf(dataSet,property){
 	var array = [];
 	for (var i = 0; i < dataSet.length; i++){
@@ -296,6 +312,8 @@ function getArrayOf(dataSet,property){
 	return array;
 }
 
+// Rounds a given number to two decimal places
+// num : a number to round
 function roundOff(num) {
 	return parseFloat((Math.round(num*100.0)/100.0).toFixed(2));
 }
