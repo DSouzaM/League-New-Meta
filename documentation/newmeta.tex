@@ -1,5 +1,15 @@
 \documentclass{article}
 
+\usepackage[parfill]{parskip}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
 \title{Metashift}
 \date{\today}
 \author{Matthew D'Souza \& Dongyu Zheng}
@@ -7,6 +17,11 @@
 \begin{document}
 \maketitle
 \pagenumbering{gobble}
+
+\newpage
+\begin{abstract}
+    Created for the League of Legends API Challenge 2.0, Metashift is a web app which uses Riot Games' API to query the game information and present a graphical analysis of thousands of League of Legends matches before and after the 5.13 patch. Many of the changes were made to the items with respect to the Ability Power stat. The goal of this project is to systematically look for a shift in the 'metagame' - the most popular (and often most successful) characters played both before and after patch 5.13.
+\end{abstract}
 
 \newpage
 \tableofcontents
@@ -18,11 +33,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     BEGIN DOCUMENTATION    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Abstract}
-
-Created for the League of Legends API Challenge 2.0, Metashift is a web app which uses Riot Games' API to query the game information and present a graphical analysis of thousands of League of Legends matches before and after the 5.13 patch. Many of the changes were made to the items with respect to the Ability Power stat. The goal of this project is to systematically look for a shift in the 'metagame' - the most popular (and often most successful) characters played both before and after patch 5.13.
-
 
 \section{Features}
 
@@ -53,11 +63,11 @@ Created for the League of Legends API Challenge 2.0, Metashift is a web app whic
 Although our web app is a static site, we used Django help us manage the database as we are both experience in Python and Django.
 
 \subsection{Database}
-We used SQlite for our databse. We were originally going to use PSQL, but neither of us could host and we did not want to spend money renting a server. The database schema was set up using Django models, and there are tables for match data, champions, and items.
+We used SQlite for our databse. We were originally going to use PSQL, but neither of us could host and we did not want to spend money renting a server. The database schema was set up using Django models, and there are tables for match data, champions, and items. 
 
-The match table has columns for match\_id, region, version, gamemode, and data. The data field is a json string dump of the data we receive from the API.
+The match table has columns for match\_id, region, version, gamemode, and data. The data field is a JSON string dump of the data we receive from the API. 
 
-Both the champion and item tables have region, version, gamemode, picks, wins, and name.
+Both the champion and item tables have region, version, gamemode, picks, wins, and name. Champion has the extra field of roles which will store a JSON dump of its K-Means Clustering result.
 
 \subsection{Downloading}
 We ran Python scripts to download and populate the database with data required.
@@ -68,18 +78,45 @@ To count how mand picks/wins a champion or item has, we would iterate through ea
 \subsection{K-Means Clustering}
 A simple machine learning algorithm was implemented to see if a champion's in-game role differed between the two game versions. 
 
+There are 5 roles (K=5): fighter, mage, marksman, support, and tank. Each role is assigned their archetypal items, ie. mage has Void Staff and Rabadon's Deathcap while tank has Warmog's Armor, etc. A 'closeness function' was defined for scoring a set of item's closeness to a role. An item set's score was decided to be calculated by iterating through each item in the item set and summing its popularity within a role - the percentage of players who buy the item as such role. That player's item set would be clustered into its highest scoring role.
+
+To make this more clear, observe the following example:
+\begin{itemize}
+    \item A player's item set includes: Void Staff, Rabadon's Deathcap, and Athene's Unholy Grail.
+    \item The following are roles, items and their popularities within that role:
+    \begin{itemize}
+        \item Marksman: Void Staff = 0.03; Rabadon's Deathcap = 0.008; Athene's Unholy Grail = 0.01
+        \item Mage: Void Staff = 0.23; Rabadon's Deathcap = 0.17; Athene's Unholy Grail = 0.18
+    \end{itemize}
+    \item This player's item set would score (0.03 + 0.008 + 0.01) = 0.048 points for Marksman while scoring (0.23 + 0.17 + 0.18) = 0.58 points for Mage.
+    \item Clearly, the score for the role of Mage is higher, so this player's item set would be put into the Mage cluster.
+\end{itemize}
+
+After iterating through each player of each match, we would now have 5 role clusters with player data within them, including their item set and champion id.
+
+Now that we have clusters, we would generate the next iteration of clustering data with an item's popularity being equal to the number of times it has appeared in that role divided by the total numbers of items bought in that cluster. We repeated this process 8 times.
+
+To determine a champion's role,  we would group each player of each match into the 5 clusters, then we would divide the number of times a champion id appears within a cluster over the total number of times that champion was selected.
+
 \subsection{Exporting}
-lorem ipsum
+To export champion data after counting the number of picks and wins and cluster the roles for a given version/gamemode/region, we would iterate through each champion to produce a JSON dump into a file to be used in our front end.
 
 
 
 \section{Frontend}
 
 \subsection{Graphing}
-lorem ipsum
+Graphing was achieved using the \href{http://www.highcharts.com/}{HIGHCHARTS}.
 
 \subsection{Charting}
-lorem ipsum
+Charts were generated using \href{https://www.datatables.net/}{DataTables}.
+
+
+\section{Hindsight}
+
+\begin{itemize}
+    \item no regrats
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
