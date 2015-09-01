@@ -73,7 +73,7 @@ Both the champion and item tables have region, version, gamemode, picks, wins, a
 We ran Python scripts to download and populate the database with data required.
 
 \subsection{Counting}
-To count how mand picks/wins a champion or item has, we would iterate through each match of the specified region, version, and gamemode to count and save the picks and wins.
+To count how many picks/wins a champion or item has, we would iterate through each match of the specified region, version, and gamemode to count and save the picks and wins.
 
 \subsection{K-Means Clustering}
 A simple machine learning algorithm was implemented to see if a champion's in-game role differed between the two game versions. 
@@ -103,18 +103,28 @@ To export champion data after counting the number of picks and wins and cluster 
 
 
 \section{Frontend}
+The app is hosted on a static GitHub page, and thus relies exclusively on client-side processing with JavaScript and some of its libraries.
 
 \subsection{Graphing}
-Graphing was achieved using \href{http://www.highcharts.com/}{HIGHCHARTS}.
+Graphing was achieved using \href{http://www.highcharts.com/}{Highcharts}. We aimed to make the whole process as modular as possible to adapt to different queues (both ranked and normal), regions (NA, LAS, KR, etc.), and other factors. This involved writing various functions, including one to aggregate all the selected regions' and queues' JSON files into one combined one.
 
-\subsection{Charting}
-Charts were generated using \href{https://www.datatables.net/}{DataTables}.
+Finding the ideal graph type to represent the data proved to be quite a challenge. The graph we chose definitely needed to show the change in some way, but with information like win rates, the actual value (especially with respect to the ideal 50\%) also ends up being very relevant. 
+
+The graph we ended up deciding on was a columnrange graph - essentially a bar graph confined to a maximum and minimum value. This still proved to be less intuitive than we desired. We were able to improvise, using symbols to plot triangular points and create makeshift arrows. Doing this gave us a much more easily understandable graph.
+
+\subsection{Table}
+Tables were generated using \href{https://www.datatables.net/}{DataTables}. Once the combined JSON file is aggregated from the graphing step, the data is then passed and put into a DataTable. This was also done with modularity in mind, and information about win rate/popularity as well as roles can be toggled on or off. Every property is sortable, to offer a better opportunity for analysis/inquiry.
 
 
 \section{Hindsight}
+At the start, we were both pretty ambitious about our goals for the project. It quickly became clear that we were ill-prepared for a lot of the issues we would run into. These issues, as tedious as they may have been, gave us valuable first-hand lessons in managing such a large project.
 
 \begin{itemize}
-    \item no regrats
+    \item Using a local SQLite database and synchronous API calls is probably not the best way to get information for 400,000 matches.
+    \item Starting a project with limited free time and a deadline will inevitably lead to a sacrifice in either sleep or project quality.
+    \item Putting more emphasis on items - admittedly the actual topic of the challenge - would probably have been a good idea.
+    \item Ignoring generic items such as boots and trinkets would have improved the accuracy of our K-Means Clustering.
+    \item Being familiar with the libraries/APIs you are using can make a project's development infinitely easier.
 \end{itemize}
 
 
