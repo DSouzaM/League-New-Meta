@@ -2,6 +2,11 @@ from apps.main.models import *
 from functions.util import *
 import json
 
+"""
+We use this module to iterate through all of our data to tally up totals,
+ex. how many picks a champion has.
+"""
+
 
 def count_champ(version, gamemode, region):
 
