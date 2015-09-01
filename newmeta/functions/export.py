@@ -2,6 +2,10 @@ from apps.main.models import *
 from functions.util import *
 import json
 
+"""
+This module contains functions which exports our data into JSONs.
+"""
+
 
 def exportChampions(gamemode, region):
     
@@ -119,26 +123,29 @@ Both funtions are pretty much identical, we can make this better.
 """
 
 
-# def exportRoleItems(version, gamemode, region):
+def exportRoleItems(version, gamemode, region):
 
-#     gamemode = gamemode.upper()
-#     region = region.upper()
-#     assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
+    gamemode = gamemode.upper()
+    region = region.upper()
+    assert(assertVersionGamemodeRegion(version=version,gamemode=gamemode,region=region))
 
-#     roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=8))
-#     roles_data = json.loads(roles_data)
+    roles_data = readEntireFile('./jsons/kmeans/{ver}/{gm}/{reg}/{it}.json'.format(ver=version,gm=gamemode,reg=region,it=8))
+    roles_data = json.loads(roles_data)
 
-#     result = {}
-#     roles = ['fighter','mage','marksman','support','tank']
+    result = {}
+    roles = ['fighter','mage','marksman','support','tank']
 
-#     for role in roles:
-#         result[role] = {}
-#         for item_set in roles_data[role]:
-#             temp = {}
-#             for k,v in item_set.iteritems():
-#                 temp[k] = v
-#             for name, score in sorted(temp.iteritems(), key=lambda (k, v): (-v, k))[:10]:
-#                 print name, score
+    for role in roles[0:1]:
+
+        temp = {}
+
+        for item_set in roles_data[role]:
+
+            for k,v in item_set.iteritems():
+                temp[k] = v
+
+        for name, score in sorted(temp.iteritems(), key=lambda (k, v): (-v, k))[:10]:
+            print name, score
 
 
 #     # print result

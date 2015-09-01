@@ -3,6 +3,10 @@ from kmeans import *
 from pull import *
 from export import *
 
+"""
+This module contains scripts to run overnight.
+"""
+
 def download():
     #regions = ['BR', 'EUNE', 'EUW', 'KR', 'LAN']
     #regions = ['NA', 'LAS', 'OCE', 'RU', 'TR']
@@ -24,7 +28,7 @@ def download():
             exportChampions(queue, region)
 
 
-def asdsa():
+def gary_temp():
     count_champ(5.11, 'RANKED_SOLO', 'NA')
     count_champ(5.14, 'RANKED_SOLO', 'NA')
     exportChampions('RANKED_SOLO', 'NA')

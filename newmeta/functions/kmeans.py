@@ -14,6 +14,9 @@ ITEMS_TO_IGNORE = set([2041,2003,2004,2047,2052,2010]) # Items we potentially wa
 #                 HELPER FUNCTIONS                #
 ###################################################
 
+"""
+This returns a list of dictionaries containing a player's champion id and his items
+"""
 def getMatchItems(match_id,region):
     
     region = region.upper()
@@ -43,7 +46,9 @@ def getMatchItems(match_id,region):
 
     return result
 
-
+"""
+Returns the score of a player's item set relative to a role
+"""
 def getScore(player,role):
 
     score = 0.0
@@ -58,10 +63,14 @@ def getScore(player,role):
     return score
 
 
-# If the best role has a score of 0, or there is a tie
-# we will skip this player.
-# A better way to implement this function is to sort descending,
-# take [0], and see if [1]'s score is the same.
+"""
+Returns the best role for a player's item set given the scores for each role.
+
+If the best role has a score of 0, or there is a tie we will skip this player.
+
+A better way to implement this function is to sort descending,
+take [0], and see if [1]'s score is the same.
+"""
 def getBestRole(scores):
 
     best_role_score = [None, 0.0]
@@ -87,6 +96,9 @@ def getBestRole(scores):
 #                SECONDARY FUNCTIONS              #
 ###################################################
 
+"""
+Creates clusters of players into roles.
+"""
 def getClusters(match_ids,region,roles):
 
     clusters = {'marksman': [], 'support': [], 'mage': [], 'tank': [], 'fighter': []}
@@ -117,6 +129,9 @@ def getClusters(match_ids,region,roles):
     return clusters
 
 
+"""
+Using the old cluster data, generate a new set of data.
+"""
 def generateNextIteration(iteration, version, gamemode, region):
 
     gamemode = gamemode.upper()
@@ -160,6 +175,9 @@ def generateNextIteration(iteration, version, gamemode, region):
 #                PRIMARY FUNCTIONS                #
 ###################################################
 
+"""
+Finds the newest iteration of data, and creates the next one.
+"""
 def getIteration(iteration, version, gamemode, region):
 
     gamemode = gamemode.upper()
@@ -187,6 +205,9 @@ def getIteration(iteration, version, gamemode, region):
         generateNextIteration(i, version, gamemode, region)
 
 
+"""
+Finds puts each player into clusters, calculates a champions role percentage using the players' champion id
+"""
 def generateChampionRoles(version, gamemode, region):
 
     gamemode = gamemode.upper()
